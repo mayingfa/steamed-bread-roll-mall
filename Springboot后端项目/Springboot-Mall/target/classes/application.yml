@@ -1,0 +1,17 @@
+spring:
+  http:
+    encoding:
+      charset: utf-8
+      force: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  profiles:
+    include: redis,mail,jdbc
+  servlet:
+    multipart:
+      max-file-size: 6MB
+      max-request-size: 7MB
+
+server:
+  port: 9999

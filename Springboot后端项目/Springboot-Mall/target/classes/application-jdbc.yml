@@ -1,0 +1,37 @@
+spring:
+  shardingsphere:
+    datasource:
+      names: master,slave0,slave1
+      master:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://112.126.92.148/qiu?useSSL=true&useUnicode=true&characterEncoding=utf8
+        username: root
+        password: 123456
+      slave0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://112.126.92.148/qiu?useSSL=true&useUnicode=true&characterEncoding=utf8
+        username: root
+        password: 123456
+      slave1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://112.126.92.148/qiu?useSSL=true&useUnicode=true&characterEncoding=utf8
+        username: root
+        password: 123456
+    props:
+      sql.show: true
+    masterslave:
+      load-balance-algorithm-type: round_robin
+    sharding:
+      master-slave-rules:
+        master:
+          master-data-source-name: master
+          slave-data-source-names: slave0,slave1
+
+mybatis:
+  mapper-locations: classpath:com/qiu/mapper/*.xml  #注入Mapper配置文件位置
+  type-aliases-package: com.qiu.entity  #别名，同样为类名或者类名首字母小写  User => User|user
+  configuration:
+    mapUnderscoreToCamelCase: true  #数据库 字段下划线 转JAVA大写字母

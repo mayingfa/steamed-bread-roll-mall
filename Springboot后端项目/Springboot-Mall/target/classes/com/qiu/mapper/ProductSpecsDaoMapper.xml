@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiu.dao.ProductSpecsDao"> <!--扫描到的包路径-->
+    <!--通过类型查询所有规格名称-->
+    <select id="selectAllByProId" resultType="String" parameterType="Integer">
+        select specs_name from specs where specs_id in(
+        select specs_id from product_specs where product_id=#{productId});
+    </select>
+    <!--查询所有-->
+    <select id="selectAll" resultType="ProductSpecs">
+        select product_id, specs_id from product_specs;
+    </select>
+    <!--插入一条数据-->
+    <insert id="insertData" parameterType="ProductSpecs">
+        insert into product_specs (product_id, specs_id)values (#{productId},#{specsId});
+    </insert>
+    <!--通过ID更新-->
+    <update id="updateById" parameterType="ProductSpecs">
+        update product_specs
+        <set>
+            <if test="productId != null">
+                product_id = #{productId},
+            </if>
+            <if test="specsId != null">
+                specs_id = #{specsId},
+            </if>
+        </set>
+        where product_id = #{productId} and specs_id = #{specsId};
+    </update>
+    <!--通过ID删除-->
+    <delete id="deleteById" parameterType="ProductSpecs">
+        delete from product_specs where product_id = #{productId} and specs_id = #{specsId};
+    </delete>
+
+
+    <!--批量添加-->
+    <insert id="insertBatch" parameterType="java.util.List" >
+        insert into product_specs (product_id, specs_id)values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.productId},#{item.specsId})
+        </foreach>
+    </insert>
+</mapper>
