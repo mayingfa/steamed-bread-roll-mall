@@ -72,11 +72,12 @@ public class UtilController {
     }
 
     @RequestMapping(value = "/allow/sendHtmlRegister")
-    public CommonResult sendRegisterInfo(String sendTo,String pwd){
+    public CommonResult sendRegisterInfo(String sendTo,String pwd,String name){
         try {
             Map<String,Object> data = new HashMap<>();
             data.put("account",sendTo);
             data.put("password",pwd);
+            data.put("name",name);
             data.put("year", Calendar.getInstance().get(Calendar.YEAR));
             mailService.sendTemplateMail(sendTo,"注册成功","register", data);
             return CommonResult.success("注册信息发送成功");

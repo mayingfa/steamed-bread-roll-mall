@@ -2,7 +2,7 @@
 <template>
   <div class="header">
     <el-breadcrumb separator="/" class="el-breadcrumb">
-      <el-breadcrumb-item to="/HomePage">首页</el-breadcrumb-item>
+      <el-breadcrumb-item to="/MallHome">首页</el-breadcrumb-item>
       <el-breadcrumb-item v-for="(item, index) in $route.meta.headerName" :key="index">
         <router-link v-if="item.url" :to="item.url">{{item.name}}</router-link>
         <span v-else>

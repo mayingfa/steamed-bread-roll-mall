@@ -164,7 +164,7 @@ export default {
         }
       };
       return {
-        isVip:this.$store.state.user['isVip'],
+        isVip:null,
         buyId:null,
         totalPrice:0,
         productSpec:null,
@@ -201,10 +201,10 @@ export default {
           orderFrom:'',
           orderState:'',
           returnState:false,
-          acceptAddress:this.$store.state.user['userAddress'],
+          acceptAddress:'',
         },
         shoppingCart:{
-          accountNumber:this.$store.state.user['accountNumber'],
+          accountNumber:'',
           productId:null,
           payAmount:1,
           productSpecs:null
@@ -348,6 +348,12 @@ export default {
       }
     },
     created() {
+      if(this.$store.state.user){
+        this.isVip = this.$store.state.user['isVip'];
+        this.order.acceptAddress = this.$store.state.user['userAddress'];
+        this.shoppingCart.accountNumber = this.$store.state.user['accountNumber']
+      }
+
       this.buyId = this.$route.query.id;
       if(this.buyId!=null){
         let loading = this.$loading({lock: true, text: "数据加载中",background:"rgba(255,255,255,0.2)"});

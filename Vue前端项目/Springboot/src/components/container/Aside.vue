@@ -228,6 +228,14 @@
             }
             break
           case "4":
+            if(role.indexOf(this.$VAR.productRole)===-1 && role.indexOf(this.$VAR.adminRole)===-1){
+              if(this.$route.path!=='/NoAccess'){
+                this.$router.push({path:'/NoAccess'});
+              }
+              this.$refs.menu.close(key);
+            }
+            break
+          case "5":
             if(role.indexOf(this.$VAR.userRole)===-1 && role.indexOf(this.$VAR.adminRole)===-1){
               if(this.$route.path!=='/NoAccess'){
                 this.$router.push({path:'/NoAccess'});

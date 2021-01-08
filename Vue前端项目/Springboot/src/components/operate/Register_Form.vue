@@ -191,7 +191,7 @@ export default {
                   loading.close();
                   if(res.data.code===200){  //注册成功
                     this.$msg.success({message:res.data.message, duration:1500});
-                    this.$http.post("/allow/sendHtmlRegister?sendTo="+this.loadForm.mailbox+"&pwd="+this.loadForm.password);
+                    this.$http.post("/allow/sendHtmlRegister?sendTo="+this.loadForm.mailbox+"&pwd="+this.loadForm.password+"&name="+this.loadForm.username);
                     this.$router.push('/loginForm')
                   }else{  //注册失败
                     this.$msg.error({message:res.data.message, showClose: true, duration:1500});

@@ -12,6 +12,8 @@ spring:
     multipart:
       max-file-size: 6MB
       max-request-size: 7MB
-
+  jpa:
+    open-in-view: false
 server:
   port: 9999
+

@@ -64,17 +64,17 @@ router.beforeEach((to, from , next) => {
 
   if (to.matched.some(record => record.meta.productRole)) {
     //判断当前是否有登录的权限
-    if (store.state.role.indexOf(VAR.adminRole)===-1 && store.state.role.indexOf(VAR.productRole)===-1) {
+    if (store.state.role && store.state.role.indexOf(VAR.adminRole)===-1 && store.state.role.indexOf(VAR.productRole)===-1) {
       next('/NoAccess')
     }
   }else if (to.matched.some(record => record.meta.orderRole)) {
     //判断当前是否有登录的权限
-    if (store.state.role.indexOf(VAR.adminRole)===-1 && store.state.role.indexOf(VAR.orderRole)===-1) {
+    if (store.state.role && store.state.role.indexOf(VAR.adminRole)===-1 && store.state.role.indexOf(VAR.orderRole)===-1) {
       next('/NoAccess')
     }
   }else if (to.matched.some(record => record.meta.userRole)) {
     //判断当前是否有登录的权限
-    if (store.state.role.indexOf(VAR.adminRole)===-1 && store.state.role.indexOf(VAR.userRole)===-1) {
+    if (store.state.role && store.state.role.indexOf(VAR.adminRole)===-1 && store.state.role.indexOf(VAR.userRole)===-1) {
       next('/NoAccess')
     }
   }
@@ -85,7 +85,7 @@ router.beforeEach((to, from , next) => {
     })
   }
 
-  if(to.path==='/HomePage' && store.state.role.indexOf(VAR.ordinaryRole)!==-1){
+  if(to.path==='/HomePage' && store.state.role && store.state.role.indexOf(VAR.ordinaryRole)!==-1){
     if(from.path!=='/MallHome'){
       next({
         path: '/MallHome',
@@ -93,7 +93,7 @@ router.beforeEach((to, from , next) => {
     }else{
       router.go(0)
     }
-  }else if(to.path==='/MallHome' && store.state.role.indexOf(VAR.ordinaryRole)===-1){
+  }else if(to.path==='/MallHome' && store.state.role && store.state.role.indexOf(VAR.ordinaryRole)===-1){
     if(from.path!=='/HomePage'){
       next({
         path: '/HomePage',

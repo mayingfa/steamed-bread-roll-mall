@@ -40,12 +40,19 @@
         </h2>
     </div>
     <div class="content" style="overflow: hidden;padding:15px 5% 70px 5%;margin:0 2%;background-color: #fff;box-shadow:0 4px 20px rgba(0,0,0,0.1);word-break: break-all;">
-        <p style="font-weight: bolder;margin-bottom: 5px;">尊敬的花卷用户，您好：</p>
-        <p style="margin-bottom: 30px; text-indent: 2em">欢迎您使用花卷商城，有问题可联系客服电话：<a href="javascirpt:void(0)" onclick="return false;">400-025-4066</a></p>
-        <p>账户：<span style="font-weight: bolder; font-size: 15px;" th:text="${account}">123456</span></p>
-        <p>密码：<span id="password" style="font-weight: bolder; font-size: 15px;" th:text="${password}">123456</span>
-<!--            <button id="cover" onclick="buttonClick()">点击即可显示密码</button>-->
-        </p>
+
+        <p style="font-weight: bolder;margin-bottom: 5px;">尊敬的<span th:text="${name}">花卷用户</span>，您好：</p>
+        <p style="margin-bottom: 0; text-indent: 2em">欢迎您使用花卷商城，因系统采用<span style="font-style: italic">支付宝沙箱技术</span>，请牢记支付帐号和支付密码。</p>
+        <div style="background-color: #bac8ff;padding: 3px;margin-top: 10px">
+            <p style="margin: 6px">您的账号：<span style="font-weight: bolder; font-size: 15px;" th:text="${account}">123456</span></p>
+            <p style="margin: 6px">您的密码：<span id="password" style="font-weight: bolder; font-size: 15px;" th:text="${password}">123456</span></p>
+        </div>
+        <div style="background-color: #ffe3e3;padding: 3px;margin-top: 10px">
+            <p style="margin: 6px;font-size: 8px;">支付宝帐号：<a href="javascirpt:void(0)" onclick="return false;">ilikkj2173@sandbox.com</a></p>
+            <p style="margin: 6px;font-size: 8px;">登录/支付密码：<a href="javascirpt:void(0)" onclick="return false;">111111</a></p>
+        </div>
+
+
     </div>
 </div>
 <div class="footer" style="padding:7px 20px;background-color:#333;font-size:12px;color: #999;text-align: center">

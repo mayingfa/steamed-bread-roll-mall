@@ -36,9 +36,9 @@
     <div class="slideshow" v-if="this.bannerInfo">
       <el-carousel height="480px">
         <el-carousel-item  v-for="banner in bannerInfo" :key="banner.bannerId">
-          <el-link :href="banner.productUrl" style="width: 100%;height: 100%">
+          <router-link :to="banner.productUrl" style="width: 100%;height: 100%">
             <el-image :src="banner.bannerUrl" style="height: 100%;width: 100%"></el-image>
-          </el-link>
+          </router-link>
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -166,6 +166,10 @@
       this.$http.post('/banner/findAll').then((rep)=>{
         if(rep.data.code===200){
           this.bannerInfo=rep.data.data;
+          for (let i = 0; i < this.bannerInfo.length; i++) {
+            let url = this.bannerInfo[i].productUrl;
+            this.bannerInfo[i].productUrl = url.substring(url.indexOf('#')+1);
+          }
         }
       }).catch((err)=>{this.$msg.error(err)})
 
