@@ -114,4 +114,9 @@ export default {
   color: #2c3e50;
   height: 100vh;
 }
+
+.el-dropdown-menu{
+  min-width: 137px;
+}
+
 </style>

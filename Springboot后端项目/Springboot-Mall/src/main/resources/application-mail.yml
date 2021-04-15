@@ -2,7 +2,7 @@ spring:
   mail:
     host: smtp.163.com #发送邮件服务器
     username: 15233088662@163.com #发送邮件的邮箱地址
-    password: YJTWHVSWPMHTVDKQ #客户端授权码，不是邮箱密码,网易的是自己设置的
+    password: PECCHGRXRGBJPLOY #客户端授权码，不是邮箱密码,网易的是自己设置的
     properties.mail.smtp.port: 994 #465或者994
     from: 15233088662@163.com # 发送邮件的地址，和上面username一致
     nickname: 花卷买卖

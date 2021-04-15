@@ -1,109 +1,109 @@
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\SupplierServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\OrderDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\UtilController.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\util\general\MyByteSource.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\LogisticsDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\OperateController.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ShoppingCartServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\UserRoleService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\VipServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\config\RedisConfig.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\AlipayServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\RoleController.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductReviewService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\LogisticsServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\ReturnProductController.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\ProductReviewDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\ProductController.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\config\RoleOrFilter.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\UserController.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\util\oss\AliyunOssUtil.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\BannerDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\VipDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ShoppingCartService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\User.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\UserService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\config\UserRealm.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\PurchaseDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\ProductDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\ProductSpecsDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\UserDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductSpecsServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\PurchaseService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\ProductBrand.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\config\WebConfig.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductTypeService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\RoleService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\util\mail\IMailServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\SupplierDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\UserRoleDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\Order.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\ProductReview.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\ShoppingCartDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ReturnGoodsServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\PurchaseController.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\ShoppingCartController.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\RoleServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\BannerController.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\ProductTypeDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ReturnReasonServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\config\SpringWebMvcConfig.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\config\ShiroConfig.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\UserRoleController.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\OrderService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\LogisticsService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\SpecsService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\config\OssConfiguration.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\BaseDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\SupplierService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\ReturnGoods.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\Banner.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\Role.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductReviewServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\Vip.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\BannerServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\config\AlipayConfig.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\PurchaseServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\Purchase.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\Specs.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\util\sms\AliYunSmsService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\OrderController.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductTypeServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\ProductBrandDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\Supplier.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\Product.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ReturnReasonService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\OssController.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductBrandServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ReturnGoodsService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\AlipayService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\SpecsDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\util\general\PropertiesUtil.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\ShoppingCart.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\SpecsServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\util\mail\IMailService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\Logistics.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\util\general\CommonResult.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\AlipayController.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\ProductSpecs.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\ReturnGoodsDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\UserRoleServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\UserRole.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\VipService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\UserServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductSpecsService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\Application.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\ProductType.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductBrandService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\OrderServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\util\sms\AliYunSmsServiceImpl.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\ProductReviewController.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\ReturnReasonDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\ReturnReason.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\SpecsController.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\util\general\MyUtils.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\RoleDao.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\BannerService.java
-F:\Gitee Project\steamed-bread-roll-project\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\OverViewController.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\config\ShiroConfig.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\Specs.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\VipServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\ReturnReasonDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\util\general\MyByteSource.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\util\oss\AliyunOssUtil.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\SpecsService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\VipDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\ShoppingCart.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\UserRole.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\RoleDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\ProductBrand.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\Role.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\UserServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\Banner.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\UserDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ReturnReasonServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\UserRoleService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\AlipayServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\UtilController.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\Order.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\ProductBrandDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\Supplier.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\Application.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\OssController.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\SupplierDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\UserRoleDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\ShoppingCartDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\Logistics.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\PurchaseController.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductReviewServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\ReturnGoodsDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\RoleController.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\config\AlipayConfig.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\BannerService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\ProductReviewController.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\util\sms\AliYunSmsService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\ProductSpecsDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\UserRoleController.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\Purchase.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\OrderDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ReturnGoodsService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\SpecsDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\Product.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\UserController.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ShoppingCartServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\Vip.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\config\SpringWebMvcConfig.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductSpecsService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\config\RedisConfig.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\PurchaseDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\ProductController.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\ReturnReason.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\OrderController.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\util\mail\IMailService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\UserService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\User.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\BannerController.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\config\WebConfig.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\util\general\PropertiesUtil.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\BannerDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\ProductDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\util\general\MyUtils.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\OrderService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\ReturnProductController.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ShoppingCartService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ReturnReasonService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\AlipayService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\SpecsController.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\ProductType.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\config\UserRealm.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ReturnGoodsServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\LogisticsDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\RoleService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\ProductTypeDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\ProductSpecs.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\SupplierService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\config\RoleOrFilter.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\util\mail\IMailServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductReviewService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\PurchaseServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\OrderServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\config\OssConfiguration.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\RoleServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\SupplierServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\OperateController.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductTypeService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\ProductReviewDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductSpecsServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\SpecsServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\LogisticsService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\dao\BaseDao.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\VipService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductBrandServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\BannerServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductTypeServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\OverViewController.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductBrandService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\PurchaseService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\AlipayController.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\ProductReview.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\util\general\CommonResult.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\LogisticsServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\entity\ReturnGoods.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\ProductService.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\util\sms\AliYunSmsServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\service\UserRoleServiceImpl.java
+F:\Gitee Project\steamed-bread-roll-project [Concise]\Springboot后端项目\Springboot-Mall\src\main\java\com\qiu\controller\ShoppingCartController.java

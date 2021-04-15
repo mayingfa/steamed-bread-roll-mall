@@ -31,7 +31,7 @@
     <div class="order-box" v-if="this.orderData.length!==0">
       <el-tabs class="order-list" stretch v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="全部订单" name="first">
-          <el-table :data="orderData" class="order-table">
+          <el-table :data="orderData" class="order-table" center>
             <el-table-column type="expand">
               <template slot-scope="props">
                 <el-form label-position="left" inline class="product-form">
@@ -700,11 +700,6 @@
       reqInfo(){
         let loading = this.$loading({lock: true, text: "数据加载中",background:"rgba(255,255,255,1)"});
         this.orderData.length=0;
-        this.$http.post('/returnGoods/findReturnInfo?userNumber='+this.$store.state.user['accountNumber']).then((rep)=>{
-          if(rep.data.code===200){
-            this.orderData = this.orderData.concat(rep.data.data);
-          }
-        }).catch((err)=>{this.$msg.error(err)})
         this.$http.post('/productType/findAllName').then((rep)=>{
           if(rep.data.code===200){
             this.productType = rep.data.data;
@@ -737,7 +732,11 @@
             }
           }
         }).catch((err)=>{loading.close();this.$msg.error(err)})
-
+        this.$http.post('/returnGoods/findReturnInfo?userNumber='+this.$store.state.user['accountNumber']).then((rep)=>{
+          if(rep.data.code===200){
+            this.orderData = this.orderData.concat(rep.data.data);
+          }
+        }).catch((err)=>{this.$msg.error(err)})
       },
       sendBack(index){
         this.alterForm.orderNo = this.orderData[index].orderNo;
@@ -944,6 +943,11 @@
 
   .my-order .review .star-item .el-form-item__error{
     top: 77%;
+  }
+
+  .my-order .el-table__empty-text{
+    line-height: 500px;
+    user-select: none;
   }
 
 

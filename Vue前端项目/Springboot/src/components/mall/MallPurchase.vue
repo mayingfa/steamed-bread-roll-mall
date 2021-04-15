@@ -2,11 +2,12 @@
   <div class="mall-purchase">
     <div class="product-box">
       <div class="nav-bar">
-        <div class="container">
-          <h2>{{productInfo.productName}}</h2>
-          <div>
-            <span class="separator">|</span>
-            <span>{{productInfo.productType}}</span>
+        <div v-if="productInfo" class="container">
+          <el-image class="logo" style="width: 65px;height: 65px;margin-top: 10px;margin-right: 15px;" :src="productInfo.productUrl"></el-image>
+          <div style="display: inline-block;position:absolute;top: 35px">
+            <span style="font-size: 19px;font-weight: bolder">{{productInfo.productName}}</span>
+            <el-divider direction="vertical"></el-divider>
+            <span style="font-size: 18px;font-weight: bolder">{{productInfo.productType}}</span>
           </div>
           <el-link type="danger" @click="toReview">商品评价</el-link>
         </div>
@@ -399,10 +400,11 @@ export default {
 
   .mall-purchase .product-box .nav-bar{
     position: relative;
-    height: 63px;
+    height: 80px;
     width: 100%;
     margin-top: 0;
     color: #616161;
+    border-bottom: 1px solid #ff6700;
   }
 
   .mall-purchase .nav-bar .container{
@@ -422,11 +424,25 @@ export default {
     display: inline-block;
   }
 
+  .mall-purchase .nav-bar .container .logo{
+    cursor: pointer;
+  }
+
+  .mall-purchase .nav-bar .container .logo:hover{
+    animation: myAnimation 8s;
+  }
+
+  @keyframes myAnimation
+  {
+    0%   {transform:rotateY(0deg) scale(.9,.9);}
+    50%  {transform:rotateY(180deg) scale(.9,.9);}
+    100% {transform:rotateY(360deg) scale(.9,.9);}
+  }
+
   .mall-purchase .nav-bar .container div{
     display: inline-block;
     margin-left: 5px;
     font-size: 15px;
-    margin-top: 21px;
   }
 
   .mall-purchase .nav-bar .container .el-link{

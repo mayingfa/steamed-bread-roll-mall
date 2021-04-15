@@ -16,6 +16,8 @@ public class PropertiesUtil {
     private static String localHost = null;
     private static String serverHost = null;
     private static String port = null;
+    private static String domain = null;
+    private static String callback = null;
 
     public void getProperties() throws Exception{
         Properties properties=new Properties();
@@ -29,6 +31,8 @@ public class PropertiesUtil {
         localHost = (String) properties.get("localHost");
         serverHost = (String) properties.get("serverHost");
         port = (String) properties.get("port");
+        domain = (String) properties.get("domain");
+        callback = (String) properties.get("callback");
     }
 
     public static String getWay() {
@@ -45,5 +49,13 @@ public class PropertiesUtil {
 
     public static String getPort() {
         return port;
+    }
+
+    public static String getDomain() {
+        return domain;
+    }
+
+    public static String getCallback() {
+        return callback;
     }
 }

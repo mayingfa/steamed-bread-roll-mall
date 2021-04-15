@@ -10,7 +10,7 @@
       </span>
       </el-breadcrumb-item>
       <watcher class="wat" :class="{watcher:this.$store.state.token!==null}"></watcher>
-      <div class="avatar">
+      <div class="avatar" :class="{'notLogin':this.$store.state.token===null}">
         <el-dropdown v-if="this.$store.state.token!==null" class="el-dropdown" placement="bottom-start" style="padding-top: 18px;">
           <div style="position: relative;height: 34px">
             <el-image
@@ -21,19 +21,19 @@
               <img src="https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/avat.gif" alt="默认头像"/>
             </el-avatar>
           </div>
-          <el-dropdown-menu class="el-dropdown-menu" slot="dropdown">
-            <span style="border-top: 1px solid" @click="toHome()"><el-dropdown-item>首页</el-dropdown-item></span>
-            <span style="border-top: 1px solid" @click="toPersonal()"><el-dropdown-item>个人中心</el-dropdown-item></span>
-            <span style="border-top: 1px solid" @click="toChangePwd()"><el-dropdown-item>修改密码</el-dropdown-item></span>
+          <el-dropdown-menu class="el-dropdown-menu" slot="dropdown" placement="bottom-end">
+            <span style="border-top: 1px solid" @click="toHome()"><el-dropdown-item><i class="el-icon-house"/>首页</el-dropdown-item></span>
+            <span style="border-top: 1px solid" @click="toPersonal()"><el-dropdown-item><i class="el-icon-user"/>个人中心</el-dropdown-item></span>
+            <span style="border-top: 1px solid" @click="toChangePwd()"><el-dropdown-item><i class="el-icon-edit"/> 修改密码</el-dropdown-item></span>
             <span style="border-top: 1px solid" @click="toMyOrder()"
                   v-if="this.$store.state.role!==null && this.$store.state.role.indexOf(this.$VAR.ordinaryRole)!==-1">
-              <el-dropdown-item>我的订单</el-dropdown-item>
+              <el-dropdown-item><i class="el-icon-document"/>我的订单</el-dropdown-item>
             </span>
             <span style="border-top: 1px solid" @click="toMyCart()"
                   v-if="this.$store.state.role!==null && this.$store.state.role.indexOf(this.$VAR.ordinaryRole)!==-1">
-              <el-dropdown-item>购物车</el-dropdown-item>
+              <el-dropdown-item><i class="el-icon-shopping-cart-full"/>购物车</el-dropdown-item>
             </span>
-            <span style="border-top: 1px solid" @click="exit()"><el-dropdown-item>退出</el-dropdown-item></span>
+            <span style="border-top: 1px solid" @click="exit()"><el-dropdown-item><i class="el-icon-position"/>退出</el-dropdown-item></span>
           </el-dropdown-menu>
         </el-dropdown>
         <div v-else>
@@ -181,16 +181,18 @@ export default {
     background: #FFFFFF;
     font-size: 15px;
     line-height: 4;
-    padding: 0 20px;
+    padding: 0 30px;
     user-select: none;
   }
   .header .avatar{
-    float: right;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    right: 83px;
   }
+
+  .header .notLogin{
+    right: 50px!important;
+  }
+
   .header .el-avatar{
     height: 35px;
     width: 35px;
@@ -211,7 +213,8 @@ export default {
 
   .header .watcher{
     position: absolute;
-    right: 100px!important;
+    right: 140px!important;
+    cursor: pointer;
   }
   .header .watcher .sw-card-slim-container{
     position: absolute;

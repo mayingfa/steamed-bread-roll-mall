@@ -35,7 +35,7 @@
         </el-table-column>
       </el-table>
     </el-card>
-    <el-dialog title="编辑退货原因" class="chang-reason" :close-on-click-modal="false" :visible.sync="dialogFormVisible" width="420px" center>
+    <el-dialog title="编辑退货原因" class="chang-reason" :close-on-click-modal="false" :visible.sync="dialogFormVisible" width="420px" top="28vh" center>
       <el-form class="info-form" inline :rules="alterRules" :model="alterForm" ref='changeFrom'>
         <el-form-item label="退货原因：" prop="reasonName" style="width: 100%">
           <el-input size="small" v-model="alterForm.reasonName" placeholder="退货原因"></el-input>

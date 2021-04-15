@@ -29,7 +29,7 @@ public class AlipayController {
         this.alipayService = alipayService;
         this.orderService = orderService;
         this.redisTemplate = redisTemplate;
-        this.hostAddress= PropertiesUtil.getServerHost() +":"+PropertiesUtil.getPort();
+        this.hostAddress= PropertiesUtil.getCallback();
     }
 
     @RequestMapping("/")
@@ -91,10 +91,10 @@ public class AlipayController {
                 order.setOrderState("开通成功");
                 String serialNumber =  redisTemplate.opsForValue().get(tradeNo);
                 if(serialNumber !=null){
-                    response.sendRedirect("http://"+hostAddress+"/?#/personalCenter?serialNumber="+serialNumber);
+                    response.sendRedirect("http://"+hostAddress+"/#/personalCenter?serialNumber="+serialNumber);
                     redisTemplate.delete(tradeNo);
                 }else{
-                    response.sendRedirect("http://"+hostAddress+"/?#/personalCenter?serialNumber="+"ERROR");
+                    response.sendRedirect("http://"+hostAddress+"/#/personalCenter?serialNumber="+"ERROR");
                 }
                 orderService.updateById(order);
             }else{
@@ -103,14 +103,17 @@ public class AlipayController {
                 assert Str != null;
                 String[] ordersNo = Str.split(",");
                 System.out.println(Arrays.toString(ordersNo));
+                System.out.println("支付接口回调成功");
                 for (String orderNo : ordersNo) {
+                    System.out.println("1");
                     Integer orderId = orderService.selectIdByKey(orderNo);
                     Order order = new Order();
                     order.setOrderId(orderId);
                     order.setOrderState("待发货");
                     orderService.updateById(order);
                 }
-                response.sendRedirect("http://"+hostAddress+"/?#/myOrder");
+                System.out.println("2");
+                response.sendRedirect("http://"+hostAddress+"/#/myOrder");
             }
         }catch (IOException e) {
             e.printStackTrace();

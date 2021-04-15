@@ -91,7 +91,7 @@
                     if(role.indexOf(this.$VAR.ordinaryRole)===-1){
                       message +='后台系统'
                     }
-                    this.$notify({title: str, message: message, type: 'success',offset: 0});
+                    this.$notify({title: str, message: message, type: 'success',offset: 50});
                     if(role.indexOf(this.$VAR.ordinaryRole)!==-1){  // 不是-1  为普通用户，进入前端商城
                       this.$router.push('/MallHome')
                     }else{

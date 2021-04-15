@@ -43,12 +43,6 @@
       <artifactId>druid</artifactId>
       <version>1.1.12</version>
     </dependency>
-    <!--数据库读写分离-->
-    <dependency>
-      <groupId>org.apache.shardingsphere</groupId>
-      <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
-      <version>4.1.1</version>
-    </dependency>
     <!-- 图片上传 SDK 阿里云oss -->
     <dependency>
       <groupId>com.aliyun.oss</groupId>

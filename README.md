@@ -6,7 +6,9 @@
 
 花卷商城，一款基于 Springboot+Vue 的电商项目，前后端分离项目
 
-项目演示地址：[花卷买卖](http://112.126.92.148:9999/)
+项目演示地址：[花卷买卖](http://mall.qiudb.top/)
+
+为了应付学校课程设计，可加我领取本地测试版本，[点击加我](tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1325554003)
 
 
 

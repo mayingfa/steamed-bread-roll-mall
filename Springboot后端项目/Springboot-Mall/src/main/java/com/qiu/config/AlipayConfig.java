@@ -14,9 +14,10 @@ public class AlipayConfig {
 	// 请求网关  固定
 	public static String URL = "https://openapi.alipaydev.com/gateway.do";
 	//异步通知地址
-	public static String notify_url = "http://"+PropertiesUtil.getServerHost() +":"+PropertiesUtil.getPort()+"/alipay/payNotify";
+	public static String notify_url = "http://"+PropertiesUtil.getDomain() +"/alipay/payNotify";
 	//同步地址
-	public static String return_url = "http://"+PropertiesUtil.getServerHost() +":"+PropertiesUtil.getPort()+"/alipay/paySuccess";
+	public static String return_url = "http://"+PropertiesUtil.getDomain() +"/alipay/paySuccess";
+
 	// 编码
 	public static String CHARSET = "UTF-8";
 	// 返回格式

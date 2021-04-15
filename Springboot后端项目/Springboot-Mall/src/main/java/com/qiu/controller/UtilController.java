@@ -53,18 +53,13 @@ public class UtilController {
      */
     @RequestMapping(value = "/allow/sendHtmlCode")
     public CommonResult sendHtmlCode(String sendTo){
-//        long startTime = System.currentTimeMillis(); //获取开始时间
         try {
             String code = MyUtils.getCode(6);
-//            long oneTime = System.currentTimeMillis(); //获取第一阶段时间
             Map<String,Object> data = new HashMap<>();
             data.put("code",code);
             data.put("year", Calendar.getInstance().get(Calendar.YEAR));
             redisTemplate.opsForValue().set(sendTo,code,10, TimeUnit.MINUTES);
-//          long twoTime = System.currentTimeMillis(); //获取第二阶段时间
             mailService.sendTemplateMail(sendTo,"操作验证码","mail", data);
-//          long threeTime = System.currentTimeMillis(); //获取第三阶段时间
-//          MyUtils.speedTest(startTime,oneTime,twoTime,threeTime);
             return CommonResult.success("验证码已发送，网络有延迟请稍等~");
         }catch (Exception e){
             return CommonResult.error("发送验证码时发生异常,请稍后重试！");

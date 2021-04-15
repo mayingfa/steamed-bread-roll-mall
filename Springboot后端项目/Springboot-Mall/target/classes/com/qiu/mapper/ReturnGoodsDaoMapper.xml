@@ -22,7 +22,7 @@
         select order_id as orderId, a.order_no as orderNo,b.product_no as productNo,product_specs as productSpecs,
                pay_price as payPrice,deal_time as orderTime,pay_type as payType,c.return_state as orderState,c.return_id as returnId,product_name as productName,product_type as productType,out_price as outPrice,
                pay_amount as payAmount,a.user_name as userName,contact_way as contactWay,accept_address as acceptAddress,product_url as productUrl from `order` as a,product as b,return_goods as c
-        where (a.product_no=b.product_no) and (a.order_no=c.order_no) and c.user_number=#{userNumber} and c.return_state !='已拒绝' and c.return_state !='退款完成' and c.return_state !='拒绝退款' and c.return_state != '待处理' order by deal_time desc
+        where (a.product_no=b.product_no) and (a.order_no=c.order_no) and c.user_number=#{userNumber} and c.return_state !='已拒绝' and c.return_state !='退款完成' and c.return_state !='拒绝退款' and c.return_state != '待处理' and c.return_state != '待退款' order by deal_time desc
     </select>
 
     <!--根据订单编号查询-->
