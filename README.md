@@ -8,8 +8,8 @@
 
 项目演示地址：[花卷买卖](http://mall.qiudb.top/)
 
-为了应付学校课程设计，可加我领取本地测试版本，[点击加我](tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1325554003)
-<a href="http://mall.qiudb.top/" rel="nofollow">花卷买卖</a>
+为了应付学校课程设计，可加我领取本地测试版本，<a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1325554003" rel="nofollow">点击加我</a>
+
 
 
 
