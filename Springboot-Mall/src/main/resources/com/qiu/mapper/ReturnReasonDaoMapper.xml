@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiu.dao.ReturnReasonDao"> <!--扫描到的包路径-->
+    <!--通过ID查询-->
+    <select id="selectById" resultType="ReturnReason" parameterType="Integer">
+        select reason_id, reason_name, status from return_reason where reason_id=#{reasonId};
+    </select>
+
+    <!--查询所有-->
+    <select id="selectAll" resultType="ReturnReason">
+        select reason_id, reason_name, status from return_reason;
+    </select>
+
+    <!--查询所有退货原因-->
+    <select id="selectAllName" resultType="String">
+        select reason_name from return_reason where status;
+    </select>
+
+    <!--判断 退货原因 是否存在-->
+    <select id="existsWithReasonName" resultType="Boolean">
+        select count(reason_name) from return_reason where reason_id !=#{reasonId} and reason_name = #{reasonName};
+    </select>
+
+    <!--插入一条数据-->
+    <insert id="insertData" parameterType="ReturnReason">
+        insert into return_reason (reason_id, reason_name, status) values (#{reasonId},#{reasonName},#{status});
+    </insert>
+
+    <!--通过ID更新-->
+    <update id="updateById" parameterType="ReturnReason">
+        update return_reason
+        <set>
+            <if test="reasonName != null">
+                reason_name = #{reasonName},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+        </set>
+        where  reason_id=#{reasonId};
+    </update>
+
+    <!--通过ID删除-->
+    <delete id="deleteById" parameterType="Integer">
+        delete from return_reason where reason_id=#{reasonId};
+    </delete>
+
+</mapper>

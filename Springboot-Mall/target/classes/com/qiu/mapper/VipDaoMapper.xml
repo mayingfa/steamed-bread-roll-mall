@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiu.dao.VipDao"> <!--扫描到的包路径-->
+    <!--通过ID查询-->
+    <select id="selectById" resultType="Vip" parameterType="int">
+        select vip_id, account_number, creat_time, overdue_time from vip where vip_id = #{vipId};
+    </select>
+    <!--查询所有-->
+    <select id="selectAll" resultType="Vip">
+        select vip_id, account_number, creat_time, overdue_time from vip;
+    </select>
+    <!--通过用户帐号查询-->
+    <select id="selectByKey" resultType="Vip" parameterType="String">
+        select vip_id, account_number, creat_time, overdue_time from vip where account_number=#{accountNumber};
+    </select>
+
+    <!--判断 vip 是否存在-->
+    <select id="existsVip" resultType="Boolean" parameterType="String">
+        select count(account_number) from vip where account_number = #{accountNumber};
+    </select>
+
+    <!--插入一条数据-->
+    <insert id="insertData" parameterType="Order">
+        insert into vip (vip_id, account_number, creat_time, overdue_time)
+        values (#{vipId},#{accountNumber},#{creatTime},#{overdueTime});
+    </insert>
+    <!--通过ID更新-->
+    <update id="updateById" parameterType="Order">
+        update vip
+        <set>
+            <if test="overdueTime != null">
+                overdue_time = #{overdueTime},
+            </if>
+        </set>
+        where vip_id = #{vipId};
+    </update>
+    <!--通过ID删除-->
+    <delete id="deleteById" parameterType="int">
+        delete from vip where vip_id = #{vipId};
+    </delete>
+</mapper>

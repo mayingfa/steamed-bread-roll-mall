@@ -2,7 +2,7 @@
 
 ## 项目文档
 
-### 介绍
+### 项目介绍
 
 花卷商城，一款基于 Springboot+Vue 的电商项目，前后端分离项目
 
@@ -10,39 +10,126 @@
 
 本项目为简单的课设项目，禁止修改后商用，不承担一切责任
 
-课程设计的伙伴们欢迎加我，领取本地测试版本
-:point_right: QQ：1325554003 
+项目部署失败或不会部署的，可以加QQ联系我，简单问题会回复。
 
+对项目部署不熟悉，想省事，或想快速部署测试效果的，可以考虑远控帮你部署。
+
+:point_right: QQ：1325554003 
 
 ### 测试账号
 
------后台管理账号-----
+> 后台管理账号
 
-账号：1325554003@qq.com
+- 账号：1325554003@qq.com
 
-密码：M123456
+- 密码：M123456
+
+> 门户账号
+
+- 账号：qiudb.top@aliyun.com
+
+- 密码：M123456
+
+> 支付宝支付账号
+
+- 支付帐号：ilikkj2173@sandbox.com
+
+- 登录密码：111111
+
+- 支付密码：111111
 
 
-------门户账号--------
 
-账号：qiudb.top@aliyun.com
+### 迭代更新
 
-密码：M123456
+> 更新时间：2021-12-05
+
+问题修复：
+
+1. 创建用户、生成订单等操作造成时间字段报null空指针错误。【已修复】
+2. 从购物车下单后，购物车中的商品还存在问题。【已修复】
+3. 注册用户页面，发送邮箱验证码时，数字验证码一直不变问题，【已修复】
+4. 项目文件目录规范化，目录命名规范化。
+5. Vue项目启动命令为：npm run serve 或 npm start，项目启动后自动打开网页。
+
+新功能：
+
+1. 项目启动时，可通过application.yml配置文件配置超级管理员账号，在admin属性下配置邮箱、用户名等信息。当项目启动时自动检测邮箱是否已被注册；若此邮箱没有被注册，则自动帮你注册为超级管理员账号。
+2. 商品评价时，增加敏感词汇过滤功能，在项目resources文件夹下有个words.txt文件存储敏感词汇信息，当评价商品时，会将敏感词汇替换成`*`；例如words.txt中有【刷单】这个词，当评论中存在刷单时，会被替换为`*`。
+
+3. vue项目中引入**animate.css**动画库，个别地方增加了一些动画效果，例如首页logo、花卷会员等地方。如果想要自定义动画效果，只需要在对应的标签上加个class属性就可以。
+
+   **animate.css**官网链接：https://animate.style/
+
+   ```html
+   <h1 class="animate__animated animate__bounce">An animated element</h1>
+   ```
+
+4. 我的订单页面，允许隐藏已经购买完成的订单信息，当购买数量过多时，会显得页面特别乱，增加了隐藏订单功能。
 
 
-### 支付宝支付
 
-支付帐号：ilikkj2173@sandbox.com
+以上是本次项目迭代更新的全部功能，如果项目中你发现了新的问题，可以加QQ讨论如何修复此问题。
 
-登录密码：111111
-
-支付密码：111111
+---
 
 
 
 ### 软件架构
 
-Springboot + maven + mybatis + Vue 组成，B/S模式
+后端技术
+
+| 技术       | 说明           | 官网                                                         |
+| ---------- | -------------- | ------------------------------------------------------------ |
+| SpringBoot | 容器+MVC框架   | [https://spring.io/projects/spring-boot](https://gitee.com/link?target=https%3A%2F%2Fspring.io%2Fprojects%2Fspring-boot) |
+| Shiro      | 认证和授权框架 | [Apache Shiro Simple. Java. Security.](https://shiro.apache.org/) |
+| MyBatis    | ORM框架        | [http://www.mybatis.org/mybatis-3/zh/index.html](https://gitee.com/link?target=http%3A%2F%2Fwww.mybatis.org%2Fmybatis-3%2Fzh%2Findex.html) |
+| MySQL      | 数据库         | [https://www.mysql.com/](https://gitee.com/link?target=https%3A%2F%2Fwww.mysql.com%2F) |
+| Redis      | 分布式缓存     | [https://redis.io/](https://gitee.com/link?target=https%3A%2F%2Fredis.io%2F) |
+| Druid      | 数据库连接池   | [https://github.com/alibaba/druid](https://gitee.com/link?target=https%3A%2F%2Fgithub.com%2Falibaba%2Fdruid) |
+
+前端技术
+
+| 技术                | 说明               | 官网                                                         |
+| ------------------- | ------------------ | ------------------------------------------------------------ |
+| Vue                 | 前端框架           | [https://vuejs.org/](https://gitee.com/link?target=https%3A%2F%2Fvuejs.org%2F) |
+| Vue-router          | 路由框架           | [https://router.vuejs.org/](https://gitee.com/link?target=https%3A%2F%2Frouter.vuejs.org%2F) |
+| Vuex                | 全局状态管理框架   | [https://vuex.vuejs.org/](https://gitee.com/link?target=https%3A%2F%2Fvuex.vuejs.org%2F) |
+| Element             | 前端UI框架         | [https://element.eleme.io](https://gitee.com/link?target=https%3A%2F%2Felement.eleme.io%2F) |
+| Axios               | 前端HTTP框架       | [https://github.com/axios/axios](https://gitee.com/link?target=https%3A%2F%2Fgithub.com%2Faxios%2Faxios) |
+| vue-clipboard2      | 将内容复制到剪贴板 | [https://github.com/Inndy/vue-clipboard2](https://gitee.com/link?target=https%3A%2F%2Fgithub.com%2FInndy%2Fvue-clipboard2) |
+| vuex-persistedstate | vuex持久化         | [https://www.npmjs.com/package/vuex-persistedstate](https://gitee.com/link?target=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fvuex-persistedstate) |
+| nprogress           | 进度条控件         | [https://github.com/rstacruz/nprogress](https://gitee.com/link?target=https%3A%2F%2Fgithub.com%2Frstacruz%2Fnprogress) |
+
+#### 开发环境
+
+| 工具  | 版本号 | 下载                                                         |
+| ----- | ------ | ------------------------------------------------------------ |
+| JDK   | 1.8    | [https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html](https://gitee.com/link?target=https%3A%2F%2Fwww.oracle.com%2Ftechnetwork%2Fjava%2Fjavase%2Fdownloads%2Fjdk8-downloads-2133151.html) |
+| Mysql | 5.7    | [https://www.mysql.com/](https://gitee.com/link?target=https%3A%2F%2Fwww.mysql.com%2F) |
+| Redis | 5.0.10 | [https://redis.io/download](https://gitee.com/link?target=https%3A%2F%2Fredis.io%2Fdownload) |
+
+#### 第三方技术
+
+| 工具           | 官网                                      |
+| -------------- | ----------------------------------------- |
+| 支付宝沙箱技术 | https://opendocs.alipay.com/common/02kkv7 |
+| OSS 存储       | https://cn.aliyun.com/                    |
+| 阿里云短信服务 | https://cn.aliyun.com/                    |
+| 网易邮箱服务   | https://email.163.com/                    |
+
+#### 项目部署
+
+将项目通过maven打成jar包，服务器运行jar包即可
+
+需开放的端口号：
+
+```
+9999	# 项目端口号
+3306	# mysql 主机端口
+6379	# redis 数据库
+994		# 网易163邮箱 服务端口
+```
 
 
 
@@ -162,106 +249,6 @@ Springboot + maven + mybatis + Vue 组成，B/S模式
 
 ![image-20210123152215106](https://oss-qiu.oss-cn-hangzhou.aliyuncs.com/qiu-blogs-typecho/20210123152503.png)
 
-
-
-
-
-### 安装教程
-
-1.  yum 命令 安装 jdk1.8
-
-    ```bash
-    yum -y list java*		#查询要安装jdk的版本
-    ```
-
-    ```bash
-    yum install -y java-1.8.0-openjdk.x86_64		#安装jdk1.8
-    ```
-
-    ```bash
-    java -version		#查询jdk版本
-    ```
-
-    ```bash
-    yum 命令 默认给安装到 usr/lib/jvm/ 
-    ```
-
-2.  安装 mysql 5.7
-
-    - [在一台Linux服务器上安装多个MySQL实例](https://www.cnblogs.com/lijiaman/p/12588095.html)
-
-    - [mysql主从复制、读写分离](https://www.cnblogs.com/cxyyh/p/10754231.html)
-
-    - mysql 常见错误
-
-      ```bash
-      装完MySQL，却发现在本地登录可以，但是远程登录却报错Host is not allowed to connect to this MySQL server
-      # https://blog.csdn.net/u012758088/article/details/78613812
-      ```
-
-3.  安装 redis 
-
-    - [linux 安装redis 完整步骤](https://www.cnblogs.com/happywish/p/10944253.html)
-
-
-
-### 使用说明
-
-1.  Linux服务器部署（jar包）
-
-2.  需开启相应防火墙端口号
-
-    ```bash
-    9999	# 项目端口号   如需修改，请到Springboot-Mall后端项目的application.yml文件下修改
-    3306	# mysql 主机端口
-    3307	# mysql 从机端口
-    3308	# mysql 从机端口
-    6379	# redis 数据库
-    994		# 网易163邮箱 服务端口
-    ```
-
-3.  项目在数据库上采用 主从复制，读写分离原则
-       - 主从复制 在mysql 设置
-       - 读写分离 采用 shardingsphere 中间件
-
-4.  第三方技术 
-
-    - 支付宝沙箱技术
-    - OSS 存储
-    - 网易邮箱服务
-    - 阿里云短信服务
-
-5.  本地开发 和 项目部署需要改三个地方
-
-    - VUE 前端  需要改   ==/src/global/index.js== 文件	bindToGlobal中的 http (本地: 127，部署: 服务器IP)
-
-    - Springboot 后端  需要改  ==/src/resources/config.properties==   way 方式
-
-    - Springboot 后端  需要改  ==/src/resources/application-redis.yml==   Redis服务器地址
-
-      （本地: 服务器IP，部署: 127.0.0.1）
-
-6.  支付宝沙箱帐号
-
-       ```bash
-    # 商家
-    账号 egtpnc3170@sandbox.com
-    密码 111111
-       ```
-
-       ```bash
-    # 买家
-    账号 ilikkj2173@sandbox.com
-    密码 111111
-    支付密码 111111
-       ```
-
-
-
-
-
-
-
 ## 数据库文档
 
 ### 数据库介绍
@@ -311,7 +298,7 @@ Springboot + maven + mybatis + Vue 组成，B/S模式
 
 
 
-##### **用户角色表（user_role）**
+##### 用户角色表（user_role）
 
 | 列名    | 数据类型 | 长度 | 默认 | 主键 | 非空 | 自增 | 注释   |
 | ------- | -------- | ---- | ---- | ---- | ---- | ---- | ------ |

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiu.dao.ShoppingCartDao"> <!--扫描到的包路径-->
+    <!--通过ID查询-->
+    <select id="selectById" resultType="ShoppingCart" parameterType="Integer">
+        select cart_id, account_number, product_id, pay_amount, product_specs
+        from shopping_cart where cart_id = #{cartId};
+    </select>
+
+    <!--查询所有-->
+    <select id="selectAll" resultType="java.util.Map" parameterType="String">
+        select cart_id as cartId, account_number as accountNumber, a.product_id as productId, pay_amount as payAmount,
+               product_name as productName,product_stock as productStock,product_no as productNo,
+               product_specs as productSpecs,out_price as productPrice,product_url as productUrl
+        from shopping_cart as a,product as b where a.product_id = b.product_id and account_number=#{accountNumber};
+    </select>
+
+    <!--插入一条数据-->
+    <insert id="insertData" parameterType="ShoppingCart">
+        insert into shopping_cart (cart_id, account_number, product_id, pay_amount, product_specs)
+        values (#{cartId},#{accountNumber},#{productId},#{payAmount},#{productSpecs});
+    </insert>
+
+    <!--通过ID更新-->
+    <update id="updateById" parameterType="ShoppingCart">
+        update shopping_cart
+        <set>
+            <if test="payAmount != null">
+                pay_amount = #{payAmount},
+            </if>
+        </set>
+        where cart_id = #{cartId};
+    </update>
+
+    <!--通过ID删除-->
+    <delete id="deleteById" parameterType="Integer">
+        delete from shopping_cart where cart_id = #{cartId};
+    </delete>
+
+    <!--通过用户帐号删除-->
+    <delete id="deleteByUser" parameterType="String">
+        delete from shopping_cart where account_number = #{accountNumber};
+    </delete>
+</mapper>

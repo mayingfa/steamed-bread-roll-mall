@@ -1,0 +1,88 @@
+{
+  "properties": [
+    {
+      "name": "spring.mail.from",
+      "type": "java.lang.String",
+      "description": "Description for spring.mail.from."
+    },
+    {
+      "name": "spring.mail.nickname",
+      "type": "java.lang.String",
+      "description": "Description for spring.mail.nickname."
+    },
+    {
+      "name": "sms.aliyun.accessKeyID",
+      "type": "java.lang.String",
+      "description": "Description for sms.aliyun.accessKeyID."
+    },
+    {
+      "name": "sms.aliyun.accessKeySecret",
+      "type": "java.lang.String",
+      "description": "Description for sms.aliyun.accessKeySecret."
+    },
+    {
+      "name": "sms.aliyun.domain",
+      "type": "java.lang.String",
+      "description": "Description for sms.aliyun.domain."
+    },
+    {
+      "name": "sms.aliyun.regionId",
+      "type": "java.lang.String",
+      "description": "Description for sms.aliyun.regionId."
+    },
+    {
+      "name": "sms.aliyun.templateCode",
+      "type": "java.lang.String",
+      "description": "Description for sms.aliyun.templateCode."
+    },
+    {
+      "name": "sms.aliyun.signName",
+      "type": "java.lang.String",
+      "description": "Description for sms.aliyun.signName."
+    },
+    {
+      "name": "oss.bucketName",
+      "type": "java.lang.String",
+      "description": "Description for oss.bucketName."
+    },
+    {
+      "name": "oss.accessKeyId",
+      "type": "java.lang.String",
+      "description": "Description for oss.accessKeyId."
+    },
+    {
+      "name": "oss.accessKeySecret",
+      "type": "java.lang.String",
+      "description": "Description for oss.accessKeySecret."
+    },
+    {
+      "name": "oss.endpoint",
+      "type": "java.lang.String",
+      "description": "Description for oss.endpoint."
+    },
+    {
+      "name": "oss.fileHost",
+      "type": "java.lang.String",
+      "description": "Description for oss.fileHost."
+    },
+    {
+      "name": "oss.bucket",
+      "type": "java.lang.String",
+      "description": "Description for oss.bucket."
+    },
+    {
+      "name": "admin.email",
+      "type": "java.lang.String",
+      "description": "Description for SuperAdmin.email."
+    },
+    {
+      "name": "admin.userName",
+      "type": "java.lang.String",
+      "description": "Description for SuperAdmin.userName."
+    },
+    {
+      "name": "admin.password",
+      "type": "java.lang.String",
+      "description": "Description for SuperAdmin.password."
+    }
+  ] }

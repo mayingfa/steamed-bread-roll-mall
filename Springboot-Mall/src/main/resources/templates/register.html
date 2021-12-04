@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no"/>
+    <title>花卷买卖</title>
+    <style>
+        #cover{
+            border-radius: 6px;
+            outline:none;
+            height: 25px;
+            width: 122px;
+            cursor: pointer;
+            border:none;
+            background-color:#00DFDF;
+        }
+        #cover:hover{
+            display: none;
+        }
+    </style>
+    <script>
+        function buttonClick(){
+            let password = document.getElementById("password");
+            let cover = document.getElementById("cover");
+            if(cover.innerText==='点击即可显示密码'){
+                cover.innerText='隐藏密码'
+                password.style.display='inline'
+            }else{
+                cover.innerText='点击即可显示密码'
+                password.style.display='none'
+            }
+        }
+    </script>
+</head>
+<body style="font-size: 13px">
+<div class="main" style="padding-bottom:40px;background-color:#F1F1F1;">
+    <div class="header" style="padding: 10px 3%">
+        <h2 style="text-align:center;color: #FF6633">
+                花卷买卖
+        </h2>
+    </div>
+    <div class="content" style="overflow: hidden;padding:15px 5% 70px 5%;margin:0 2%;background-color: #fff;box-shadow:0 4px 20px rgba(0,0,0,0.1);word-break: break-all;">
+
+        <p style="font-weight: bolder;margin-bottom: 5px;">尊敬的<span th:text="${name}">花卷用户</span>，您好：</p>
+        <p style="margin-bottom: 0; text-indent: 2em">欢迎您使用花卷商城，因系统采用<span style="font-style: italic">支付宝沙箱技术</span>，请牢记支付帐号和支付密码。</p>
+        <div style="background-color: #bac8ff;padding: 3px;margin-top: 10px">
+            <p style="margin: 6px">您的账号：<span style="font-weight: bolder; font-size: 15px;" th:text="${account}">123456</span></p>
+            <p style="margin: 6px">您的密码：<span id="password" style="font-weight: bolder; font-size: 15px;" th:text="${password}">123456</span></p>
+        </div>
+        <div style="background-color: #ffe3e3;padding: 3px;margin-top: 10px">
+            <p style="margin: 6px;font-size: 8px;">支付宝帐号：<a href="javascirpt:void(0)" onclick="return false;">ilikkj2173@sandbox.com</a></p>
+            <p style="margin: 6px;font-size: 8px;">登录/支付密码：<a href="javascirpt:void(0)" onclick="return false;">111111</a></p>
+        </div>
+
+
+    </div>
+</div>
+<div class="footer" style="padding:7px 20px;background-color:#333;font-size:12px;color: #999;text-align: center">
+    <p content="telephone=no">Copyright&nbsp;©&nbsp;2020&nbsp;-&nbsp;<span th:text="${year}">2020</span>&nbsp;&nbsp;花卷买卖公司&nbsp;版权所有</p>
+</div>
+</body>
+</html>

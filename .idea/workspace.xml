@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="55d11bca-2ccf-4af6-b407-034a300fad19" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/.idea/dataSources/50fc39ea-51d4-47cd-9541-4937afb57d96.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/.idea/dataSources/50fc39ea-51d4-47cd-9541-4937afb57d96.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/src/main/java/com/qiu/config/ShiroConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/src/main/java/com/qiu/config/ShiroConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/src/main/java/com/qiu/config/UserRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/src/main/java/com/qiu/config/UserRealm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/src/main/java/com/qiu/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/src/main/java/com/qiu/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/src/main/java/com/qiu/controller/AlipayController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/src/main/java/com/qiu/controller/AlipayController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/src/main/java/com/qiu/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/src/main/java/com/qiu/controller/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/src/main/resources/application-redis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/src/main/resources/application-redis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/src/main/resources/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/target/classes/application-redis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/target/classes/application-redis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/target/classes/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall/target/classes/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue前端项目/Springboot/src/components/container/Aside.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Vue前端项目/Springboot/src/components/container/Aside.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue前端项目/Springboot/src/components/operate/Login_Form.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Vue前端项目/Springboot/src/components/operate/Login_Form.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue前端项目/Springboot/src/components/user/ShoppingCart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/Vue前端项目/Springboot/src/components/user/ShoppingCart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vue前端项目/Springboot/src/global/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Vue前端项目/Springboot/src/global/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/数据库/huajuanData.sql" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1uGKxZaQLe2efifltOGYjpW9Vvt" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="sortByType" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Springboot后端项目/Springboot-Mall" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="55d11bca-2ccf-4af6-b407-034a300fad19" name="Default Changelist" comment="" />
+      <created>1624286742279</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1624286742279</updated>
+      <workItem from="1624286746889" duration="52000" />
+      <workItem from="1624286808100" duration="20000" />
+      <workItem from="1638584254925" duration="90000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

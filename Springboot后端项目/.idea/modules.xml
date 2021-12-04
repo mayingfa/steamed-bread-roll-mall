@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/Springboot-Mall/Springboot-Mall.iml" filepath="$PROJECT_DIR$/Springboot-Mall/Springboot-Mall.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/Springboot后端项目.iml" filepath="$PROJECT_DIR$/.idea/Springboot后端项目.iml" />
-    </modules>
-  </component>
-</project>
