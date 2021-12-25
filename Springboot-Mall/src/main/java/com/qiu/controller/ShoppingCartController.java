@@ -27,7 +27,7 @@ public class ShoppingCartController {
 
     /*商品类别*/
     @RequestMapping(value = "/shoppingCart/add")
-    private CommonResult addShoppingCart(ShoppingCart shoppingCart) {
+    public CommonResult addShoppingCart(ShoppingCart shoppingCart) {
         if(shoppingCartService.insertData(shoppingCart)){
             return CommonResult.success("购物车添加成功",shoppingCart);
         }else{
@@ -36,7 +36,7 @@ public class ShoppingCartController {
     }
 
     @RequestMapping(value = "/shoppingCart/update")
-    private CommonResult updateShoppingCart(ShoppingCart shoppingCart) {
+    public CommonResult updateShoppingCart(ShoppingCart shoppingCart) {
         if(shoppingCartService.updateById(shoppingCart)){
             return CommonResult.success("购物车修改成功",shoppingCart);
         }else{
@@ -45,7 +45,7 @@ public class ShoppingCartController {
     }
 
     @RequestMapping(value = "/shoppingCart/deleteById")
-    private CommonResult deleteShoppingCart(Integer cartId) {
+    public CommonResult deleteShoppingCart(Integer cartId) {
         if(shoppingCartService.deleteById(cartId)){
             return CommonResult.success("购物车删除成功","cartId: "+cartId);
         }else{
@@ -53,7 +53,7 @@ public class ShoppingCartController {
         }
     }
     @RequestMapping(value = "/shoppingCart/deleteByUser")
-    private CommonResult deleteByUser(String accountNumber) {
+    public CommonResult deleteByUser(String accountNumber) {
         if(shoppingCartService.deleteByUser(accountNumber)){
             return CommonResult.success("购物车删除成功","accountNumber: "+accountNumber);
         }else{
@@ -63,7 +63,7 @@ public class ShoppingCartController {
 
 
     @RequestMapping(value = "/shoppingCart/findAll")
-    private CommonResult findAllShoppingCart(String accountNumber) {
+    public CommonResult findAllShoppingCart(String accountNumber) {
         List<Map<String, Object>> shoppingInfo = shoppingCartService.selectAll(accountNumber);
         if(shoppingInfo!=null){
             return CommonResult.success("购物车查询成功",shoppingInfo);
@@ -73,7 +73,7 @@ public class ShoppingCartController {
     }
 
     @RequestMapping(value = "/shoppingCart/findById")
-    private CommonResult findById(Integer cartId) {
+    public CommonResult findById(Integer cartId) {
         ShoppingCart shoppingCart = shoppingCartService.selectById(cartId);
         if(shoppingCart!=null){
             return CommonResult.success("购物车查询成功",shoppingCart);

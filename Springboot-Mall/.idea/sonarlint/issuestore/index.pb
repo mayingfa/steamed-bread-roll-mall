@@ -1,8 +1,6 @@
 
 ^
 .src/main/java/com/qiu/config/RoleOrFilter.java,5\8\58f336e4a7ab286c64dd96673b2b9b64695a0375
-^
-.src/main/java/com/qiu/config/AlipayConfig.java,c\0\c0d3b4bda4e8bd3b8442f6ddcb593a5d3730115f
 e
 5src/main/java/com/qiu/service/ProductServiceImpl.java,9\b\9b9a6815f329f217683be33067ea99e816f9b718
 _
@@ -31,24 +29,10 @@ a
 .src/main/java/com/qiu/service/UserService.java,c\e\ce79c7d5cc158f4a63ee7fb48ee314f9687f9aaa
 V
 &src/main/java/com/qiu/dao/BaseDao.java,8\6\868315716066abcd5dd32cbc044f12769a29b791
-d
-4src/main/java/com/qiu/controller/UserController.java,7\8\78b2e15d2c1a701a863999da38cf26a4a27a5193
 i
 9src/main/java/com/qiu/service/ProductTypeServiceImpl.java,8\5\857bef4ca2dd21f861a39f0fb3c75ac8390cc1fa
 c
 3src/main/java/com/qiu/service/OrderServiceImpl.java,f\c\fc00b3e73834869ce4b20e470f0eae960f003e00
-l
-<src/main/java/com/qiu/controller/ShoppingCartController.java,2\f\2faf13fb1e40659433c684742baec0a08fa7a43d
-h
-8src/main/java/com/qiu/controller/OverViewController.java,d\3\d30fb56a797a895de68225dd19efaa25feea9aa3
-m
-=src/main/java/com/qiu/controller/ReturnProductController.java,c\6\c6656414817e92c3d4622f5f4f83dd31c1eeb63b
-c
-3src/main/java/com/qiu/controller/OssController.java,f\8\f88e21c05d5f6666a35620650f7849672e3e6ad9
-g
-7src/main/java/com/qiu/controller/OperateController.java,c\9\c91ae4619c1ca50e1a037d812a84c18eda9fcba8
-e
-5src/main/java/com/qiu/controller/OrderController.java,0\8\080a67c044bcc2f322de3297cc8a9f2db9700e8d
 ^
 .src/main/java/com/qiu/entity/ReturnReason.java,1\d\1d18d2d27fcf672fe46e3681e6bfa96a5607d975
 ^
@@ -65,8 +49,6 @@ X
 (src/main/java/com/qiu/entity/Banner.java,5\e\5e5c98a95ead8ecb8f90f817d96a3a2530423dcf
 ^
 .src/main/java/com/qiu/entity/ShoppingCart.java,d\3\d30608580169a9592e2818de0e7b0df122bf7961
-\
-,src/main/java/com/qiu/entity/SuperAdmin.java,a\3\a349f1760c5ced06e2ee34e7baca1d9aef10f8af
 ]
 -src/main/java/com/qiu/config/ShiroConfig.java,8\8\889b77273d05415d8d15be15cee9bc133dd396dc
 ]

@@ -1,4 +1,5 @@
 package com.qiu.controller;
+
 import com.alipay.api.AlipayApiException;
 import com.qiu.entity.Order;
 import com.qiu.service.AlipayService;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
@@ -29,17 +31,18 @@ public class AlipayController {
     ShoppingCartService shoppingCartService;
     private final AlipayService alipayService;
     private final OrderService orderService;
-    private final RedisTemplate<String,String> redisTemplate;
+    private final RedisTemplate<String, String> redisTemplate;
     private final String hostAddress;
-    public AlipayController(AlipayService alipayService,OrderService orderService,RedisTemplate<String,String> redisTemplate) {
+
+    public AlipayController(AlipayService alipayService, OrderService orderService, RedisTemplate<String, String> redisTemplate) {
         this.alipayService = alipayService;
         this.orderService = orderService;
         this.redisTemplate = redisTemplate;
-        this.hostAddress= PropertiesUtil.getCallback();
+        this.hostAddress = PropertiesUtil.getCallback();
     }
 
     @RequestMapping("/")
-    private String index(){
+    private String index() {
         return "index.html";
     }
 
@@ -63,7 +66,7 @@ public class AlipayController {
                          @RequestParam("serialNumber") String serialNumber) {
 
         //开通vip的序列号暂时存入redis中
-        redisTemplate.opsForValue().set(orderNo,serialNumber,2, TimeUnit.HOURS);
+        redisTemplate.opsForValue().set(orderNo, serialNumber, 2, TimeUnit.HOURS);
         //发起支付
         return alipayService.create(orderNo, orderName, payPrice);
     }
@@ -78,7 +81,7 @@ public class AlipayController {
                                @RequestParam("payPrice") String payPrice) {
         //发起支付
         try {
-            alipayService.refund(orderNo,payPrice);
+            alipayService.refund(orderNo, payPrice);
         } catch (AlipayApiException e) {
             log.info("【支付宝支付】退款失败 error={}", e.toString());
         }
@@ -87,25 +90,25 @@ public class AlipayController {
 
     @GetMapping(value = "/paySuccess")
     @ResponseBody
-    public void success(@RequestParam Map<String, String> map,HttpServletResponse response) {
-        try{
-            String tradeNo =map.get("out_trade_no");
-            if(tradeNo.contains("Vip")){
+    public void success(@RequestParam Map<String, String> map, HttpServletResponse response) {
+        try {
+            String tradeNo = map.get("out_trade_no");
+            if (tradeNo.contains("Vip")) {
                 Integer orderId = orderService.selectIdByKey(tradeNo);
                 Order order = new Order();
                 order.setOrderId(orderId);
                 order.setOrderState("开通成功");
-                String serialNumber =  redisTemplate.opsForValue().get(tradeNo);
-                if(serialNumber !=null){
-                    response.sendRedirect("http://"+hostAddress+"/#/personalCenter?serialNumber="+serialNumber);
+                String serialNumber = redisTemplate.opsForValue().get(tradeNo);
+                if (serialNumber != null) {
+                    response.sendRedirect("http://" + hostAddress + "/#/personalCenter?serialNumber=" + serialNumber);
                     redisTemplate.delete(tradeNo);
-                }else{
-                    response.sendRedirect("http://"+hostAddress+"/#/personalCenter?serialNumber="+"ERROR");
+                } else {
+                    response.sendRedirect("http://" + hostAddress + "/#/personalCenter?serialNumber=" + "ERROR");
                 }
                 orderService.updateById(order);
-            }else{
-                String tradeNos =  redisTemplate.opsForValue().get(tradeNo);
-                if(StringUtils.isNotBlank(tradeNos)){
+            } else {
+                String tradeNos = redisTemplate.opsForValue().get(tradeNo);
+                if (StringUtils.isNotBlank(tradeNos)) {
                     redisTemplate.delete(tradeNo);
                     String[] ordersNo = tradeNos.split(",");
                     for (String orderNo : ordersNo) {
@@ -116,19 +119,19 @@ public class AlipayController {
                         orderService.updateById(order);
                     }
                 }
-                String cartIdInfos =  redisTemplate.opsForValue().get("cartId"+tradeNo);
-                if(StringUtils.isNotBlank(cartIdInfos)){
+                String cartIdInfos = redisTemplate.opsForValue().get("cartId" + tradeNo);
+                if (StringUtils.isNotBlank(cartIdInfos)) {
                     redisTemplate.delete(cartIdInfos);
                     String[] cartIds = cartIdInfos.split(",");
                     for (String cartId : cartIds) {
-                        if(StringUtils.isNotBlank(cartId)){
+                        if (StringUtils.isNotBlank(cartId)) {
                             shoppingCartService.deleteById(Integer.parseInt(cartId));
                         }
                     }
                 }
-                response.sendRedirect("http://"+hostAddress+"/#/myOrder");
+                response.sendRedirect("http://" + hostAddress + "/#/myOrder");
             }
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -138,12 +141,12 @@ public class AlipayController {
     @PostMapping(value = "/payNotify")
     public void payNotify(@RequestParam Map<String, String> map) {
         String tradeStatus = map.get("trade_status");
-        if(tradeStatus.equals("TRADE_SUCCESS")){
+        if (tradeStatus.equals("TRADE_SUCCESS")) {
             String payTime = map.get("gmt_payment");
-            String tradeNo =map.get("out_trade_no");
+            String tradeNo = map.get("out_trade_no");
             String tradeName = map.get("subject");
             String payAmount = map.get("buyer_pay_amount");
-            log.info("[支付成功] {交易时间：{},订单号：{},订单名称：{},交易金额：{}}",payTime,tradeNo,tradeName,payAmount);
+            log.info("[支付成功] {交易时间：{},订单号：{},订单名称：{},交易金额：{}}", payTime, tradeNo, tradeName, payAmount);
         }
     }
 }

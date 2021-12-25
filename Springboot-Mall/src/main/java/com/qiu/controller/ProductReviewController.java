@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -22,64 +21,69 @@ import java.util.Map;
 @RestController
 @CrossOrigin
 public class ProductReviewController {
-    final ProductReviewService ProductReviewService;
+    final ProductReviewService productReviewService;
     final OrderService orderService;
-    public ProductReviewController(ProductReviewService ProductReviewService,OrderService orderService){
-        this.ProductReviewService = ProductReviewService;
+
+    public ProductReviewController(ProductReviewService productReviewService, OrderService orderService) {
+        this.productReviewService = productReviewService;
         this.orderService = orderService;
     }
 
 
-    /*商品类别*/
+    /**
+     * 添加商品评论
+     *
+     * @param productReview 商品评论
+     */
     @RequestMapping(value = "/productReview/add")
-    private CommonResult addProductReview(ProductReview productReview) {
-        if(ProductReviewService.insertData(productReview)){
+    public CommonResult addProductReview(ProductReview productReview) {
+        if (productReviewService.insertData(productReview)) {
             Integer orderId = orderService.selectIdByKey(productReview.getOrderNo());
             Order order = new Order();
             order.setOrderId(orderId);
             order.setOrderState("已评价");
             orderService.updateById(order);
-            return CommonResult.success("商品评论添加成功",productReview);
-        }else{
+            return CommonResult.success("商品评论添加成功", productReview);
+        } else {
             return CommonResult.error("商品评论添加失败");
         }
     }
 
     @RequestMapping(value = "/productReview/update")
-    private CommonResult updateProductReview(ProductReview productReview) {
-        if(ProductReviewService.updateById(productReview)){
-            return CommonResult.success("商品评论修改成功",productReview);
-        }else{
+    public CommonResult updateProductReview(ProductReview productReview) {
+        if (productReviewService.updateById(productReview)) {
+            return CommonResult.success("商品评论修改成功", productReview);
+        } else {
             return CommonResult.error("商品评论修改失败");
         }
     }
 
     @RequestMapping(value = "/productReview/deleteById")
-    private CommonResult deleteProductReview(Integer reviewId) {
-        if(ProductReviewService.deleteById(reviewId)){
-            return CommonResult.success("商品评论删除成功","reviewId: "+reviewId);
-        }else{
+    public CommonResult deleteProductReview(Integer reviewId) {
+        if (productReviewService.deleteById(reviewId)) {
+            return CommonResult.success("商品评论删除成功", "reviewId: " + reviewId);
+        } else {
             return CommonResult.error("商品评论删除失败");
         }
     }
 
 
     @RequestMapping(value = "/productReview/findAll")
-    private CommonResult findAllProductReview(String productNo) {
-        List<Map<String, Object>> productReviewInfo = ProductReviewService.selectAll(productNo);
-        if(productReviewInfo!=null){
-            return CommonResult.success("商品评论查询成功",productReviewInfo);
-        }else{
+    public CommonResult findAllProductReview(String productNo) {
+        List<Map<String, Object>> productReviewInfo = productReviewService.selectAll(productNo);
+        if (productReviewInfo != null) {
+            return CommonResult.success("商品评论查询成功", productReviewInfo);
+        } else {
             return CommonResult.error("商品评论查询失败");
         }
     }
 
     @RequestMapping(value = "/productReview/findById")
-    private CommonResult findById(Integer reviewId) {
-        ProductReview productReview = ProductReviewService.selectById(reviewId);
-        if(productReview!=null){
-            return CommonResult.success("商品评论查询成功",productReview);
-        }else{
+    public CommonResult findById(Integer reviewId) {
+        ProductReview productReview = productReviewService.selectById(reviewId);
+        if (productReview != null) {
+            return CommonResult.success("商品评论查询成功", productReview);
+        } else {
             return CommonResult.error("商品评论查询失败");
         }
     }

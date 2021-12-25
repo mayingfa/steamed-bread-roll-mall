@@ -1,6 +1,8 @@
 package com.qiu.util.general;
 
-import javax.print.DocFlavor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -12,44 +14,47 @@ import java.util.Properties;
  * @description 读取配置文件信息
  */
 public class PropertiesUtil {
-    private static String redisHost = null;
-    private static String redisPwd = null;
-    private static String port = null;
-    private static String domain = null;
-    private static String callback = null;
+    private static final Logger logger = LoggerFactory.getLogger(PropertiesUtil.class);
 
-    public void getProperties() throws Exception{
+    private static final String REDIS_HOST;
+    private static final String REDIS_PWD;
+    private static final String PORT;
+    private static final String DOMAIN;
+    private static final String CALLBACK;
+
+    static {
         Properties properties=new Properties();
-        InputStream inputStream=this.getClass().getClassLoader().getResourceAsStream("config.properties");
+        InputStream inputStream=PropertiesUtil.class.getClassLoader().getResourceAsStream("config" +
+                ".properties");
         try {
             properties.load(inputStream);
         } catch (IOException e) {
-            throw new Exception("File not found!");
+            logger.error("config.properties File not found!");
         }
-        redisHost = (String) properties.get("redisHost");
-        redisPwd = (String) properties.get("redisPwd");
-        port = (String) properties.get("port");
-        domain = (String) properties.get("domain");
-        callback = (String) properties.get("callback");
+        REDIS_HOST = (String) properties.get("redisHost");
+        REDIS_PWD = (String) properties.get("redisPwd");
+        PORT = (String) properties.get("port");
+        DOMAIN = (String) properties.get("domain");
+        CALLBACK = (String) properties.get("callback");
     }
 
     public static String getRedisHost() {
-        return redisHost;
+        return REDIS_HOST;
     }
 
     public static String getRedisPwd() {
-        return redisPwd;
+        return REDIS_PWD;
     }
 
     public static String getPort() {
-        return port;
+        return PORT;
     }
 
     public static String getDomain() {
-        return domain;
+        return DOMAIN;
     }
 
     public static String getCallback() {
-        return callback;
+        return CALLBACK;
     }
 }

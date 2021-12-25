@@ -1,6 +1,6 @@
 spring:
   application:
-    name: BreadRollMall-server
+    name: BreadRollMall-Server
   http:
     encoding:
       charset: utf-8
@@ -24,7 +24,3 @@ admin:
   email: 15233088662@163.com
   userName: 超级管理员
   password: 123456
-
-
-
-

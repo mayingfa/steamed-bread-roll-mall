@@ -1,4 +1,5 @@
 package com.qiu.controller;
+
 import com.qiu.config.UserRealm;
 import com.qiu.entity.Role;
 import com.qiu.entity.User;
@@ -30,10 +31,11 @@ import java.util.*;
 @RestController
 @CrossOrigin
 public class OperateController {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    public final Logger logger = LoggerFactory.getLogger(this.getClass());
     final RoleService roleService;
     final UserService userService;
     final UserRoleService userRoleService;
+
     public OperateController(UserService userService, RoleService roleService, UserRoleService userRoleService) {
         this.userService = userService;
         this.roleService = roleService;
@@ -42,18 +44,19 @@ public class OperateController {
 
     //未登录时，将被转发到此请求上
     @RequestMapping("/notLogin")
-    private CommonResult toLogin(){
-        return new CommonResult(401,"请登录！");
+    public CommonResult toLogin() {
+        return new CommonResult(401, "请登录！");
     }
 
     /**
      * 登录操作
-     * @param username  用户登录的帐号
-     * @param password  用户登录的密码
+     *
+     * @param username   用户登录的帐号
+     * @param password   用户登录的密码
      * @param rememberMe shiro框架的 记住我 功能
      */
-    @RequestMapping(value = "/login",produces = {"application/json;charset=UTF-8"})
-    private CommonResult doLogin(String username,String password,boolean rememberMe) {
+    @RequestMapping(value = "/login", produces = {"application/json;charset=UTF-8"})
+    public CommonResult doLogin(String username, String password, boolean rememberMe) {
         try {
             if (username == null) {
                 throw new AuthenticationException();
@@ -63,8 +66,9 @@ public class OperateController {
             }
             Subject subject = SecurityUtils.getSubject();
             UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
-            if (subject.isAuthenticated())
+            if (subject.isAuthenticated()) {
                 return CommonResult.error("已登录");
+            }
             subject.login(token);
             Map<String, Object> info = new HashMap<>();
             String authorization = (String) subject.getSession().getId();
@@ -99,7 +103,7 @@ public class OperateController {
             info.put("role", rs);
             info.put("roleInfo", rsInfo);
             return CommonResult.success("登录成功", info);
-        }catch (LockedAccountException e){
+        } catch (LockedAccountException e) {
             return CommonResult.error("您的帐号存在异常行为，已被封停（请联系工作人员）");
         } catch (IncorrectCredentialsException e) {
             return CommonResult.error("密码错误,请重新输入");
@@ -110,25 +114,26 @@ public class OperateController {
 
     /**
      * 退出登录操作
-     * @param key       用户登录的帐号
-     * @param session  前端存储的session（token）
+     *
+     * @param key     用户登录的帐号
+     * @param session 前端存储的session（token）
      */
     @RequestMapping(value = "/logout")
-    private CommonResult logout(String key,String session) {
-        if(key!=null){
-            try{
+    public CommonResult logout(String key, String session) {
+        if (key != null) {
+            try {
                 User user = userService.selectByKey(key);
                 Subject subject = SecurityUtils.getSubject();
                 //清除用户缓存
                 RealmSecurityManager securityManager = (RealmSecurityManager) SecurityUtils.getSecurityManager();
                 UserRealm userRealm = (UserRealm) securityManager.getRealms().iterator().next();
                 //清空redis中的缓存信息
-                userRealm.clearRedis(user,session);
+                userRealm.clearRedis(user, session);
                 userRealm.clearCache(SecurityUtils.getSubject().getPrincipals());
                 //退出登录
                 subject.logout();
                 return CommonResult.success("退出成功");
-            }catch(Exception e){
+            } catch (Exception e) {
                 logger.error(e.getMessage());
             }
         }
@@ -137,45 +142,45 @@ public class OperateController {
 
     //权限不够时，将转到此请求上来
     @RequestMapping("/notRole")
-    private CommonResult notRole(){
-        return new CommonResult(403,"暂无权限！");
+    public CommonResult notRole() {
+        return new CommonResult(403, "暂无权限！");
     }
 
     /*判断key是否存在   目前用于判断邮箱是否被注册过*/
     @RequestMapping(value = "/allow/existUser")
-    private CommonResult existUser(String accountNumber) {
+    public CommonResult existUser(String accountNumber) {
         Boolean isExist = userService.existsWithPrimaryKey(accountNumber);
-        if(isExist!=null){
-            return CommonResult.success("查询成功",isExist);
-        }else{
+        if (isExist != null) {
+            return CommonResult.success("查询成功", isExist);
+        } else {
             return CommonResult.error("查询失败");
         }
     }
 
     /*判断手机号phone是否存在  目前被用于绑定手机号时，确认手机号已被绑定*/
     @RequestMapping(value = "/allow/existPhone")
-    private CommonResult existPhone(String telephone) {
+    public CommonResult existPhone(String telephone) {
         Boolean isExist = userService.existsWithPrimaryPhone(telephone);
-        if(isExist!=null){
-            return CommonResult.success("手机号查询成功",isExist);
-        }else{
+        if (isExist != null) {
+            return CommonResult.success("手机号查询成功", isExist);
+        } else {
             return CommonResult.error("手机号查询失败");
         }
     }
 
     /*重置密码、找回密码*/
     @RequestMapping(value = "/allow/resetpwd")
-    private CommonResult resetPwd(String accountNumber,String password) {
-        if(accountNumber!=null && password!=null){
+    public CommonResult resetPwd(String accountNumber, String password) {
+        if (accountNumber != null && password != null) {
             SimpleHash md5 = new SimpleHash("MD5", password, ByteSource.Util.bytes(accountNumber), 2);
-            password=md5.toHex();
+            password = md5.toHex();
             Integer id = userService.selectIdByKey(accountNumber);
             User user = new User();
             user.setUserId(id);
             user.setPassword(password);
-            if(userService.updateById(user)){
-                return CommonResult.success("重置密码成功",user);
-            }else{
+            if (userService.updateById(user)) {
+                return CommonResult.success("重置密码成功", user);
+            } else {
                 return CommonResult.error("重置密码失败");
             }
         }
@@ -185,15 +190,15 @@ public class OperateController {
 
     /*用于注册新用户*/
     @RequestMapping(value = "/allow/add")
-    private CommonResult add(User user) {
-        if(user.getPassword()!=null && user.getUserName()!=null){
+    public CommonResult add(User user) {
+        if (user.getPassword() != null && user.getUserName() != null) {
             SimpleHash md5 = new SimpleHash("MD5", user.getPassword(), ByteSource.Util.bytes(user.getAccountNumber()), 2);
             user.setPassword(md5.toHex());
             user.setUserState(true);
-            if(userService.insertData(user)){
+            if (userService.insertData(user)) {
                 logger.info("成功添加了一个新用户");
-                return CommonResult.success("注册成功",user);
-            }else{
+                return CommonResult.success("注册成功", user);
+            } else {
                 return CommonResult.error("注册失败");
             }
         }
@@ -202,11 +207,10 @@ public class OperateController {
 
     //更新用户信息
     @RequestMapping(value = "/allow/update")
-    private CommonResult update(User user) {
-        System.out.println(user);
-        if(userService.updateById(user)){
-            return CommonResult.success("信息保存成功",user);
-        }else{
+    public CommonResult update(User user) {
+        if (userService.updateById(user)) {
+            return CommonResult.success("信息保存成功", user);
+        } else {
             return CommonResult.error("信息保存失败");
         }
     }

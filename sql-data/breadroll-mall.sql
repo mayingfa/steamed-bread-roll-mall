@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v12.08 (64 bit)
-MySQL - 5.7.19 : Database - qiu
+MySQL - 5.7.36 : Database - breadroll-mall
 *********************************************************************
 */
 
@@ -12,9 +12,9 @@ MySQL - 5.7.19 : Database - qiu
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`qiu` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`breadroll-mall` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
-USE `qiu`;
+USE `breadroll-mall`;
 
 /*Table structure for table `banner` */
 
@@ -25,8 +25,8 @@ CREATE TABLE `banner` (
   `product_name` varchar(30) NOT NULL COMMENT '商品名称',
   `product_url` varchar(200) NOT NULL COMMENT '商品链接',
   `banner_url` varchar(200) NOT NULL COMMENT '广告宣传栏链接',
-  PRIMARY KEY (`banner_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='商品广告轮播图';
+  PRIMARY KEY (`banner_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='商品广告轮播图';
 
 /*Data for the table `banner` */
 
@@ -46,8 +46,8 @@ CREATE TABLE `logistics` (
   `receiver_tel` varchar(30) NOT NULL COMMENT '收货人联系方式',
   `receiver_add` varchar(50) NOT NULL COMMENT '收货人联系地址',
   `parcel_name` varchar(30) NOT NULL COMMENT '物流公司',
-  PRIMARY KEY (`logistic_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='物流表';
+  PRIMARY KEY (`logistic_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='物流表';
 
 /*Data for the table `logistics` */
 
@@ -73,16 +73,16 @@ CREATE TABLE `order` (
   `order_state` varchar(20) NOT NULL COMMENT '订单状态',
   `accept_address` varchar(100) NOT NULL COMMENT '收货地址',
   `return_state` tinyint(1) NOT NULL DEFAULT '0' COMMENT '退货状态',
-  PRIMARY KEY (`order_id`),
-  UNIQUE KEY `UNIQUE` (`order_no`),
-  KEY `product_no` (`product_no`),
-  KEY `order_ibfk_2` (`user_account`),
+  PRIMARY KEY (`order_id`) USING BTREE,
+  UNIQUE KEY `UNIQUE` (`order_no`) USING BTREE,
+  KEY `product_no` (`product_no`) USING BTREE,
+  KEY `order_ibfk_2` (`user_account`) USING BTREE,
   CONSTRAINT `order_ibfk_2` FOREIGN KEY (`user_account`) REFERENCES `user` (`account_number`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8 COMMENT='订单表';
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='订单表';
 
 /*Data for the table `order` */
 
-insert  into `order`(`order_id`,`order_no`,`order_time`,`product_no`,`product_specs`,`user_account`,`user_name`,`contact_way`,`pay_price`,`pay_amount`,`pay_type`,`order_from`,`order_state`,`accept_address`,`return_state`) values (8,'21111447921','2021-01-01 14:10:48','2020123114125441','8GB+256GB','qiudb.top@aliyun.com','M','15233088662',8369,1,'支付宝','网页商城','已退货','河北省 石家庄市 裕华区 (河北师范大学)',1),(31,'Vip2113217352','2021-01-03 21:47:51','Vip0001',NULL,'1325554003@qq.com','马英发','15233088661',88,1,'支付宝','网页商城','开通成功','河北省 石家庄市 裕华区 (河北师范大学)',0),(65,'2162123561642','2021-06-21 23:05:57','20211517042458','M','qiudb.top@aliyun.com','M','15233088662',136,1,'支付宝','网页商城','已评价','河北省 石家庄市 裕华区 (河北师范大学)',0);
+insert  into `order`(`order_id`,`order_no`,`order_time`,`product_no`,`product_specs`,`user_account`,`user_name`,`contact_way`,`pay_price`,`pay_amount`,`pay_type`,`order_from`,`order_state`,`accept_address`,`return_state`) values (8,'21111447921','2021-12-24 14:10:48','2020123114125441','8GB+256GB','qiudb.top@aliyun.com','M','15233088662',8369,1,'支付宝','网页商城','已退货','河北省 石家庄市 裕华区 (河北师范大学)',1),(31,'Vip2113217352','2021-01-03 21:47:51','Vip0001',NULL,'1325554003@qq.com','马英发','15233088661',88,1,'支付宝','网页商城','开通成功','河北省 石家庄市 裕华区 (河北师范大学)',0),(65,'2162123561642','2021-12-25 23:05:57','20211517042458','M','qiudb.top@aliyun.com','M','15233088662',136,1,'支付宝','网页商城','已评价','河北省 石家庄市 裕华区 (河北师范大学)',0),(66,'21122518383980','2021-12-25 10:59:40','20211516383756','S','qiudb.top@aliyun.com','M','15233088662',626,1,'支付宝','网页商城','待付款','河北省 石家庄市 裕华区 (河北师范大学)',0);
 
 /*Table structure for table `product` */
 
@@ -104,17 +104,17 @@ CREATE TABLE `product` (
   `is_sale` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否上架',
   `sale_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '上架时间',
   `product_url` varchar(200) NOT NULL COMMENT '商品图片',
-  PRIMARY KEY (`product_id`),
-  UNIQUE KEY `UNIQUE` (`product_no`),
-  KEY `product_type` (`product_type`),
-  KEY `product_brand` (`product_brand`),
+  PRIMARY KEY (`product_id`) USING BTREE,
+  UNIQUE KEY `UNIQUE` (`product_no`) USING BTREE,
+  KEY `product_type` (`product_type`) USING BTREE,
+  KEY `product_brand` (`product_brand`) USING BTREE,
   CONSTRAINT `product_ibfk_1` FOREIGN KEY (`product_type`) REFERENCES `product_type` (`type_name`) ON UPDATE CASCADE,
   CONSTRAINT `product_ibfk_2` FOREIGN KEY (`product_brand`) REFERENCES `product_brand` (`brand_name`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8 COMMENT='商品表';
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='商品表';
 
 /*Data for the table `product` */
 
-insert  into `product`(`product_id`,`product_no`,`product_name`,`product_type`,`product_describe`,`product_brand`,`in_price`,`out_price`,`product_stock`,`lowest_stock`,`is_stockout`,`is_new`,`is_sale`,`sale_time`,`product_url`) values (1,'202012302222140','米家互联网洗烘一体机Pro 10kg','生活家电','国标双A+级洗烘能力 / 22种洗烘模式 / 除菌率达99.9%+ / 支持小爱同学语音遥控 / 支持OTA在线智能升级 / 智能空气洗 / 智能投放洗涤剂','小米',2899,3299,11,10,0,0,1,'2020-12-30 22:23:19','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/c833369200f2465db37b64f64f604514-ec20453216dcd42f982cffe5fdbc3115.webp'),(2,'202012310940061','Redmi K30 至尊纪念版','手机','120Hz弹出全面屏 / 天玑1000+旗舰处理器 / 索尼6400万四摄 / 立体声双扬声器 / 4500mAh+33W闪充 / 双模5G / 多功能NFC / 线性震动马达 / 红外遥控','小米',1899,2499,6,5,0,0,1,'2021-01-01 09:31:54','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/2b740f7f5aa44429ae9304a0b3b8c9e3-3b19bf0e7e599c1bbbce510fb0dbc8bc.webp'),(6,'202012310948192','Redmi 10X Pro 5G','手机','双5G待机/天玑820处理器/4800万流光相机+800万超广角/6.57\"三星AMOLED屏幕/屏幕指纹/4520mAh长续航/红外遥控','小米',2099,2499,8,8,0,0,1,'2020-12-31 09:48:58','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/41f622beaf314f689f5109aff0112a66-pms_1590373498.27778397.jpg'),(7,'202012311032223','天梭力洛克系列钢带80机芯机械男表','腕表','为纪念天梭诞生150周年而推出的系列，因此取名天梭诞生地瑞士小镇力洛克。\n该系列部分表款的后盖有独特的设计，令人一探腕表跳动的韵律。\n上市以来成为了天梭系列中的畅销系列。','天梭',4650,4800,10,5,0,0,1,'2020-12-31 10:35:34','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/fbf1f88e9ae94661a40994789f5da800-t0064071105300_1_1_1.png'),(8,'202012311035354','天梭魅时系列钢带石英女表','腕表','魅时系列 简约纯粹\n魅时系列作为天梭入门级的腕表系列，\n设计简单大气，充满活力，以不同基调与风格\n迎合多种风格佩戴者的心情与品位，\n深受年轻时尚族喜爱。','天梭',1899,2050,10,5,0,0,1,'2020-12-31 10:37:26','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/bbb65aa08af345a1bde8f45bba15e73f-t1092101103100_1.png'),(9,'202012311037275','天梭俊雅系列皮带石英男表','腕表','俊雅系列复古文艺\n天梭俊雅系列整体设计曲线具有简约美学感，\n与1950年代的复古风格结合，\n散发浓郁的文艺气息，\n俊雅系列腕表其中的细节隐藏着天梭逾百年制表传统的美意与祝福。','天梭',2100,2300,15,12,0,0,1,'2020-12-31 10:39:00','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/8e7670595e1c40fe908ec254ba1cbb50-t0636101605800_1.png'),(10,'202012311039016','天梭魅时系列皮带石英女表','腕表','瑞士设计经典优雅\n本款腕表为现代丽人打造，\n简洁优雅的设计贯穿着表盘和表带\n经典阿拉伯数字将清晰的时刻尽显眼底，\n蓝宝石玻璃表镜将质感升级','天梭',1650,1750,15,10,0,0,1,'2020-12-31 10:41:10','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/e3313158ba124c8bad9011304d0274d3-t1092101603200_1.png'),(11,'202012311041107','天梭杜鲁尔系列皮带80机芯机械男表','腕表','杜鲁尔经典系列\n命名灵感源于天梭1907年在瑞士力洛克创建的制表厂所在的街道，\n满载百年的厚重历史和匠心传承。\n该系列带着“瑞士制造”的烙印。','天梭',5600,5800,7,5,0,0,1,'2020-12-31 10:43:27','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/a6221d796e7b404492ba0aa29c55a394-t0994071604800_4.png'),(12,'202012311044178','天梭弗拉明戈系列钢带石英女表','腕表','弗拉明戈系列\n火烈鸟的尊贵气质源于它纤细修长的双腿，\n而天梭弗拉明戈系列腕表灵感来自于此，\n缔造了优雅与流畅的外观设计\n似裙裾飘飘，\n富有动感之美。','天梭',2300,2600,8,5,0,0,1,'2020-12-31 10:44:55','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/4850a93929804c419a2eccbd29df5353-t0942101111100_1.png'),(13,'202012311044559','天梭弗拉明戈系列钢带石英女表','腕表','蓝宝石玻璃表镜\n人工合成蓝宝石是硬度仅次于\n钻石的材料\n耐腐蚀易清洁\n明亮通透不易磨损不易刮伤','天梭',3250,3450,8,4,0,0,1,'2020-12-31 10:46:03','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/60ff003ec35d45a6b5a7cde7079b93af-t0942103311601.png'),(14,'2020123110460410','天梭弗拉明戈系列皮带石英女表','腕表','该腕表整体设计源于成对火烈鸟忠贞\n不渝的爱情，一高一低的表耳设计带\n着窃窃私语的爱意，令经典腕表的设\n计增加了俏皮感','天梭',2350,2450,8,4,0,0,1,'2020-12-31 10:47:13','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/6d056f7377f04e5bb9e86badbc59b5c6-t0942101601100_1.png'),(15,'2020123110471411','天梭弗拉明戈系列钢带石英女表','腕表','珍珠贝母柔光四溢\n优雅古典的30亳米表壳，表盘采用\n柔光四溢的珍珠贝母材质\n将现代女性干练的形象柔和化，尽显\n精致女人味','天梭',2550,2750,6,3,0,0,1,'2020-12-31 10:48:38','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/be42a000d1734dbba1f7e6953dfbd48c-t0942101112600_1.png'),(16,'2020123110515412','RedmiBook Air 13','电脑','Redmi Book Air 13\n轻盈便携轻松办公','小米',4299,4499,20,10,0,0,1,'2020-12-31 10:53:32','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/c6b1f6bd8744454a9b52ad31d52b153d-pms_1597115272.25169010.jpg'),(17,'2020123110533213','RedmiBook 14 Ⅱ','电脑','Redmi Book 14 LI\n全面实力，全「芯」超越\n全新十代酷睿处理器 / MX350独显 / 14英寸超窄边框高清屏','小米',4200,4499,30,12,0,0,1,'2020-12-31 10:55:26','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/f66356c9fc934d86a351892c0fe707c1-pms_1594121477.94286021.jpg'),(18,'2020123110552614','RedmiBook 16','电脑','全新十代酷睿处理器 / MX350独显 / 16英寸超窄边框高清屏 \n16.1\"超大高清屏幕\n更大视野，更多可见','小米',4399,4699,18,8,0,0,1,'2020-12-31 10:57:21','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/4cb41c8ec4eb4bc3bfbfeb637f86b8f2-pms_1594113149.87593534.jpg'),(19,'2020123110572215','RedmiBook 14 增强版','电脑','全新十代酷睿处理器 / MX250独显 / 14英寸超窄边框高清屏 / 小米手环极速解锁 / 炫酷多彩任你挑选','小米',3688,3999,15,5,0,0,1,'2020-12-31 10:59:16','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/a9c66147b1d64a99a6e5f6286024586d-pms_1566878924.45456023.jpg'),(20,'2020123110591616','HUAWEI MateBook D 14','电脑','HUAWEI MateBook D 14 锐龙版 全新7nm R5 16GB+512GB（皓月银）14英寸莱茵护眼 多屏协同 轻薄金属机身办公学习笔记本','华为',3999,4099,15,5,0,0,1,'2020-12-31 11:00:43','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/294be499ee5848e5870ac2eb5b509beb-428_428_4623B15D5E474FE95C7867EE67C1D25A13BCA65E0412FB5Fmp.png'),(21,'2020123111004317','HUAWEI MateBook X 2020款','电脑','HUAWEI MateBook X 2020款 集显 i5 16G 512G（冰霜银）13英寸3K触控全面屏 轻至1kg超轻薄华为笔记本电脑','华为',8200,8999,15,5,0,0,1,'2020-12-31 11:01:44','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/8588229f00484384b0022c3346518ee8-428_428_8C0DCB8B48F9A0DDDF1C3A8BC7958FBA2AE24D308646AAA2mp.png'),(22,'2020123111014518','HUAWEI MateBook D 15 2021款','电脑','HUAWEI MateBook D 15 2021款 15英寸护眼全面屏笔记本电脑 全新11代酷睿i5 16GB 512GB 锐炬显卡 多屏协同 WiFi 6 皓月银','华为',4200,4999,15,10,0,0,1,'2020-12-31 11:03:06','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/4d84bcd52be948428a1d1267a0f2d57b-428_428_0CA3A957E88044DD39123396C850743AED2D2EAA2DBFBD61mp.png'),(23,'2020123111030619','HUAWEI MateBook 14 2020款','电脑','HUAWEI MateBook 14 2020款 独显MX350 i5 16GB 512GB（深空灰）14英寸华为笔记本办公电脑 2K触控屏轻薄本 多屏协同便捷互传学习笔记本','华为',6299,6399,15,5,0,0,1,'2020-12-31 11:04:32','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/cbd1da41a39b4dc48e1db1545a2becb9-428_428_CB59BC49A4E1F60D2A1F4C6C349E591D1B3F546807A34180mp.png'),(24,'2020123111060320','HUAWEI Mate 30 Pro 5G','手机','HUAWEI Mate 30 Pro 5G 全网通 8GB+512GB 麒麟990 双4000万徕卡电影四摄','华为',7199,7399,20,12,0,0,1,'2020-12-31 11:07:19','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/0556c05575ef4643b2e67ced5fbaf4fb-428_428_BBB155FB6C09744712785FB380EA616E967F4F8F8CAEC76Amp.png'),(25,'2020123111072021','HUAWEI Mate 40 5G','手机','5nm麒麟9000E旗舰芯片，超感知徕卡影像\n有线无线双超级快充1,EMUI11创新交互体验\n源于宇宙探索的星环美学，6.5英寸曲面屏2舒适握持感\nHUAWEI Mate40,智慧表现恰到好处','华为',4299,4999,20,10,0,0,1,'2020-12-31 11:09:58','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/088caefccff341488a24cdb83bedec61-428_428_9B6917F54FD19C85873D683A0118C9EE61CF70B260CE761Bmp.png'),(26,'2020123111095922','HUAWEI nova 7 Pro 5G','手机','轻盈灵动，一触倾心\n纤薄美学设计\n前后双曲面玻璃设计，nova7Pro机身最薄处7.98mm1,重量178g\n纤薄轻盈，握持感圆润舒适。\n如晶莹水晶，光影交织；如月影流沙，梦幻灵动。','华为',3900,4099,19,10,0,0,1,'2020-12-31 11:11:36','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/998571fdc30d40fda6bd77eee4723848-428_428_AE7282C89472CC29A19250DF5B6E4F08553B5DCC8506214Fmp.png'),(27,'2020123111113623','华为畅享 10S','手机','6.3英寸炫彩OLED全面屏|4800万超广角AI三摄|手持超级夜景','华为',1299,1699,15,8,0,0,1,'2020-12-31 11:12:56','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/c15752d30e4540518f3019b7a4bed396-428_428_9FA695518CFC23552650A7145BD7A40DC1A9F088C4BA6A07mp.png'),(28,'2020123111125624','华为畅享Z 5G','手机','90Hz畅滑屏，流畅跟手\n90Hz刷新率配合180Hz高触控采样率，带来全新\n顺滑跟手的游戏体验。轻轻滑动屏幕，灵敏“跟手”\n如丝般顺滑。','华为',1999,2199,15,7,0,0,1,'2020-12-31 11:14:02','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/12b7c4f12e33406aa2a47c7d26fb124d-428_428_A46A0A86BE45135BA47D1C6DBDB8BD2128A658F61202CDD0mp.png'),(29,'2020123111155625','索尼(SONY)KD-55X9088H','生活家电','索尼(SONY)KD-55X9088H 55英寸 4K HDR 安卓智能液晶电视\n专业游戏模式，次世代游戏兼容性，HDMI2.1支持4K120帧模式，全阵列式背光','索尼',4000,4299,30,13,0,0,1,'2020-12-31 11:16:53','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/2bf7ead6823842abbf9f99427c80343d-A00NwZX6laRKLsiP333hBQ.jpg'),(30,'2020123111165326','全面屏电视 55英寸E55X','生活家电','潮流全面屏设计 视野更广阔 / 4K超高清画质 细腻如真 / 杜比音效带来震撼体验 / 内置小爱同学 语音操控更便捷 / 智能PatchWall系统 / 2G+8G大存储空间','小米',2199,2399,25,12,0,0,1,'2020-12-31 11:18:38','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/b6f8b98c9e19421ebbb353a9b4974606-pms_1570600947.92372088.jpg'),(31,'2020123111183927','小米电视4A 70英寸','生活家电','70英寸震撼巨屏 / 4K画质 细腻如真 / 杜比音效 身临其境 / PatchWall智能系统 内置小爱同学 / 海量好内容','小米',3199,3129,18,12,0,0,1,'2020-12-31 11:19:50','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/2c675677225c4df693305229e2f9ad3b-pms_1568199413.36224361.jpg'),(32,'2020123111195028','小米全面屏电视65英寸 E65C','生活家电','震撼大屏 观影更爽 / 时尚全面屏设计 视野更广阔 / 4K超高清画质 细腻如真 / 杜比音效带来震撼体验 / 内置小爱同学 语音操控更便捷 / 智能PatchWall系统 / 2G+8G大存储空间','小米',2899,2999,18,13,0,0,1,'2020-12-31 11:20:40','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/d36116d2edf84334abe6b06a17afe423-pms_1569691861.38973660.jpg'),(33,'2020123111204029','小米电视4C 32英寸','生活家电','人工智能系统 | 64位处理器 | 1GB+4GB 内存','小米',840,989,20,10,0,0,1,'2020-12-31 11:22:00','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/f233d587eb19490c97c3d9ad60a25aa4-pms_1527060327.66235934.jpg'),(34,'2020123111220030','索尼(SONY)KD-55A8H','生活家电','【索尼 55英寸 OLED安卓智能 X1™旗舰版 智能电视】图像处理芯片 X1™旗舰版 智能电视，搭载安卓9.0系统','索尼',9999,10999,20,12,0,0,1,'2020-12-31 11:27:41','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/e898eaa5f49549cd8ef6cc2af54c9835-ZYkZ0LauFrlM8RK-mF-UCw.jpg'),(35,'2020123111305231','华为智慧屏 V65','生活家电','华为智慧屏 V65（星际黑）65英寸 4K量子点 4+64GB 升降式AI摄像头 视频通话 智慧音响 鸿鹄芯片 智能家居控制','华为',7299,7499,20,10,0,0,1,'2020-12-31 11:31:57','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/a0ddfebf8d0546439bec6e2334685961-428_428_21EEE8FC1E9B970CAA527CC00F668B933528C62FBC4CD1E4mp.png'),(36,'2020123113335132','天梭波尔图系列皮带机械表刘亦菲同款','腕表','波尔图系列\n承载悠久制表历史和精湛制表技艺\n致敬经典，彰显贵族风范','天梭',9100,9300,10,5,0,0,1,'2020-12-31 13:35:24','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/b997d1560cd44752819b3f9c3dba6b9f-t1285053601200_1.png'),(38,'2020123113361433','天梭俊雅系列钢带石英男表','腕表','曲线优美怀旧气息\n银色316L精钢表带为整体造型\n增加金属质感，提升佩戴者硬朗风度\n按钮式蝴蝶扣设计为整体注入怀旧感','天梭',2550,2650,20,10,0,0,1,'2020-12-31 13:38:27','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/862ea3223d124a7a96222fe15a6739d9-t0636101103700_1_1.png'),(39,'2020123113384134','小米智能养生壶','生活家电','小米智能养生壶 烧水壶 电热水壶 煮茶器大加热功率 多档火力调节 安全防干烧 米家APP互联 MYSH0E1ACM','小米',150,169,30,10,0,0,1,'2020-12-31 13:53:27','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/a5455965e19840f6a07147ac50a3b352-865469eafd7a3f99.jpg'),(40,'2020123113542135','变频家用微波炉光波烧烤炉','生活家电','美的（Midea）X3-233A 变频家用微波炉光波烧烤炉 微波炉电烤箱一体机 智能湿度感应 900W微烤一体23升','美的',610,639,50,20,0,0,1,'2020-12-31 13:56:04','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/ea09ff37d4ed48cfa2b6764321e032c8-42933c26fee08c6c.jpg'),(41,'2020123113560536','小米电吹风机家用吹风筒','生活家电','米家 负离子吹风机，5000万负离子，20m/s超大风速，大功率速干不伤发；57℃智能恒温，冷热风循环，三档温度','小米',99,149,50,20,0,0,1,'2020-12-31 13:57:48','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/7478723eb7e048a6aed637be3bc0354f-558626d6a5daf1c2.jpg'),(42,'2020123114001537','联想(Lenovo) S550 14英寸 轻薄笔记本','电脑','7nm！新锐龙\n强劲实力，表现非凡。\n搭载AMD锐龙54600U移动处理器e,6核心12线程，睿频加速\n高达4.0GHz，处理器采用全新7nm技术工艺，让多任务处理\n更加迅捷稳定，操作使用流畅省心。','联想',2799,3999,30,15,0,0,1,'2020-12-31 14:01:57','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/4e1bc88d77254cfeaf7ca7cfaec61792-b46ee420bfce6581.jpg'),(43,'2020123114015738','联想(Lenovo)小新Pro13','电脑','联想(Lenovo)小新Pro13 2020商务长续航版全面屏轻薄办公笔记本电脑(i5 16G 512G 2.5K屏 高色域 人脸识别)','联想',5399,5699,30,10,0,0,1,'2020-12-31 14:03:38','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/a53be12e3cf146a6b7ad1e1f1b9ab398-0eac600febe4cf29.jpg'),(44,'2020123114033939','索尼(SONY) KD-75Z8H','生活家电','索尼(SONY) KD-75Z8H 75英寸 8K HDR 安卓智能液晶电视\n8K迅锐图像处理引擎Pro / 图像处理芯片 X1™旗舰版 / 8K精锐光控Pro旗舰版','索尼',32999,34999,10,4,0,0,1,'2020-12-31 14:08:40','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/94f88cb0898c4fd3b85840436f6dc843-N6j4eV8FofJGkcVKGG7Jqw.jpg'),(45,'2020123114084040','MacBook Air','电脑','Apple M1 芯片，配备 8 核中央处理器和 7 核图形处理器\n256GB 存储容量','苹果',7699,7999,10,5,0,0,1,'2020-12-31 14:12:53','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/f88b2a5f125a4da6874335b6de990751-macbook-air-space-gray-select-201810.jpg'),(46,'2020123114125441','iPhone 12 Pro','手机','5G 加身；A14 仿生速度超快，实力超前；Pro 级摄像头系统将低光摄影带上新高，在 iPhone 12 Pro Max 上更是突飞猛进；而超瓷晶面板，则将抗跌落能力提高到四倍。你所期待的，来了。','苹果',9199,9299,9,3,0,0,1,'2020-12-31 14:17:22','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/a600a2291e7f4158bb18fa6d2184df43-iphone-12-pro-graphite-hero.png'),(47,'2020123114172342','iPhone SE','手机','iPhone SE 拥有强大的芯片和惹人喜爱的尺寸，而价格更是让人动心。你期待的它，来了。','苹果',3699,3799,10,5,0,0,1,'2020-12-31 14:19:17','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/b96846d1d2164c9d804eaf6551270620-iphone-se-white-select-2020.png'),(48,'2020123114430143','茵曼秋季新款棉针织上衣女','服装','茵曼秋季新款清新纯色优雅V领绣花简约百搭弹性棉针织上衣女','茵曼',452,489,30,15,0,0,1,'2020-12-31 14:46:16','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/349413ae39e7479b85d9465c689bbb29-160422964083238598.jpg'),(49,'2020123114461744','2019秋季新款学生圆领卫衣','服装','苏宁款卫衣女宽松韩版2019秋季新款时尚学生圆领字母印花纯棉慵懒风加绒','茵曼',270,299,28,10,0,0,1,'2020-12-31 14:48:18','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/b460089cd1bb4d7f8fb0bd68ac39b391-160422956116154612.jpg'),(50,'2020123114525945','Lagogo宽松连衣裙女','服装','Lagogo拉谷谷长袖高腰条纹中裙宽松连衣裙女','茵曼',639,659,30,10,0,0,1,'2020-12-31 14:53:47','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/7c156050769a4e36b71a70a7cbd01a66-160138138140657460.png'),(51,'2020123114535846','菱格套头毛衣秋冬季新款女','服装','妖精的口袋waitmore菱格套头毛衣秋冬季新款女宽松外穿针织衫','茵曼',60,75,25,10,0,0,1,'2020-12-31 14:54:52','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/454eee8faa934da8a2d8a288143c057b-160138145934440586.png'),(52,'2020123116310447','Redmi 智能电视 MAX 98','生活家电','客厅里的巨幕影院 大视野带来超震撼的沉浸感/4K HDR超高清画质 逼真画面栩栩如生/杜比+DTS双解码 清澈立体的声音环绕整个客厅/MEMC运动补偿 无拖尾无重影/4G+64G大存储','小米',18999,19999,29,20,0,0,1,'2020-12-31 16:31:55','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/32ac248179554081be1f18693ab51748-pms_1584958755.36428250.jpg'),(53,'2020123120311148','小米电视大师 82英寸至尊纪念版','生活家电','8K超高清/量子点技术/声动之翼/支持5G网络/全通道8K','小米',47999,49999,10,5,0,0,1,'2020-12-31 20:32:06','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/ad3b1bfe33ed4239b91b3c3e3407260b-597dc0f15e44d85928711966d540ed71.jpg'),(54,'2020123120363749','米家智能多功能养生壶','生活家电','1000W加热功率 / 10挡火力调节 / App联网控制 / 智能在线食谱','小米',149,169,20,10,0,0,1,'2020-12-31 20:37:23','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/ba04be197366418199eb58bae64d7c53-pms_1605249917.43613694.jpg'),(55,'2020123120400750','Redmi K30 5G','手机','双模5G / 三路并发 / 高通骁龙765G / 7nm 5G低功耗处理器 / 120Hz高帧率流速屏 / 索尼6400万前后六摄 / 4500mAh+30W快充','小米',1299,1599,20,12,0,0,1,'2020-12-31 20:41:28','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/1f7f817eda3e4bd2937cf1d2b6cba115-pms_1575882053.33827103.jpg'),(56,'2020123120432951','小米10','手机','骁龙865处理器 /90Hz刷新率+180Hz采样率 / UFS 3.0高速存储 / 30W极速闪充+30W无线闪充+10W无线反充 / 4780mAh大电量 / 多功能NFC','小米',3600,3799,17,10,0,0,1,'2020-12-31 20:44:32','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/435e6091eeed4018860bf5855aa2ad47-pms_1581493999.49592807.jpg'),(57,'2020123120432954','韩版冬装新款外套','服装','美特斯邦威毛呢大衣男长款文艺帅气韩版冬装新款外套商场款','茵曼',620,659,999,10,0,0,1,'2021-01-01 11:41:34','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/1acfe0ec0cb24a2da6e9c5271d8e51a1-ew5MbyeEkWD_huloKblnXQ.jpg'),(58,'20211316161453','Redmi全自动波轮洗衣机1A 8kg','生活家电','8kg大容量 / 10种洗涤模式 / 10挡水位调节 / 耐腐蚀金属机身 / 桶自洁、桶风干模式避免细菌滋生 / 空气阻尼减震 / 免运费及基础安装费','小米',799,899,10,5,0,0,1,'2021-01-03 16:18:13','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/acb44c71af8e4aca9128d6d66dd111a8-b8c63a2024528fe5410ebe669b7d2407.webp'),(59,'20211516332754','2020年尖领净色上装衬衣男装寸衫','服装','七匹狼长袖衬衫男士秋季2020年尖领净色上装衬衣男装寸衫','七匹狼',580,647,20,8,0,0,1,'2021-01-05 16:34:45','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/92b29087b60f4fd791097d518e63ec0e-048sxka-tkdqUSjMTGzzaw.jpg'),(60,'20211516344655','冬装新款甜美浪漫蝴蝶结系连衣裙','服装','茵曼2020冬装新款甜美浪漫蝴蝶结系带修身橡筋泡泡袖连衣裙两件套','茵曼',600,639,20,10,0,0,1,'2021-01-05 16:36:55','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/a80dbc6f490843eaa1e4aa301f2c3c80-Zn4EiMhTNR2EHS_JxzbMyg.jpg'),(61,'20211516383756','方形口袋长袖短外套上衣','服装','茵曼2020冬装新款温暖文艺格子拼接绒毛领方形口袋长袖短外套上衣','茵曼',599,639,19,10,0,0,1,'2021-01-05 16:40:26','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/8d5eb4c94ced46c3b9eaa46272573725-RuhTZO5ho3S7hAk74kc2oQ.jpg'),(62,'20211517010257','海澜之家水洗牛津纺长袖休闲衬衫2020春季挺括有型长衬男','服装','海澜之家水洗牛津纺长袖休闲衬衫2020春季挺括有型长衬男\n牛津纺面料 水洗工艺 扣领尖领 有型穿着','海澜之家',128,158,30,15,0,0,1,'2021-01-05 17:02:50','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/5dba4a48d30d479696574fe76e9d2e99-FIl9rLaE1Of1YrMr_XUMRw.png'),(63,'20211517042458','拉谷谷多色休闲连帽卫衣女上衣ICEE417G38','服装','简约多色百搭连帽卫衣\n每个季节对卫衣都情有独钟\n时尚达人必备的时髦单品\n具有超强时尚感和视觉上瘦身的效果。','茵曼',119,139,29,20,0,0,1,'2021-01-05 17:10:25','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/15dbe2cfaf0c4ee1ae0cbfb3f8171370-Q3jd-iexNlA8YnUFM51d9A.jpg');
+insert  into `product`(`product_id`,`product_no`,`product_name`,`product_type`,`product_describe`,`product_brand`,`in_price`,`out_price`,`product_stock`,`lowest_stock`,`is_stockout`,`is_new`,`is_sale`,`sale_time`,`product_url`) values (1,'202012302222140','米家互联网洗烘一体机Pro 20kg','生活家电','国标双A+级洗烘能力 / 22种洗烘模式 / 除菌率达99.9%+ / 支持小爱同学语音遥控 / 支持OTA在线智能升级 / 智能空气洗 / 智能投放洗涤剂','小米',2899,3299,11,10,0,0,1,'2020-12-30 22:23:19','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/c833369200f2465db37b64f64f604514-ec20453216dcd42f982cffe5fdbc3115.webp'),(2,'202012310940061','Redmi K30 至尊纪念版','手机','120Hz弹出全面屏 / 天玑1000+旗舰处理器 / 索尼6400万四摄 / 立体声双扬声器 / 4500mAh+33W闪充 / 双模5G / 多功能NFC / 线性震动马达 / 红外遥控','小米',1899,2499,6,5,0,0,1,'2021-01-01 09:31:54','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/2b740f7f5aa44429ae9304a0b3b8c9e3-3b19bf0e7e599c1bbbce510fb0dbc8bc.webp'),(6,'202012310948192','Redmi 10X Pro 5G','手机','双5G待机/天玑820处理器/4800万流光相机+800万超广角/6.57\"三星AMOLED屏幕/屏幕指纹/4520mAh长续航/红外遥控','小米',2099,2499,8,8,0,0,1,'2020-12-31 09:48:58','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/41f622beaf314f689f5109aff0112a66-pms_1590373498.27778397.jpg'),(7,'202012311032223','天梭力洛克系列钢带80机芯机械男表','腕表','为纪念天梭诞生150周年而推出的系列，因此取名天梭诞生地瑞士小镇力洛克。\n该系列部分表款的后盖有独特的设计，令人一探腕表跳动的韵律。\n上市以来成为了天梭系列中的畅销系列。','天梭',4650,4800,10,5,0,0,1,'2020-12-31 10:35:34','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/fbf1f88e9ae94661a40994789f5da800-t0064071105300_1_1_1.png'),(8,'202012311035354','天梭魅时系列钢带石英女表','腕表','魅时系列 简约纯粹\n魅时系列作为天梭入门级的腕表系列，\n设计简单大气，充满活力，以不同基调与风格\n迎合多种风格佩戴者的心情与品位，\n深受年轻时尚族喜爱。','天梭',1899,2050,10,5,0,0,1,'2020-12-31 10:37:26','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/bbb65aa08af345a1bde8f45bba15e73f-t1092101103100_1.png'),(9,'202012311037275','天梭俊雅系列皮带石英男表','腕表','俊雅系列复古文艺\n天梭俊雅系列整体设计曲线具有简约美学感，\n与1950年代的复古风格结合，\n散发浓郁的文艺气息，\n俊雅系列腕表其中的细节隐藏着天梭逾百年制表传统的美意与祝福。','天梭',2100,2300,15,12,0,0,1,'2020-12-31 10:39:00','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/8e7670595e1c40fe908ec254ba1cbb50-t0636101605800_1.png'),(10,'202012311039016','天梭魅时系列皮带石英女表','腕表','瑞士设计经典优雅\n本款腕表为现代丽人打造，\n简洁优雅的设计贯穿着表盘和表带\n经典阿拉伯数字将清晰的时刻尽显眼底，\n蓝宝石玻璃表镜将质感升级','天梭',1650,1750,15,10,0,0,1,'2020-12-31 10:41:10','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/e3313158ba124c8bad9011304d0274d3-t1092101603200_1.png'),(11,'202012311041107','天梭杜鲁尔系列皮带80机芯机械男表','腕表','杜鲁尔经典系列\n命名灵感源于天梭1907年在瑞士力洛克创建的制表厂所在的街道，\n满载百年的厚重历史和匠心传承。\n该系列带着“瑞士制造”的烙印。','天梭',5600,5800,7,5,0,0,1,'2020-12-31 10:43:27','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/a6221d796e7b404492ba0aa29c55a394-t0994071604800_4.png'),(12,'202012311044178','天梭弗拉明戈系列钢带石英女表','腕表','弗拉明戈系列\n火烈鸟的尊贵气质源于它纤细修长的双腿，\n而天梭弗拉明戈系列腕表灵感来自于此，\n缔造了优雅与流畅的外观设计\n似裙裾飘飘，\n富有动感之美。','天梭',2300,2600,8,5,0,0,1,'2020-12-31 10:44:55','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/4850a93929804c419a2eccbd29df5353-t0942101111100_1.png'),(13,'202012311044559','天梭弗拉明戈系列钢带石英女表','腕表','蓝宝石玻璃表镜\n人工合成蓝宝石是硬度仅次于\n钻石的材料\n耐腐蚀易清洁\n明亮通透不易磨损不易刮伤','天梭',3250,3450,8,4,0,0,1,'2020-12-31 10:46:03','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/60ff003ec35d45a6b5a7cde7079b93af-t0942103311601.png'),(14,'2020123110460410','天梭弗拉明戈系列皮带石英女表','腕表','该腕表整体设计源于成对火烈鸟忠贞\n不渝的爱情，一高一低的表耳设计带\n着窃窃私语的爱意，令经典腕表的设\n计增加了俏皮感','天梭',2350,2450,8,4,0,0,1,'2020-12-31 10:47:13','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/6d056f7377f04e5bb9e86badbc59b5c6-t0942101601100_1.png'),(15,'2020123110471411','天梭弗拉明戈系列钢带石英女表','腕表','珍珠贝母柔光四溢\n优雅古典的30亳米表壳，表盘采用\n柔光四溢的珍珠贝母材质\n将现代女性干练的形象柔和化，尽显\n精致女人味','天梭',2550,2750,6,3,0,0,1,'2020-12-31 10:48:38','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/be42a000d1734dbba1f7e6953dfbd48c-t0942101112600_1.png'),(16,'2020123110515412','RedmiBook Air 13','电脑','Redmi Book Air 13\n轻盈便携轻松办公','小米',4299,4499,20,10,0,0,1,'2020-12-31 10:53:32','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/c6b1f6bd8744454a9b52ad31d52b153d-pms_1597115272.25169010.jpg'),(17,'2020123110533213','RedmiBook 14 Ⅱ','电脑','Redmi Book 14 LI\n全面实力，全「芯」超越\n全新十代酷睿处理器 / MX350独显 / 14英寸超窄边框高清屏','小米',4200,4499,30,12,0,0,1,'2020-12-31 10:55:26','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/f66356c9fc934d86a351892c0fe707c1-pms_1594121477.94286021.jpg'),(18,'2020123110552614','RedmiBook 16','电脑','全新十代酷睿处理器 / MX350独显 / 16英寸超窄边框高清屏 \n16.1\"超大高清屏幕\n更大视野，更多可见','小米',4399,4699,18,8,0,0,1,'2020-12-31 10:57:21','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/4cb41c8ec4eb4bc3bfbfeb637f86b8f2-pms_1594113149.87593534.jpg'),(19,'2020123110572215','RedmiBook 14 增强版','电脑','全新十代酷睿处理器 / MX250独显 / 14英寸超窄边框高清屏 / 小米手环极速解锁 / 炫酷多彩任你挑选','小米',3688,3999,15,5,0,0,1,'2020-12-31 10:59:16','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/a9c66147b1d64a99a6e5f6286024586d-pms_1566878924.45456023.jpg'),(20,'2020123110591616','HUAWEI MateBook D 14','电脑','HUAWEI MateBook D 14 锐龙版 全新7nm R5 16GB+512GB（皓月银）14英寸莱茵护眼 多屏协同 轻薄金属机身办公学习笔记本','华为',3999,4099,15,5,0,0,1,'2020-12-31 11:00:43','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/294be499ee5848e5870ac2eb5b509beb-428_428_4623B15D5E474FE95C7867EE67C1D25A13BCA65E0412FB5Fmp.png'),(21,'2020123111004317','HUAWEI MateBook X 2020款','电脑','HUAWEI MateBook X 2020款 集显 i5 16G 512G（冰霜银）13英寸3K触控全面屏 轻至1kg超轻薄华为笔记本电脑','华为',8200,8999,15,5,0,0,1,'2020-12-31 11:01:44','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/8588229f00484384b0022c3346518ee8-428_428_8C0DCB8B48F9A0DDDF1C3A8BC7958FBA2AE24D308646AAA2mp.png'),(22,'2020123111014518','HUAWEI MateBook D 15 2021款','电脑','HUAWEI MateBook D 15 2021款 15英寸护眼全面屏笔记本电脑 全新11代酷睿i5 16GB 512GB 锐炬显卡 多屏协同 WiFi 6 皓月银','华为',4200,4999,15,10,0,0,1,'2020-12-31 11:03:06','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/4d84bcd52be948428a1d1267a0f2d57b-428_428_0CA3A957E88044DD39123396C850743AED2D2EAA2DBFBD61mp.png'),(23,'2020123111030619','HUAWEI MateBook 14 2020款','电脑','HUAWEI MateBook 14 2020款 独显MX350 i5 16GB 512GB（深空灰）14英寸华为笔记本办公电脑 2K触控屏轻薄本 多屏协同便捷互传学习笔记本','华为',6299,6399,15,5,0,0,1,'2020-12-31 11:04:32','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/cbd1da41a39b4dc48e1db1545a2becb9-428_428_CB59BC49A4E1F60D2A1F4C6C349E591D1B3F546807A34180mp.png'),(24,'2020123111060320','HUAWEI Mate 30 Pro 5G','手机','HUAWEI Mate 30 Pro 5G 全网通 8GB+512GB 麒麟990 双4000万徕卡电影四摄','华为',7199,7399,20,12,0,0,1,'2020-12-31 11:07:19','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/0556c05575ef4643b2e67ced5fbaf4fb-428_428_BBB155FB6C09744712785FB380EA616E967F4F8F8CAEC76Amp.png'),(25,'2020123111072021','HUAWEI Mate 40 5G','手机','5nm麒麟9000E旗舰芯片，超感知徕卡影像\n有线无线双超级快充1,EMUI11创新交互体验\n源于宇宙探索的星环美学，6.5英寸曲面屏2舒适握持感\nHUAWEI Mate40,智慧表现恰到好处','华为',4299,4999,20,10,0,0,1,'2020-12-31 11:09:58','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/088caefccff341488a24cdb83bedec61-428_428_9B6917F54FD19C85873D683A0118C9EE61CF70B260CE761Bmp.png'),(26,'2020123111095922','HUAWEI nova 7 Pro 5G','手机','轻盈灵动，一触倾心\n纤薄美学设计\n前后双曲面玻璃设计，nova7Pro机身最薄处7.98mm1,重量178g\n纤薄轻盈，握持感圆润舒适。\n如晶莹水晶，光影交织；如月影流沙，梦幻灵动。','华为',3900,4099,19,10,0,0,1,'2020-12-31 11:11:36','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/998571fdc30d40fda6bd77eee4723848-428_428_AE7282C89472CC29A19250DF5B6E4F08553B5DCC8506214Fmp.png'),(27,'2020123111113623','华为畅享 10S','手机','6.3英寸炫彩OLED全面屏|4800万超广角AI三摄|手持超级夜景','华为',1299,1699,15,8,0,0,1,'2020-12-31 11:12:56','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/c15752d30e4540518f3019b7a4bed396-428_428_9FA695518CFC23552650A7145BD7A40DC1A9F088C4BA6A07mp.png'),(28,'2020123111125624','华为畅享Z 5G','手机','90Hz畅滑屏，流畅跟手\n90Hz刷新率配合180Hz高触控采样率，带来全新\n顺滑跟手的游戏体验。轻轻滑动屏幕，灵敏“跟手”\n如丝般顺滑。','华为',1999,2199,15,7,0,0,1,'2020-12-31 11:14:02','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/12b7c4f12e33406aa2a47c7d26fb124d-428_428_A46A0A86BE45135BA47D1C6DBDB8BD2128A658F61202CDD0mp.png'),(29,'2020123111155625','索尼(SONY)KD-55X9088H','生活家电','索尼(SONY)KD-55X9088H 55英寸 4K HDR 安卓智能液晶电视\n专业游戏模式，次世代游戏兼容性，HDMI2.1支持4K120帧模式，全阵列式背光','索尼',4000,4299,30,13,0,0,1,'2020-12-31 11:16:53','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/2bf7ead6823842abbf9f99427c80343d-A00NwZX6laRKLsiP333hBQ.jpg'),(30,'2020123111165326','全面屏电视 55英寸E55X','生活家电','潮流全面屏设计 视野更广阔 / 4K超高清画质 细腻如真 / 杜比音效带来震撼体验 / 内置小爱同学 语音操控更便捷 / 智能PatchWall系统 / 2G+8G大存储空间','小米',2199,2399,25,12,0,0,1,'2020-12-31 11:18:38','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/b6f8b98c9e19421ebbb353a9b4974606-pms_1570600947.92372088.jpg'),(31,'2020123111183927','小米电视4A 70英寸','生活家电','70英寸震撼巨屏 / 4K画质 细腻如真 / 杜比音效 身临其境 / PatchWall智能系统 内置小爱同学 / 海量好内容','小米',3199,3129,18,12,0,0,1,'2020-12-31 11:19:50','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/2c675677225c4df693305229e2f9ad3b-pms_1568199413.36224361.jpg'),(32,'2020123111195028','小米全面屏电视65英寸 E65C','生活家电','震撼大屏 观影更爽 / 时尚全面屏设计 视野更广阔 / 4K超高清画质 细腻如真 / 杜比音效带来震撼体验 / 内置小爱同学 语音操控更便捷 / 智能PatchWall系统 / 2G+8G大存储空间','小米',2899,2999,18,13,0,0,1,'2020-12-31 11:20:40','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/d36116d2edf84334abe6b06a17afe423-pms_1569691861.38973660.jpg'),(33,'2020123111204029','小米电视4C 32英寸','生活家电','人工智能系统 | 64位处理器 | 1GB+4GB 内存','小米',840,989,20,10,0,0,1,'2020-12-31 11:22:00','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/f233d587eb19490c97c3d9ad60a25aa4-pms_1527060327.66235934.jpg'),(34,'2020123111220030','索尼(SONY)KD-55A8H','生活家电','【索尼 55英寸 OLED安卓智能 X1™旗舰版 智能电视】图像处理芯片 X1™旗舰版 智能电视，搭载安卓9.0系统','索尼',9999,10999,20,12,0,0,1,'2020-12-31 11:27:41','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/e898eaa5f49549cd8ef6cc2af54c9835-ZYkZ0LauFrlM8RK-mF-UCw.jpg'),(35,'2020123111305231','华为智慧屏 V65','生活家电','华为智慧屏 V65（星际黑）65英寸 4K量子点 4+64GB 升降式AI摄像头 视频通话 智慧音响 鸿鹄芯片 智能家居控制','华为',7299,7499,20,10,0,0,1,'2020-12-31 11:31:57','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/a0ddfebf8d0546439bec6e2334685961-428_428_21EEE8FC1E9B970CAA527CC00F668B933528C62FBC4CD1E4mp.png'),(36,'2020123113335132','天梭波尔图系列皮带机械表刘亦菲同款','腕表','波尔图系列\n承载悠久制表历史和精湛制表技艺\n致敬经典，彰显贵族风范','天梭',9100,9300,10,5,0,0,1,'2020-12-31 13:35:24','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/b997d1560cd44752819b3f9c3dba6b9f-t1285053601200_1.png'),(38,'2020123113361433','天梭俊雅系列钢带石英男表','腕表','曲线优美怀旧气息\n银色316L精钢表带为整体造型\n增加金属质感，提升佩戴者硬朗风度\n按钮式蝴蝶扣设计为整体注入怀旧感','天梭',2550,2650,20,10,0,0,1,'2020-12-31 13:38:27','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/862ea3223d124a7a96222fe15a6739d9-t0636101103700_1_1.png'),(39,'2020123113384134','小米智能养生壶','生活家电','小米智能养生壶 烧水壶 电热水壶 煮茶器大加热功率 多档火力调节 安全防干烧 米家APP互联 MYSH0E1ACM','小米',150,169,30,10,0,0,1,'2020-12-31 13:53:27','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/a5455965e19840f6a07147ac50a3b352-865469eafd7a3f99.jpg'),(40,'2020123113542135','变频家用微波炉光波烧烤炉','生活家电','美的（Midea）X3-233A 变频家用微波炉光波烧烤炉 微波炉电烤箱一体机 智能湿度感应 900W微烤一体23升','美的',610,639,50,20,0,0,1,'2020-12-31 13:56:04','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/ea09ff37d4ed48cfa2b6764321e032c8-42933c26fee08c6c.jpg'),(41,'2020123113560536','小米电吹风机家用吹风筒','生活家电','米家 负离子吹风机，5000万负离子，20m/s超大风速，大功率速干不伤发；57℃智能恒温，冷热风循环，三档温度','小米',99,149,50,20,0,0,1,'2020-12-31 13:57:48','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/7478723eb7e048a6aed637be3bc0354f-558626d6a5daf1c2.jpg'),(42,'2020123114001537','联想(Lenovo) S550 14英寸 轻薄笔记本','电脑','7nm！新锐龙\n强劲实力，表现非凡。\n搭载AMD锐龙54600U移动处理器e,6核心12线程，睿频加速\n高达4.0GHz，处理器采用全新7nm技术工艺，让多任务处理\n更加迅捷稳定，操作使用流畅省心。','联想',2799,3999,30,15,0,0,1,'2020-12-31 14:01:57','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/4e1bc88d77254cfeaf7ca7cfaec61792-b46ee420bfce6581.jpg'),(43,'2020123114015738','联想(Lenovo)小新Pro13','电脑','联想(Lenovo)小新Pro13 2020商务长续航版全面屏轻薄办公笔记本电脑(i5 16G 512G 2.5K屏 高色域 人脸识别)','联想',5399,5699,30,10,0,0,1,'2020-12-31 14:03:38','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/a53be12e3cf146a6b7ad1e1f1b9ab398-0eac600febe4cf29.jpg'),(44,'2020123114033939','索尼(SONY) KD-75Z8H','生活家电','索尼(SONY) KD-75Z8H 75英寸 8K HDR 安卓智能液晶电视\n8K迅锐图像处理引擎Pro / 图像处理芯片 X1™旗舰版 / 8K精锐光控Pro旗舰版','索尼',32999,34999,10,4,0,0,1,'2020-12-31 14:08:40','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/94f88cb0898c4fd3b85840436f6dc843-N6j4eV8FofJGkcVKGG7Jqw.jpg'),(45,'2020123114084040','MacBook Air','电脑','Apple M1 芯片，配备 8 核中央处理器和 7 核图形处理器\n256GB 存储容量','苹果',7699,7999,10,5,0,0,1,'2020-12-31 14:12:53','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/f88b2a5f125a4da6874335b6de990751-macbook-air-space-gray-select-201810.jpg'),(46,'2020123114125441','iPhone 12 Pro','手机','5G 加身；A14 仿生速度超快，实力超前；Pro 级摄像头系统将低光摄影带上新高，在 iPhone 12 Pro Max 上更是突飞猛进；而超瓷晶面板，则将抗跌落能力提高到四倍。你所期待的，来了。','苹果',9199,9299,9,3,0,0,1,'2020-12-31 14:17:22','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/a600a2291e7f4158bb18fa6d2184df43-iphone-12-pro-graphite-hero.png'),(47,'2020123114172342','iPhone SE','手机','iPhone SE 拥有强大的芯片和惹人喜爱的尺寸，而价格更是让人动心。你期待的它，来了。','苹果',3699,3799,10,5,0,0,1,'2020-12-31 14:19:17','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/b96846d1d2164c9d804eaf6551270620-iphone-se-white-select-2020.png'),(48,'2020123114430143','茵曼秋季新款棉针织上衣女','服装','茵曼秋季新款清新纯色优雅V领绣花简约百搭弹性棉针织上衣女','茵曼',452,489,30,15,0,0,1,'2020-12-31 14:46:16','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/349413ae39e7479b85d9465c689bbb29-160422964083238598.jpg'),(49,'2020123114461744','2019秋季新款学生圆领卫衣','服装','苏宁款卫衣女宽松韩版2019秋季新款时尚学生圆领字母印花纯棉慵懒风加绒','茵曼',270,299,28,10,0,0,1,'2020-12-31 14:48:18','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/b460089cd1bb4d7f8fb0bd68ac39b391-160422956116154612.jpg'),(50,'2020123114525945','Lagogo宽松连衣裙女','服装','Lagogo拉谷谷长袖高腰条纹中裙宽松连衣裙女','茵曼',639,659,30,10,0,0,1,'2020-12-31 14:53:47','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/7c156050769a4e36b71a70a7cbd01a66-160138138140657460.png'),(51,'2020123114535846','菱格套头毛衣秋冬季新款女','服装','妖精的口袋waitmore菱格套头毛衣秋冬季新款女宽松外穿针织衫','茵曼',60,75,25,10,0,0,1,'2020-12-31 14:54:52','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/454eee8faa934da8a2d8a288143c057b-160138145934440586.png'),(52,'2020123116310447','Redmi 智能电视 MAX 98','生活家电','客厅里的巨幕影院 大视野带来超震撼的沉浸感/4K HDR超高清画质 逼真画面栩栩如生/杜比+DTS双解码 清澈立体的声音环绕整个客厅/MEMC运动补偿 无拖尾无重影/4G+64G大存储','小米',18999,19999,29,20,0,0,1,'2020-12-31 16:31:55','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/32ac248179554081be1f18693ab51748-pms_1584958755.36428250.jpg'),(53,'2020123120311148','小米电视大师 82英寸至尊纪念版','生活家电','8K超高清/量子点技术/声动之翼/支持5G网络/全通道8K','小米',47999,49999,10,5,0,0,1,'2020-12-31 20:32:06','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/ad3b1bfe33ed4239b91b3c3e3407260b-597dc0f15e44d85928711966d540ed71.jpg'),(54,'2020123120363749','米家智能多功能养生壶','生活家电','1000W加热功率 / 10挡火力调节 / App联网控制 / 智能在线食谱','小米',149,169,20,10,0,0,1,'2020-12-31 20:37:23','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/ba04be197366418199eb58bae64d7c53-pms_1605249917.43613694.jpg'),(55,'2020123120400750','Redmi K30 5G','手机','双模5G / 三路并发 / 高通骁龙765G / 7nm 5G低功耗处理器 / 120Hz高帧率流速屏 / 索尼6400万前后六摄 / 4500mAh+30W快充','小米',1299,1599,20,12,0,0,1,'2020-12-31 20:41:28','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/1f7f817eda3e4bd2937cf1d2b6cba115-pms_1575882053.33827103.jpg'),(56,'2020123120432951','小米10','手机','骁龙865处理器 /90Hz刷新率+180Hz采样率 / UFS 3.0高速存储 / 30W极速闪充+30W无线闪充+10W无线反充 / 4780mAh大电量 / 多功能NFC','小米',3600,3799,17,10,0,0,1,'2020-12-31 20:44:32','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/435e6091eeed4018860bf5855aa2ad47-pms_1581493999.49592807.jpg'),(57,'2020123120432954','韩版冬装新款外套','服装','美特斯邦威毛呢大衣男长款文艺帅气韩版冬装新款外套商场款','茵曼',620,659,999,10,0,0,1,'2021-01-01 11:41:34','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/1acfe0ec0cb24a2da6e9c5271d8e51a1-ew5MbyeEkWD_huloKblnXQ.jpg'),(58,'20211316161453','Redmi全自动波轮洗衣机1A 8kg','生活家电','8kg大容量 / 10种洗涤模式 / 10挡水位调节 / 耐腐蚀金属机身 / 桶自洁、桶风干模式避免细菌滋生 / 空气阻尼减震 / 免运费及基础安装费','小米',799,899,10,5,0,0,1,'2021-01-03 16:18:13','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/acb44c71af8e4aca9128d6d66dd111a8-b8c63a2024528fe5410ebe669b7d2407.webp'),(59,'20211516332754','2020年尖领净色上装衬衣男装寸衫','服装','七匹狼长袖衬衫男士秋季2020年尖领净色上装衬衣男装寸衫','七匹狼',580,647,20,8,0,0,1,'2021-01-05 16:34:45','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/92b29087b60f4fd791097d518e63ec0e-048sxka-tkdqUSjMTGzzaw.jpg'),(60,'20211516344655','冬装新款甜美浪漫蝴蝶结系连衣裙','服装','茵曼2020冬装新款甜美浪漫蝴蝶结系带修身橡筋泡泡袖连衣裙两件套','茵曼',600,639,20,10,0,0,1,'2021-01-05 16:36:55','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/a80dbc6f490843eaa1e4aa301f2c3c80-Zn4EiMhTNR2EHS_JxzbMyg.jpg'),(61,'20211516383756','方形口袋长袖短外套上衣','服装','茵曼2020冬装新款温暖文艺格子拼接绒毛领方形口袋长袖短外套上衣','茵曼',599,639,18,10,0,0,1,'2021-01-05 16:40:26','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/8d5eb4c94ced46c3b9eaa46272573725-RuhTZO5ho3S7hAk74kc2oQ.jpg'),(62,'20211517010257','海澜之家水洗牛津纺长袖休闲衬衫2020春季挺括有型长衬男','服装','海澜之家水洗牛津纺长袖休闲衬衫2020春季挺括有型长衬男\n牛津纺面料 水洗工艺 扣领尖领 有型穿着','海澜之家',128,158,30,15,0,0,1,'2021-01-05 17:02:50','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/5dba4a48d30d479696574fe76e9d2e99-FIl9rLaE1Of1YrMr_XUMRw.png'),(63,'20211517042458','拉谷谷多色休闲连帽卫衣女上衣ICEE417G38','服装','简约多色百搭连帽卫衣\n每个季节对卫衣都情有独钟\n时尚达人必备的时髦单品\n具有超强时尚感和视觉上瘦身的效果。','茵曼',119,139,29,20,0,0,1,'2021-01-05 17:10:25','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/15dbe2cfaf0c4ee1ae0cbfb3f8171370-Q3jd-iexNlA8YnUFM51d9A.jpg');
 
 /*Table structure for table `product_brand` */
 
@@ -124,9 +124,9 @@ CREATE TABLE `product_brand` (
   `brand_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '品牌id',
   `brand_name` varchar(30) NOT NULL COMMENT '品牌名称',
   `brand_describe` varchar(100) NOT NULL COMMENT '品牌描述',
-  PRIMARY KEY (`brand_id`),
-  UNIQUE KEY `UNIQUE` (`brand_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='商品品牌表';
+  PRIMARY KEY (`brand_id`) USING BTREE,
+  UNIQUE KEY `UNIQUE` (`brand_name`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='商品品牌表';
 
 /*Data for the table `product_brand` */
 
@@ -145,12 +145,12 @@ CREATE TABLE `product_review` (
   `review_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '评论时间',
   `star_level` double NOT NULL COMMENT '商品评星',
   `product_review` varchar(300) NOT NULL COMMENT '商品评价',
-  PRIMARY KEY (`review_id`),
-  KEY `account_number` (`account_number`),
-  KEY `product_no` (`product_no`),
-  KEY `order_no` (`order_no`),
+  PRIMARY KEY (`review_id`) USING BTREE,
+  KEY `account_number` (`account_number`) USING BTREE,
+  KEY `product_no` (`product_no`) USING BTREE,
+  KEY `order_no` (`order_no`) USING BTREE,
   CONSTRAINT `product_review_ibfk_2` FOREIGN KEY (`product_no`) REFERENCES `product` (`product_no`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='商品评价';
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='商品评价';
 
 /*Data for the table `product_review` */
 
@@ -163,11 +163,11 @@ DROP TABLE IF EXISTS `product_specs`;
 CREATE TABLE `product_specs` (
   `product_id` int(5) NOT NULL COMMENT '商品id',
   `specs_id` int(5) NOT NULL COMMENT '规格id',
-  KEY `product_id` (`product_id`),
-  KEY `specs_id` (`specs_id`),
+  KEY `product_id` (`product_id`) USING BTREE,
+  KEY `specs_id` (`specs_id`) USING BTREE,
   CONSTRAINT `product_specs_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON UPDATE CASCADE,
   CONSTRAINT `product_specs_ibfk_2` FOREIGN KEY (`specs_id`) REFERENCES `specs` (`specs_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品规格表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='商品规格表';
 
 /*Data for the table `product_specs` */
 
@@ -183,9 +183,9 @@ CREATE TABLE `product_type` (
   `type_describe` varchar(100) NOT NULL COMMENT '类别描述',
   `type_url_left` varchar(200) NOT NULL COMMENT '左侧宣传图',
   `type_url_top` varchar(200) NOT NULL COMMENT '横幅宣传图',
-  PRIMARY KEY (`type_id`),
-  UNIQUE KEY `UNIQUE` (`type_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='商品类别表';
+  PRIMARY KEY (`type_id`) USING BTREE,
+  UNIQUE KEY `UNIQUE` (`type_name`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='商品类别表';
 
 /*Data for the table `product_type` */
 
@@ -200,8 +200,8 @@ CREATE TABLE `products_featured` (
   `user_id` int(5) NOT NULL COMMENT '用户id',
   `product_id` int(5) NOT NULL COMMENT '商品id',
   `recommend` int(10) NOT NULL COMMENT '推荐分',
-  PRIMARY KEY (`record_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`record_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `products_featured` */
 
@@ -224,15 +224,15 @@ CREATE TABLE `purchase` (
   `account_number` varchar(30) NOT NULL COMMENT '操作员编号',
   `user_name` varchar(30) NOT NULL COMMENT '操作员名称',
   `receipt_status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '收货状态',
-  PRIMARY KEY (`purchase_id`),
-  UNIQUE KEY `UNIQUE` (`purchase_no`),
-  KEY `product_no` (`product_no`),
-  KEY `supplier_no` (`supplier_no`),
-  KEY `account_number` (`account_number`),
+  PRIMARY KEY (`purchase_id`) USING BTREE,
+  UNIQUE KEY `UNIQUE` (`purchase_no`) USING BTREE,
+  KEY `product_no` (`product_no`) USING BTREE,
+  KEY `supplier_no` (`supplier_no`) USING BTREE,
+  KEY `account_number` (`account_number`) USING BTREE,
   CONSTRAINT `purchase_ibfk_1` FOREIGN KEY (`product_no`) REFERENCES `product` (`product_no`) ON UPDATE CASCADE,
   CONSTRAINT `purchase_ibfk_2` FOREIGN KEY (`supplier_no`) REFERENCES `supplier` (`supplier_no`) ON UPDATE CASCADE,
   CONSTRAINT `purchase_ibfk_3` FOREIGN KEY (`account_number`) REFERENCES `user` (`account_number`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='采购表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='采购表';
 
 /*Data for the table `purchase` */
 
@@ -254,15 +254,15 @@ CREATE TABLE `return_goods` (
   `deal_time` timestamp NULL DEFAULT NULL COMMENT '处理时间',
   `return_reason` varchar(30) DEFAULT NULL COMMENT '退货原因',
   `return_state` varchar(20) NOT NULL COMMENT '退货状态',
-  PRIMARY KEY (`return_id`),
-  KEY `user_name` (`user_name`),
-  KEY `return_goods_ibfk_3` (`operator_number`),
-  KEY `return_goods_ibfk_1` (`order_no`),
-  KEY `return_goods_ibfk_2` (`user_number`),
-  KEY `return_goods_ibfk_4` (`return_reason`),
+  PRIMARY KEY (`return_id`) USING BTREE,
+  KEY `user_name` (`user_name`) USING BTREE,
+  KEY `return_goods_ibfk_3` (`operator_number`) USING BTREE,
+  KEY `return_goods_ibfk_1` (`order_no`) USING BTREE,
+  KEY `return_goods_ibfk_2` (`user_number`) USING BTREE,
+  KEY `return_goods_ibfk_4` (`return_reason`) USING BTREE,
   CONSTRAINT `return_goods_ibfk_2` FOREIGN KEY (`user_number`) REFERENCES `user` (`account_number`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `return_goods_ibfk_4` FOREIGN KEY (`return_reason`) REFERENCES `return_reason` (`reason_name`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='商品退货表';
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='商品退货表';
 
 /*Data for the table `return_goods` */
 
@@ -276,9 +276,9 @@ CREATE TABLE `return_reason` (
   `reason_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '退货id',
   `reason_name` varchar(30) NOT NULL COMMENT '退货理由',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否启用',
-  PRIMARY KEY (`reason_id`),
-  UNIQUE KEY `UNIQUE` (`reason_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='退货原因表';
+  PRIMARY KEY (`reason_id`) USING BTREE,
+  UNIQUE KEY `UNIQUE` (`reason_name`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='退货原因表';
 
 /*Data for the table `return_reason` */
 
@@ -293,7 +293,7 @@ CREATE TABLE `role` (
   `role_name` varchar(30) NOT NULL COMMENT '角色名称',
   `role_describe` varchar(50) NOT NULL COMMENT '角色描述',
   `role_state` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否启用',
-  PRIMARY KEY (`role_id`)
+  PRIMARY KEY (`role_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED COMMENT='角色表';
 
 /*Data for the table `role` */
@@ -310,16 +310,16 @@ CREATE TABLE `shopping_cart` (
   `product_id` int(5) NOT NULL COMMENT '商品id',
   `pay_amount` int(5) NOT NULL COMMENT '购买数量',
   `product_specs` varchar(100) DEFAULT NULL COMMENT '商品规格',
-  PRIMARY KEY (`cart_id`),
-  KEY `account_number` (`account_number`),
-  KEY `product_id` (`product_id`),
+  PRIMARY KEY (`cart_id`) USING BTREE,
+  KEY `account_number` (`account_number`) USING BTREE,
+  KEY `product_id` (`product_id`) USING BTREE,
   CONSTRAINT `shopping_cart_ibfk_1` FOREIGN KEY (`account_number`) REFERENCES `user` (`account_number`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `shopping_cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 /*Data for the table `shopping_cart` */
 
-insert  into `shopping_cart`(`cart_id`,`account_number`,`product_id`,`pay_amount`,`product_specs`) values (18,'qiudb.top@aliyun.com',49,28,'M'),(19,'qiudb.top@aliyun.com',53,9,NULL),(20,'qiudb.top@aliyun.com',11,6,NULL),(24,'qiudb.top@aliyun.com',52,30,NULL),(25,'qiudb.top@aliyun.com',44,10,NULL),(28,'qiudb.top@aliyun.com',62,1,'M'),(29,'qiudb.top@aliyun.com',53,1,NULL);
+insert  into `shopping_cart`(`cart_id`,`account_number`,`product_id`,`pay_amount`,`product_specs`) values (18,'qiudb.top@aliyun.com',49,28,'M'),(19,'qiudb.top@aliyun.com',53,9,NULL),(20,'qiudb.top@aliyun.com',11,6,NULL),(24,'qiudb.top@aliyun.com',52,30,NULL),(25,'qiudb.top@aliyun.com',44,10,NULL),(28,'qiudb.top@aliyun.com',62,1,'M'),(29,'qiudb.top@aliyun.com',53,1,NULL),(30,'qiudb.top@aliyun.com',62,1,'M');
 
 /*Table structure for table `specs` */
 
@@ -329,10 +329,10 @@ CREATE TABLE `specs` (
   `specs_id` int(5) NOT NULL AUTO_INCREMENT COMMENT '规格id',
   `specs_name` varchar(50) NOT NULL COMMENT '规格类型',
   `product_type` varchar(30) NOT NULL COMMENT '商品类别',
-  PRIMARY KEY (`specs_id`),
-  KEY `product_type` (`product_type`),
+  PRIMARY KEY (`specs_id`) USING BTREE,
+  KEY `product_type` (`product_type`) USING BTREE,
   CONSTRAINT `specs_ibfk_1` FOREIGN KEY (`product_type`) REFERENCES `product_type` (`type_name`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='商品规格表';
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='商品规格表';
 
 /*Data for the table `specs` */
 
@@ -350,11 +350,11 @@ CREATE TABLE `supplier` (
   `principal` varchar(30) NOT NULL COMMENT '负责人',
   `contact_way` varchar(30) NOT NULL COMMENT '联系方式',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否可用',
-  PRIMARY KEY (`supplier_id`),
-  UNIQUE KEY `UNIQUE` (`supplier_no`),
-  KEY `product_type` (`product_type`),
+  PRIMARY KEY (`supplier_id`) USING BTREE,
+  UNIQUE KEY `UNIQUE` (`supplier_no`) USING BTREE,
+  KEY `product_type` (`product_type`) USING BTREE,
   CONSTRAINT `supplier_ibfk_1` FOREIGN KEY (`product_type`) REFERENCES `product_type` (`type_name`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='供应商表';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='供应商表';
 
 /*Data for the table `supplier` */
 
@@ -378,13 +378,13 @@ CREATE TABLE `user` (
   `user_address` varchar(100) DEFAULT NULL COMMENT '用户地址',
   `avatar_url` varchar(200) DEFAULT NULL COMMENT '用户头像',
   `background_url` varchar(200) DEFAULT NULL COMMENT '背景图片',
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `UNIQUE` (`account_number`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='用户表';
+  PRIMARY KEY (`user_id`) USING BTREE,
+  UNIQUE KEY `UNIQUE` (`account_number`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户表';
 
 /*Data for the table `user` */
 
-insert  into `user`(`user_id`,`account_number`,`user_name`,`password`,`user_sex`,`telephone`,`creat_time`,`login_time`,`user_state`,`summary`,`user_address`,`avatar_url`,`background_url`) values (1,'1325554003@qq.com','马英发','d0e555b43d92ad5b292e1cd3c160c250','男','15233088661','2020-12-30 17:17:13','2021-06-21 23:15:11',1,'海阔凭鱼跃，天高任鸟飞','河北省 石家庄市 裕华区 (河北师范大学)','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/userAvatar/93bb56a9afb54394b6ef55a462ef9b09-Cache_50417400136e014..jpg',NULL),(2,'qiudb.top@aliyun.com','M','b2135e98075573c5d3a365dc137157c5','男','15233088662','2020-12-31 12:56:00','2021-06-21 22:39:16',1,'海阔凭鱼跃，天高任鸟飞','河北省 石家庄市 裕华区 (河北师范大学)','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/userAvatar/06a09d3c6fc94301a9f805f08c65a8db-QQ图片20181002195720.jpg','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/background/41d5e85813bb44369546e873d64c0dd4-01_mclaren_senna_black_livery_2_resized.jpg');
+insert  into `user`(`user_id`,`account_number`,`user_name`,`password`,`user_sex`,`telephone`,`creat_time`,`login_time`,`user_state`,`summary`,`user_address`,`avatar_url`,`background_url`) values (1,'1325554003@qq.com','马英发','d0e555b43d92ad5b292e1cd3c160c250','男','15233088661','2020-12-30 17:17:13','2021-06-21 23:15:11',1,'海阔凭鱼跃，天高任鸟飞','河北省 石家庄市 裕华区 (河北师范大学)','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/userAvatar/93bb56a9afb54394b6ef55a462ef9b09-Cache_50417400136e014..jpg',NULL),(2,'qiudb.top@aliyun.com','M','b2135e98075573c5d3a365dc137157c5','男','15233088662','2020-12-31 12:56:00','2021-12-25 15:28:05',1,'海阔凭鱼跃，天高任鸟飞','河北省 石家庄市 裕华区 (河北师范大学)','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/userAvatar/6b5e877559244a648e153a358674dc20-avatar.gif','https://spring-oss.oss-cn-beijing.aliyuncs.com/images/background/41d5e85813bb44369546e873d64c0dd4-01_mclaren_senna_black_livery_2_resized.jpg');
 
 /*Table structure for table `user_role` */
 
@@ -393,11 +393,11 @@ DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE `user_role` (
   `user_id` int(5) NOT NULL COMMENT '用户id',
   `role_id` int(5) NOT NULL COMMENT '角色id',
-  KEY `user_id` (`user_id`),
-  KEY `role_id` (`role_id`),
+  KEY `user_id` (`user_id`) USING BTREE,
+  KEY `role_id` (`role_id`) USING BTREE,
   CONSTRAINT `user_role_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `user_role_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `role` (`role_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户角色表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='用户角色表';
 
 /*Data for the table `user_role` */
 
@@ -412,10 +412,10 @@ CREATE TABLE `vip` (
   `account_number` varchar(30) NOT NULL COMMENT '用户帐号',
   `creat_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '充值时间',
   `overdue_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '过期时间',
-  PRIMARY KEY (`vip_id`),
-  KEY `account_number` (`account_number`),
+  PRIMARY KEY (`vip_id`) USING BTREE,
+  KEY `account_number` (`account_number`) USING BTREE,
   CONSTRAINT `vip_ibfk_1` FOREIGN KEY (`account_number`) REFERENCES `user` (`account_number`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='vip表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='vip表';
 
 /*Data for the table `vip` */
 
@@ -427,8 +427,8 @@ DELIMITER $$
 
 /*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `order_delete` */$$
 
-/*!50003 CREATE */ /*!50017 DEFINER = 'root'@'%' */ /*!50003 TRIGGER `order_delete` BEFORE DELETE ON `order` FOR EACH ROW BEGIN
-	UPDATE product SET product_stock = product_stock + old.pay_amount WHERE product_no = old.product_no;
+/*!50003 CREATE */ /*!50017 DEFINER = 'root'@'%' */ /*!50003 TRIGGER `order_delete` BEFORE DELETE ON `order` FOR EACH ROW BEGIN
+	UPDATE product SET product_stock = product_stock + old.pay_amount WHERE product_no = old.product_no;
     END */$$
 
 
@@ -440,10 +440,10 @@ DELIMITER $$
 
 /*!50003 DROP TRIGGER*//*!50032 IF EXISTS */ /*!50003 `user_insert` */$$
 
-/*!50003 CREATE */ /*!50017 DEFINER = 'root'@'%' */ /*!50003 TRIGGER `user_insert` AFTER INSERT ON `user` FOR EACH ROW BEGIN
-	DECLARE roleId INT;
-	SET roleId = (SELECT role_id FROM role WHERE role_name ='顾客');
-		INSERT user_role VALUES(new.user_id,roleId);
+/*!50003 CREATE */ /*!50017 DEFINER = 'root'@'%' */ /*!50003 TRIGGER `user_insert` AFTER INSERT ON `user` FOR EACH ROW BEGIN
+	DECLARE roleId INT;
+	SET roleId = (SELECT role_id FROM role WHERE role_name ='顾客');
+		INSERT user_role VALUES(new.user_id,roleId);
     END */$$
 
 
@@ -457,10 +457,10 @@ DELIMITER ;
 
 DELIMITER $$
 
-/*!50106 CREATE DEFINER=`root`@`%` EVENT `product_event` ON SCHEDULE EVERY 1 DAY STARTS '2021-01-07 02:00:00' ON COMPLETION PRESERVE ENABLE DO BEGIN
-		UPDATE product SET is_new = 0 WHERE sale_time<(CURRENT_TIMESTAMP() + INTERVAL -15 DAY);#修改15天前的新品数据
-		DELETE FROM qiu.`order` WHERE order_time < DATE_SUB(CURDATE(),INTERVAL 1 DAY) AND order_state='待付款';	#清除24小时内未付款的订单信息
-		DELETE FROM vip WHERE overdue_time <= CURDATE(); #清除 VIP表 会员过期的信息
+/*!50106 CREATE DEFINER=`root`@`%` EVENT `product_event` ON SCHEDULE EVERY 1 DAY STARTS '2021-01-07 02:00:00' ON COMPLETION PRESERVE ENABLE DO BEGIN
+		UPDATE product SET is_new = 0 WHERE sale_time<(CURRENT_TIMESTAMP() + INTERVAL -15 DAY);#修改15天前的新品数据
+		DELETE FROM qiu.`order` WHERE order_time < DATE_SUB(CURDATE(),INTERVAL 1 DAY) AND order_state='待付款';	#清除24小时内未付款的订单信息
+		DELETE FROM vip WHERE overdue_time <= CURDATE(); #清除 VIP表 会员过期的信息
 	END */$$
 DELIMITER ;
 

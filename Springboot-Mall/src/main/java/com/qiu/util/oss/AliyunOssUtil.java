@@ -12,6 +12,7 @@ import java.util.UUID;
 
 /**
  * 封装文件上传方法
+ * @author Dt
  */
 @Component
 public class AliyunOssUtil {
