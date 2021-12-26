@@ -38,8 +38,6 @@
 
 - 支付密码：111111
 
-
-
 ### 迭代更新
 
 > 更新时间：2021-12-25
@@ -50,8 +48,6 @@
 2. 优化上传图片逻辑
 3. yml配置文件加密处理，不对外暴露配置文件信息
 4. 启动项目时，需要传入配置文件解密密钥，或者将加密的配置信息换成自己的
-
-
 
 > 更新时间：2021-12-05
 
@@ -78,13 +74,25 @@
 
 4. 我的订单页面，允许隐藏已经购买完成的订单信息，当购买数量过多时，会显得页面特别乱，增加了隐藏订单功能。
 
-
-
 以上是本次项目迭代更新的全部功能，如果项目中你发现了新的问题，可以加QQ讨论如何修复此问题。
 
 ---
 
+### Docker部署项目
 
+```shell
+# Dockerfile 构建项目
+docker build -t breadroll-project/breadroll-mall:1.0 .
+```
+
+```shell
+# docker 启动项目
+docker run -d -p 9999:9999 --name breadroll-mall \
+-e jasypt_password="your password" \
+-v /etc/localtime:/etc/localtime \
+-v /docker/project/mall/logs:/log \
+breadroll-project/breadroll-mall:1.0
+```
 
 ### 软件架构
 
@@ -141,8 +149,6 @@
 6379	# redis 数据库
 994		# 网易163邮箱 服务端口
 ```
-
-
 
 ### 软件截图
 
@@ -633,6 +639,3 @@ alter event product_event on completion preserve disable;
 ```mysql
 drop event event_name;
 ```
-
-
-
