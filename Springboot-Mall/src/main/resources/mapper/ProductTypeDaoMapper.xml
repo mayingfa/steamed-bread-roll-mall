@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiu.dao.ProductTypeDao">
+    <!--通过ID查询-->
+    <select id="selectById" resultType="ProductType" parameterType="Integer">
+        select type_id, type_name, type_describe, type_url_left, type_url_top
+        from product_type
+        where type_id = #{typeId};
+    </select>
+
+    <!--查询所有-->
+    <select id="selectAll" resultType="ProductType">
+        select type_id, type_name, type_describe, type_url_left, type_url_top
+        from product_type;
+    </select>
+
+    <!--查询所有分类名-->
+    <select id="selectAllName" resultType="String">
+        select type_name
+        from product_type;
+    </select>
+
+    <!--判断 商品类别 是否存在-->
+    <select id="existsWithTypeName" resultType="Boolean">
+        select count(type_name)
+        from product_type
+        where type_name = #{typeName}
+          and type_id != #{typeId};
+    </select>
+
+
+    <!--插入一条数据-->
+    <insert id="insertData" parameterType="ProductType">
+        insert into product_type (type_id, type_name, type_describe, type_url_left, type_url_top)
+        values (#{typeId}, #{typeName}, #{typeDescribe}, #{typeUrlLeft}, #{typeUrlTop});
+    </insert>
+
+    <!--通过ID更新-->
+    <update id="updateById" parameterType="ProductType">
+        update product_type
+        <set>
+            <if test="typeName != null">
+                type_name = #{typeName},
+            </if>
+            <if test="typeDescribe != null">
+                type_describe = #{typeDescribe},
+            </if>
+            <if test="typeUrlLeft != null">
+                type_url_left = #{typeUrlLeft},
+            </if>
+            <if test="typeUrlTop != null">
+                type_url_top = #{typeUrlTop},
+            </if>
+        </set>
+        where type_id = #{typeId};
+    </update>
+
+    <!--通过ID删除-->
+    <delete id="deleteById" parameterType="Integer">
+        delete
+        from product_type
+        where type_id = #{typeId};
+    </delete>
+
+    <!--通过分类名删除-->
+    <delete id="deleteByName" parameterType="String">
+        delete
+        from product_type
+        where type_name = #{typeName};
+    </delete>
+</mapper>

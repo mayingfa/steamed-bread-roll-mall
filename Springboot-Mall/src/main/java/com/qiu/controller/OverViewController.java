@@ -52,7 +52,7 @@ public class OverViewController {
     @RequestMapping(value = "/view/order-chart-date")
     public CommonResult orderChartDate(String startTime, String endTime) {
         Map<String, Object> data = new HashMap<>(3);
-        List<Map<String, Object>> lineData = orderService.selectChartDATE(startTime, endTime);
+        List<Map<String, Object>> lineData = orderService.selectChartDate(startTime, endTime);
         List<Map<String, Object>> ringData = orderService.selectProductTypeChart(startTime, endTime);
         Map<String, Object> countData = orderService.selectCountAndAmount(startTime, endTime);
         if (!lineData.isEmpty()) {

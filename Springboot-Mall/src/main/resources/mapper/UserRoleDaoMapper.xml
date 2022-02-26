@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiu.dao.UserRoleDao">
+    <!--通过ID查询-->
+    <select id="selectByUserId" resultType="UserRole" parameterType="Integer">
+        select user_id, role_id
+        from user_role
+        where user_id = #{userId}
+    </select>
+
+    <!--通过用户id查询角色信息-->
+    <select id="selectRoleByUserId" resultType="Map" parameterType="Integer">
+        select user_id as userId, role.role_id as roleId, role_name as roleName, role_describe as roleDescribe
+        from user_role,
+             role
+        where role.role_id = user_role.role_id
+          and user_id = #{userId}
+    </select>
+
+    <!--查询所有-->
+    <select id="selectAll" resultType="UserRole">
+        select user_id, role_id
+        from user_role;
+    </select>
+
+    <!--判断角色是否存在-->
+    <select id="existsRole" resultType="Boolean" parameterType="Integer">
+        select count(role_id)
+        from user_role
+        where role_id = #{roleId};
+    </select>
+
+    <!--插入一条数据-->
+    <insert id="insertData" parameterType="UserRole">
+        insert into user_role
+        values (#{userId}, #{roleId});
+    </insert>
+
+    <!--通过ID删除-->
+    <delete id="deleteById" parameterType="Integer">
+        delete
+        from user_role
+        where user_id = #{userId};
+    </delete>
+</mapper>

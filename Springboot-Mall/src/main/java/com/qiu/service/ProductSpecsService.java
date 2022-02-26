@@ -5,27 +5,56 @@ import com.qiu.entity.ProductSpecs;
 import java.util.List;
 
 /**
- * @author Qiu
+ * @author Captain
  * @email qiudb.top@aliyun.com
  * @date 2020/11/17 19:11
- * @description 商品规格 service层
+ * @description 商品规格业务逻辑
  */
 public interface ProductSpecsService {
-    //查询所有
+    /**
+     * 查询所有商品规格
+     *
+     * @return 商品规格列表
+     */
     List<ProductSpecs> selectAll();
 
-    //根据商品id查询所有商品规格名称
+    /**
+     * 根据商品id查询所有商品规格名称
+     *
+     * @param productId 商品ID
+     * @return 商品规格名称列表
+     */
     List<String> selectAllByProId(Integer productId);
 
-    //插入一条数据
+    /**
+     * 新增商品规格
+     *
+     * @param productSpecs 商品规格
+     * @return 是否添加成功
+     */
     Boolean insertData(ProductSpecs productSpecs);
 
-    //通过ID更新
+    /**
+     * 更新商品规格
+     *
+     * @param productSpecs 商品规格
+     * @return 是否更新成功
+     */
     Boolean updateById(ProductSpecs productSpecs);
 
-    //通过ID删除
+    /**
+     * 删除商品规格
+     *
+     * @param productSpecs 商品规格
+     * @return 是否删除成功
+     */
     Boolean deleteById(ProductSpecs productSpecs);
 
-    //批量添加
+    /**
+     * 批量新增商品规格
+     *
+     * @param productSpecsList 商品规格列表
+     * @return 是否添加成功
+     */
     Boolean insertBatch(List<ProductSpecs> productSpecsList);
 }

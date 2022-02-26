@@ -22,7 +22,7 @@ public class WordFilter {
     private static final String WORDS = "WORDS";
     private static final String REPLACE_CHAR = "*";
     private static final int MIN_MATCHT_YPE = 1;
-    private static Map<String, Object> sensitiveWordMap;
+    private static HashMap<String, Object> sensitiveWordMap;
 
     /**
      * 敏感词汇过滤替换为*     *
@@ -45,7 +45,7 @@ public class WordFilter {
             return text;
         }
         // 屏蔽敏感词汇
-        return WordFilter.replaceSensitiveWord(words, text, WordFilter.MIN_MATCHT_YPE);
+        return WordFilter.replaceSensitiveWord(words, text);
     }
 
     /**
@@ -73,20 +73,18 @@ public class WordFilter {
     /**
      * 替换敏感字字符
      *
-     * @param data      敏感字集合
-     * @param txt       待检查文本
-     * @param matchType 匹配规则
+     * @param data 敏感字集合
+     * @param txt  待检查文本
      */
-    private static String replaceSensitiveWord(List<String> data, String txt, int matchType) {
+    private static String replaceSensitiveWord(List<String> data, String txt) {
         if (sensitiveWordMap == null) {
             addSensitiveWord(data);
         }
         String resultTxt = txt;
         //获取所有的敏感词
-        List<String> set = getSensitiveWord(txt, matchType);
-        Iterator<String> iterator = set.iterator();
-        while (iterator.hasNext()) {
-            resultTxt = resultTxt.replaceAll(iterator.next(), REPLACE_CHAR);
+        List<String> set = getSensitiveWord(txt);
+        for (String s : set) {
+            resultTxt = resultTxt.replaceAll(s, REPLACE_CHAR);
         }
         return resultTxt;
     }
@@ -99,20 +97,20 @@ public class WordFilter {
     private static void addSensitiveWord(List<String> datas) {
         sensitiveWordMap = new HashMap(datas.size());
         Iterator<String> iterator = datas.iterator();
-        Map<String, Object> now = null;
-        Map now2 = null;
+        Map<String, Object> now;
+        Map now2;
         while (iterator.hasNext()) {
             now2 = sensitiveWordMap;
             String word = iterator.next().trim(); //敏感词
             for (int i = 0; i < word.length(); i++) {
-                char key_word = word.charAt(i);
-                Object obj = now2.get(key_word);
+                char keyWord = word.charAt(i);
+                Object obj = now2.get(keyWord);
                 if (obj != null) { //存在
                     now2 = (Map) obj;
                 } else { //不存在
-                    now = new HashMap<>();
+                    now = new HashMap<>(5);
                     now.put("isEnd", "0");
-                    now2.put(key_word, now);
+                    now2.put(keyWord, now);
                     now2 = now;
                 }
                 if (i == word.length() - 1) {
@@ -126,12 +124,10 @@ public class WordFilter {
      * 获取内容中的敏感词
      * 说明：该方法来源于互联网
      *
-     * @param text      内容
-     * @param matchType 匹配规则 1=不最佳匹配，2=最佳匹配
-     * @return
+     * @param text 内容
      */
-    private static List<String> getSensitiveWord(String text, int matchType) {
-        List<String> words = new ArrayList<String>();
+    private static List<String> getSensitiveWord(String text) {
+        List<String> words = new ArrayList<>();
         Map now = sensitiveWordMap;
         int count = 0; //初始化敏感词长度
         int start = 0; //标志敏感词开始的下标
@@ -150,9 +146,9 @@ public class WordFilter {
                 }
             } else { //不存在
                 now = sensitiveWordMap;//重新获取敏感词库
-                if (count == 1 && matchType == 1) { //不最佳匹配
+                if (count == 1 && WordFilter.MIN_MATCHT_YPE == 1) { //不最佳匹配
                     count = 0;
-                } else if (count == 1 && matchType == 2) { //最佳匹配
+                } else if (count == 1 && WordFilter.MIN_MATCHT_YPE == 2) { //最佳匹配
                     words.add(text.substring(start, start + count));
                     count = 0;
                 }

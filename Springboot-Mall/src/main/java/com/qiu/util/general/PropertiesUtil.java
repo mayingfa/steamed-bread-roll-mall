@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * @author Qiu
+ * @author Captain
  * @email qiudb.top@aliyun.com
  * @date 2021/1/1 10:01
  * @description 读取配置文件信息
@@ -23,8 +23,8 @@ public class PropertiesUtil {
     private static final String CALLBACK;
 
     static {
-        Properties properties=new Properties();
-        InputStream inputStream=PropertiesUtil.class.getClassLoader().getResourceAsStream("config" +
+        Properties properties = new Properties();
+        InputStream inputStream = PropertiesUtil.class.getClassLoader().getResourceAsStream("config" +
                 ".properties");
         try {
             properties.load(inputStream);
@@ -56,5 +56,8 @@ public class PropertiesUtil {
 
     public static String getCallback() {
         return CALLBACK;
+    }
+
+    private PropertiesUtil() {
     }
 }

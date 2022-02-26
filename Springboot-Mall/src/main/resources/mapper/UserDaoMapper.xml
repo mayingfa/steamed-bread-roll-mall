@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiu.dao.UserDao">
+    <!--通过ID查询-->
+    <select id="selectById" resultType="User" parameterType="int">
+        select user_id,
+               account_number,
+               user_name,
+               password,
+               user_sex,
+               telephone,
+               creat_time,
+               login_time,
+               user_state,
+               summary,
+               user_address,
+               avatar_url,
+               background_url
+        from user
+        where user_id = #{userId}
+    </select>
+
+    <!--通过Key查询-->
+    <select id="selectByKey" resultType="User" parameterType="String">
+        select user_id,
+               account_number,
+               user_name,
+               password,
+               user_sex,
+               telephone,
+               creat_time,
+               login_time,
+               user_state,
+               summary,
+               user_address,
+               avatar_url,
+               background_url
+        from user
+        where account_number = #{accountNumber}
+    </select>
+
+    <!--通过手机phone查询-->
+    <select id="selectByPhone" resultType="User" parameterType="String">
+        select user_id,
+               account_number,
+               user_name,
+               password,
+               user_sex,
+               telephone,
+               creat_time,
+               login_time,
+               user_state,
+               summary,
+               user_address,
+               avatar_url,
+               background_url
+        from user
+        where telephone = #{telephone}
+    </select>
+
+    <!--通过Key查Id-->
+    <select id="selectIdByKey" resultType="java.lang.Integer" parameterType="String">
+        select user_id
+        from user
+        where account_number = #{accountNumber}
+    </select>
+
+    <!--查询记录个数-->
+    <select id="selectCount" resultType="java.lang.Integer">
+        select count(*)
+        from user
+    </select>
+
+    <!--判断主键key是否存在-->
+    <select id="existsWithPrimaryKey" resultType="Boolean" parameterType="String">
+        select count(account_number)
+        from user
+        where account_number = #{key};
+    </select>
+
+    <!--查询用户状态-->
+    <select id="selectUserState" resultType="Boolean" parameterType="String">
+        select user_state
+        from user
+        where account_number = #{accountNumber};
+    </select>
+
+    <!--判断手机号telephone是否存在-->
+    <select id="existsWithPrimaryPhone" resultType="Boolean" parameterType="String">
+        select count(account_number)
+        from user
+        where telephone = #{telephone};
+    </select>
+
+    <!--查询所有-->
+    <select id="selectAll" resultType="User">
+        select user_id,
+               account_number,
+               user_name,
+               password,
+               user_sex,
+               telephone,
+               creat_time,
+               login_time,
+               user_state,
+               summary,
+               user_address,
+               avatar_url,
+               background_url
+        from user;
+    </select>
+
+    <!--插入一条数据-->
+    <insert id="insertData" parameterType="User" useGeneratedKeys="true" keyProperty="userId">
+        insert into user
+        values (#{userId}, #{accountNumber}, #{userName}, #{password}, #{userSex}, #{telephone}, #{creatTime},
+                #{loginTime}, #{userState}, #{summary}, #{userAddress}, #{avatarUrl}, #{backgroundUrl});
+    </insert>
+
+    <!--通过ID更新-->
+    <update id="updateById" parameterType="User">
+        update user
+        <set>
+            <if test="accountNumber != null">
+                account_number = #{accountNumber},
+            </if>
+            <if test="userName != null">
+                user_name = #{userName},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="userSex != null">
+                user_sex = #{userSex},
+            </if>
+            <if test="telephone != null">
+                telephone = #{telephone},
+            </if>
+            <if test="creatTime != null">
+                creat_time = #{creatTime},
+            </if>
+            <if test="loginTime != null">
+                login_time = #{loginTime},
+            </if>
+            <if test="userState != null">
+                user_state = #{userState},
+            </if>
+            <if test="summary != null">
+                summary = #{summary},
+            </if>
+            <if test="userAddress != null">
+                user_address = #{userAddress},
+            </if>
+            <if test="avatarUrl != null">
+                avatar_url = #{avatarUrl},
+            </if>
+            <if test="backgroundUrl != null">
+                background_url = #{backgroundUrl},
+            </if>
+        </set>
+        where user_id = #{userId};
+    </update>
+
+    <!--通过ID删除-->
+    <delete id="deleteById" parameterType="int">
+        delete
+        from user
+        where user_id = #{userId};
+    </delete>
+</mapper>

@@ -1,26 +1,61 @@
 package com.qiu.service;
 
 import com.qiu.entity.UserRole;
+
 import java.util.List;
 import java.util.Map;
 
 /**
- * @author Qiu
+ * @author Captain
  * @email qiudb.top@aliyun.com
  * @date 2020/10/31 15:40
- * @description service接口，用户的权限
+ * @description 用户角色业务逻辑
  */
 public interface UserRoleService {
-    //通过id查询
+    /**
+     * 查询用户角色
+     *
+     * @param userId 用户ID
+     * @return 用户角色信息
+     */
     List<UserRole> selectByUserId(Integer userId);
-    //查询所有
+
+    /**
+     * 查询所有用户角色
+     *
+     * @return 用户角色
+     */
     List<UserRole> selectAll();
-    //插入一条数据
+
+    /**
+     * 新增用户角色信息
+     *
+     * @param userRole 用户角色
+     * @return 是否新增成功
+     */
     Boolean insertData(UserRole userRole);
-    //通过ID删除
+
+    /**
+     * 删除用户角色信息
+     *
+     * @param userId 用户ID
+     * @return 是否删除成功
+     */
     Boolean deleteById(Integer userId);
-    //通过用户id查询角色信息
-    List<Map<String,Object>>selectRoleByUserId(Integer userId);
-    //判断角色是否存在
+
+    /**
+     * 通过用户ID查询角色信息
+     *
+     * @param userId 用户ID
+     * @return 角色信息
+     */
+    List<Map<String, Object>> selectRoleByUserId(Integer userId);
+
+    /**
+     * 查询角色是否存在
+     *
+     * @param roleId 角色ID
+     * @return 是否存在
+     */
     Boolean existsRole(Integer roleId);
 }

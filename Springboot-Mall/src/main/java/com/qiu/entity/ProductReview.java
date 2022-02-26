@@ -10,16 +10,16 @@ import javax.persistence.Table;
 import java.util.Date;
 
 /**
- * @author Qiu
+ * @author Captain
  * @email qiudb.top@aliyun.com
  * @date 2021/1/4 10:49
  * @description 商品评价表
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "product_review")
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductReview {
     @Id
     private Integer reviewId;
@@ -30,5 +30,4 @@ public class ProductReview {
     private Date reviewTime;
     private Double starLevel;
     private String productReview;
-
 }

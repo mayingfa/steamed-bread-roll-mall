@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qiu.dao.RoleDao">
+    <!--通过ID查询-->
+    <select id="selectById" resultType="Role" parameterType="int">
+        select role_id, role_name, role_describe, role_state
+        from role
+        where role_id = #{roleId}
+    </select>
+
+    <!--通过Key查询-->
+    <select id="selectByKey" resultType="Role" parameterType="String">
+        select role_id, role_name, role_describe, role_state
+        from role
+        where role_name = #{roleName}
+    </select>
+
+    <!--通过Key查Id-->
+    <select id="selectIdByKey" resultType="java.lang.Integer" parameterType="String">
+        select role_id
+        from role
+        where role_name = #{roleName}
+    </select>
+
+    <!--查询记录个数-->
+    <select id="selectCount" resultType="java.lang.Integer">
+        select count(*)
+        from role
+    </select>
+
+    <!--查询所有-->
+    <select id="selectAll" resultType="Role">
+        select role_id, role_name, role_describe, role_state as roleState
+        from role;
+    </select>
+
+    <!--查询所有启用的-->
+    <select id="selectAllUsable" resultType="Role">
+        select role_id, role_name, role_describe, role_state
+        from role
+        where role_state;
+    </select>
+
+    <!--判断角色名称是否存在-->
+    <select id="existsRoleName" resultType="Boolean">
+        select count(role_name)
+        from role
+        where role_id != #{roleId}
+          and role_name = #{roleName};
+    </select>
+
+    <!--插入一条数据-->
+    <insert id="insertData" parameterType="Role">
+        insert into role
+        values (#{roleId}, #{roleName}, #{roleDescribe}, #{roleState});
+    </insert>
+
+    <!--通过ID更新-->
+    <update id="updateById" parameterType="Role">
+        update role
+        <set>
+            <if test="roleName != null">
+                role_name = #{roleName},
+            </if>
+            <if test="roleDescribe != null">
+                role_describe = #{roleDescribe},
+            </if>
+            <if test="roleState != null">
+                role_state = #{roleState},
+            </if>
+        </set>
+        where role_id = #{roleId};
+    </update>
+
+    <!--通过ID删除-->
+    <delete id="deleteById" parameterType="int">
+        delete
+        from role
+        where role_id = #{roleId};
+    </delete>
+</mapper>

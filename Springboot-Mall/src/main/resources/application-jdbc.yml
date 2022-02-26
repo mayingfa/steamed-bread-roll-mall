@@ -7,7 +7,7 @@ spring:
     password: 123456
 
 mybatis:
-  mapper-locations: classpath:com/qiu/mapper/*.xml
+  mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.qiu.entity
   configuration:
     mapUnderscoreToCamelCase: true

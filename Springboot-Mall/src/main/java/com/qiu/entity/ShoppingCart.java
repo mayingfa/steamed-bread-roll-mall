@@ -9,17 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * @author Qiu
+ * @author Captain
  * @email qiudb.top@aliyun.com
  * @date 2021/1/2 9:14
  * @description 购物车实体类
  */
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "shopping_cart")
+@NoArgsConstructor
+@AllArgsConstructor
 public class ShoppingCart {
     @Id
     private Integer cartId;

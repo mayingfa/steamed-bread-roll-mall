@@ -1,17 +1,30 @@
 package com.qiu.dao;
+
 import com.qiu.entity.Role;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+
 /**
- * @author Qiu
+ * @author Captain
  * @email qiudb.top@aliyun.com
  * @date 2020/10/31 13:31
- * @description role 的 dao层接口
+ * @description role表
  */
 public interface RoleDao extends BaseDao<Role> {
-    //查询所有可用的
+    /**
+     * 查询所有可用的角色
+     *
+     * @return 角色信息
+     */
     List<Role> selectAllUsable();
-    //判断角色名称是否存在
-    Boolean existsRoleName(@Param("roleId") Integer roleId,@Param("roleName") String roleName);
+
+    /**
+     * 查询角色名称是否存在
+     *
+     * @param roleId   角色编号
+     * @param roleName 角色名称
+     * @return 是否存在
+     */
+    Boolean existsRoleName(@Param("roleId") Integer roleId, @Param("roleName") String roleName);
 }
