@@ -1,271 +1,208 @@
 <template>
-  <div class="register">
-<!--    <span>注&ensp;&ensp;册</span>-->
-    <el-form class="demo-registerForm" :model="loadForm" :rules="rules" ref="loadForm">
-      <el-form-item prop="username">
-        <el-input class="el-input" v-model="loadForm.username" @keyup.enter.native="submitForm('loadForm')" autocomplete="on" placeholder="请输入昵称">
-          <i slot="prefix" class="el-input__icon el-icon-user"></i>
-        </el-input>
-      </el-form-item>
-
-      <el-form-item prop="mailbox">
-        <el-input class="el-input" v-model="loadForm.mailbox" @keyup.enter.native="submitForm('loadForm')" autocomplete="on" placeholder="请输入邮箱">
-          <i slot="prefix" class="el-input__icon el-icon-message"></i>
-        </el-input>
-      </el-form-item>
-
-      <el-form-item prop="authcode" style="text-align: left;">
-        <el-input class="el-input" v-model="loadForm.authcode" @keyup.enter.native="submitForm('loadForm')" auto-complete=“new-accounts” style="width: 66%;"  maxlength="6" autocomplete="off" placeholder="请输入邮箱验证码">
-          <i slot="prefix" class="el-input__icon el-icon-connection"></i>
-        </el-input>
-        <el-button type="success" plain size="small" style="position: absolute;margin: 4px 6px;width: 88px;" :disabled="!sendCodeIsUsed" @click="openAuthCode">
-          <span v-show="show">获取验证码</span>
-          <span v-show="!show" class="count">{{count}} 秒后重发</span>
-        </el-button>
-      </el-form-item>
-      <el-dialog
-        title="请输入验证码"
-        :visible.sync="dialogVisible"
-        width="90%"
-        top="0"
-        :modal="false"
-        >
-        <span>
-          <AuthCode ref="child"></AuthCode>
-        </span>
-        <span slot="footer" class="dialog-footer">
-          <el-button @click="cancelCode">取 消</el-button>
-          <el-button type="primary" @click="submitCode">确 定</el-button>
-        </span>
-      </el-dialog>
-      <el-form-item prop="password" style="margin-bottom: 24px;">
-        <el-input class="el-input"  v-model="loadForm.password" @keyup.enter.native="submitForm('loadForm')" autocomplete="off" type="password" placeholder="请输入密码（字母开头，6~20位字符）">
-          <i slot="prefix" class="el-input__icon el-icon-lock"></i>
-        </el-input>
-      </el-form-item>
-      <router-link to="/loginForm"><a class="register-a">已有账户</a></router-link>
-      <el-form-item>
-        <el-button class="el-form-button" type="primary" plain @click="submitForm('loadForm')">注册</el-button>
-      </el-form-item>
-    </el-form>
+  <div class="register-form">
+    <el-header class="header" height="45px">
+      <h2 class="title">注册</h2>
+      <span class="pull-right">
+      已有账号？
+      <router-link class="link" to="/loginForm">点此登录</router-link>
+    </span>
+    </el-header>
+    <div class="form">
+      <el-form :model="registerForm" status-icon :rules="rules" ref="registerForm">
+        <el-form-item prop="userName">
+          <el-input v-model="registerForm.userName" autocomplete="on" placeholder="请输入昵称"
+                    prefix-icon="el-icon-user"></el-input>
+        </el-form-item>
+        <el-form-item prop="userAccount">
+          <el-input v-model="registerForm.userAccount" autocomplete="off" placeholder="请输入邮箱"
+                    prefix-icon="el-icon-message"></el-input>
+        </el-form-item>
+        <el-form-item prop="checkCode">
+          <el-input v-model="registerForm.checkCode" :disabled="codeRight" autocomplete="off" placeholder="邮箱验证码"
+                    prefix-icon="el-icon-link"></el-input>
+          <el-button plain style="position: absolute;right: 0; width: 40%;top: 0;" v-preventReClick
+                     @click="sendEmailCode('registerForm',$event)">发送验证码
+          </el-button>
+        </el-form-item>
+        <el-form-item prop="passWord">
+          <el-input type="password" auto-complete="new-password" show-password v-model="registerForm.passWord"
+                    autocomplete="off" placeholder="请输入密码" prefix-icon="el-icon-lock"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" class="submit" v-preventReClick @click="submitForm('registerForm')">注册</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
   </div>
 </template>
 
 <script>
-import AuthCode from "../util/AuthCode";
-const TIME_COUNT = 60; //更改倒计时时间
 export default {
   name: "Register_Form",
-  components: {AuthCode},
-  data(){
-    let checkNumber = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error('请输入昵称！'));
-      } else {
-        if(value.length>20){
-          return callback(new Error('昵称最长为20位！'));
-        }else{
-          callback();
-        }
-      }
-    };
-    let checkMail = (rule, value, callback) => {
-      if (value.length===0) {
-        this.sendCodeIsUsed=false;
+  data() {
+    let CheckEmail = (rule, value, callback) => {
+      if (value === '') {
         callback(new Error('请输入邮箱'));
       } else {
-        let reg = new RegExp("^[A-Za-z0-9.\u4e00-\u9fa5_]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$");
-        if (!reg.test(value)) {
-          this.sendCodeIsUsed=false;
-          return callback(new Error("邮箱格式错误"));
-        } else {
-          this.$http.post("/allow/existUser?accountNumber="+value).then((res)=>{
-            if(res.data.code===200){
-              if(res.data.data){
-                this.sendCodeIsUsed=false;
-                callback(new Error('邮箱已被注册'));
-              }else{
-                if(this.show){
-                  this.sendCodeIsUsed=true;
-                }
-                callback();
-              }
-            }
-          }).catch((err)=>{console.log(err)})
-        }
-      }
-    };
-    let checkCode = (rule, value, callback) => {
-      if (value.length===0) {
-        callback(new Error('请输入验证码'));
-      } else {
-        callback();
-      }
-    };
-    let checkPass = (rule, value, callback) => {
-      if (value.length===0) {
-        callback(new Error('请输入密码'));
-      } else {
-        let reg = new RegExp("^[a-zA-Z][a-zA-Z0-9_-]{5,18}$");
-        if (!reg.test(value)) {
-          return callback(new Error("密码必须由数字和字母组合成,长度为6-18"));
-        } else {
+        if (this.$tools.checkEmail(value)) {
           callback();
         }
-        callback();
+        return callback(new Error("请输入正确的邮箱"));
+      }
+    };
+    let CheckPass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入密码'));
+      } else {
+        if (this.$tools.checkPass(value)) {
+          callback();
+        }
+        return callback(new Error("以字母开头，长度在6~18之间，只能包含字母、数字和下划线"));
       }
     };
     return {
-      dialogVisible: false, //验证码框
-      sendCodeIsUsed:false, // 是否禁用发送验证码按钮
-      show: true,  // 初始启用按钮
-      count: '',   // 初始化次数
-      timer: null,
-      loadForm: {
-        username: '',
-        mailbox:'',
-        authcode:'',
-        password: ''
+      // 验证码错误信息
+      checkCodeErrorMessage: null,
+      //临时存放发送验证码按钮，方便后面清除按钮上倒计时的定时器
+      codeButtonTemp: null,
+      //记住我
+      rememberMe: false,
+      //验证码是否正确
+      codeRight: true,
+      //登录表单
+      registerForm: {
+        userAccount: '',
+        userName: '',
+        passWord: '',
+        checkCode: '',
       },
-
+      //表单的验证规则
       rules: {
-        username: [
-          {validator: checkNumber, trigger: 'blur'}
+        userAccount: [
+          {validator: CheckEmail, trigger: 'blur'}
         ],
-        mailbox:[
-          {validator: checkMail, trigger: 'blur'}
+        userName: [
+          {required: true, message: '请输入姓名', trigger: 'blur'}
         ],
-        authcode:[
-          {validator: checkCode, trigger: 'blur'}
+        checkCode: [
+          {required: true, message: '请输入邮箱验证码', trigger: 'blur'}
         ],
-        password: [
-          {validator: checkPass, trigger: 'blur'}
-        ]
+        passWord: [
+          {validator: CheckPass, trigger: 'blur'}
+        ],
       }
-    };
+    }
   },
   methods: {
-    send(){
-      if (!this.timer) {
-        this.count = TIME_COUNT;
-        this.show = false;
-        this.timer = setInterval(() => {
-          if (this.count > 0 && this.count <= TIME_COUNT) {
-            this.count--;
-          } else {
-            this.show = true;
-            clearInterval(this.timer);  // 清除定时器
-            this.timer = null;
-          }
-        }, 1000)
-      }
-    },
-    openAuthCode(){
-      this.dialogVisible = true;
-      if(this.$refs.child){
-        this.$refs.child.refreshCode();
-      }
-    },
-    submitCode(){
-      if(this.$refs.child.submitForm("codeForm")){
-        this.dialogVisible = false
-        this.$refs.child.resetForm("codeForm")
-        this.$http.post("/allow/sendHtmlCode?email="+this.loadForm.mailbox).then((res)=>{
-          if(res.data.code===200){
-            this.send();
-            this.sendCodeIsUsed=false;
-            this.$msg.success(res.data.message)
-          }else if(res.data.code===500){
-            this.$msg.warning(res.data.message)
-          }
-        }).catch((err)=>{
-          console.log(err);
-          this.$msg.error("验证码发送失败，请稍后重试！")
-        })
-      }
-    },
-    cancelCode(){
-      this.$refs.child.resetForm("codeForm")
-      this.dialogVisible = false
-    },
+    //提交注册信息
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$http.post("/allow/checkCode?key="+this.loadForm.mailbox+"&code="+this.loadForm.authcode).then((res)=>{
-            if(res.data.code===200){//验证码存在，返回code 200
-              if(res.data.data){    //邮箱验证码验证成功
-                let loading = this.$loading({lock: true, text: "数据提交中",background:"rgba(255,255,255,0.1)"});
-                this.$http.post("/allow/add?accountNumber="+this.loadForm.mailbox+"&password="+this.loadForm.password+"&userName="+this.loadForm.username).then((res)=>{
+          this.$http.post("/allow/checkCode?key=" + this.registerForm.userAccount + "&code=" + this.registerForm.checkCode).then((res) => {
+            if (res.data.code === 200) {//验证码存在，返回code 200
+              if (res.data.data) {    //邮箱验证码验证成功
+                let loading = this.$loading({lock: true, text: "数据提交中", background: "rgba(255,255,255,0.1)"});
+                this.$http.post("/allow/add?accountNumber=" + this.registerForm.userAccount + "&password=" + this.registerForm.passWord + "&userName=" + this.registerForm.userName).then((res) => {
                   loading.close();
-                  if(res.data.code===200){  //注册成功
-                    this.$msg.success({message:res.data.message, duration:1500});
-                    this.$http.post("/allow/sendHtmlRegister?email="+this.loadForm.mailbox+"&name="+this.loadForm.username+"&password="+this.loadForm.password);
+                  if (res.data.code === 200) {  //注册成功
+                    this.$msg.success({message: res.data.message, duration: 1500});
+                    this.$http.post("/allow/sendHtmlRegister?email=" + this.registerForm.userAccount + "&name=" + this.registerForm.userName + "&password=" + this.registerForm.passWord);
                     this.$router.push('/loginForm')
-                  }else{  //注册失败
-                    this.$msg.error({message:res.data.message, showClose: true, duration:1500});
+                  } else {  //注册失败
+                    this.$msg.error({message: res.data.message, showClose: true, duration: 1500});
                   }
-                }).catch(()=>{
+                }).catch(() => {
                   loading.close();
-                  this.$msg.error({message:'注册失败，请稍后再试~', showClose: true, duration:1500});
+                  this.$msg.error({message: '注册失败，请稍后再试~', showClose: true, duration: 1500});
                 })
-              }else{    //邮箱验证码输入错误
-                this.$msg.warning({message:res.data.message, duration:1500});
+              } else {    //邮箱验证码输入错误
+                this.$msg.warning({message: res.data.message, duration: 1500});
               }
-            }else{  //验证码已过期，返回code 500
-              this.$msg.error({message:res.data.message, showClose: true, duration:1500});
+            } else {  //验证码已过期，返回code 500
+              this.$msg.error({message: res.data.message, showClose: true, duration: 1500});
             }
-          }).catch(()=>{  //网络等原因，导致发送失败
-            this.$msg.error({message:'注册失败，请稍后再试~', showClose: true, duration:1500});
+          }).catch(() => {  //网络等原因，导致发送失败
+            this.$msg.error({message: '注册失败，请稍后再试~', showClose: true, duration: 1500});
           })
         } else {
           return false;
         }
       });
+    },
+    //发送邮箱验证码
+    sendEmailCode(formName, event) {
+      this.codeButtonTemp = event.currentTarget;
+      let va = true;
+      this.$refs[formName].validateField('userAccount', (valid) => {
+        va = valid === "";
+      })
+      this.$refs[formName].validateField('userName', (valid) => {
+        va = va && valid === "";
+      })
+      if (va) {
+        this.$http.post("/allow/sendHtmlCode?email=" + this.registerForm.userAccount).then((res) => {
+          if (res.data.code === 200) {
+            this.codeRight = false;
+            this.$countDown.setItem(this.codeButtonTemp);
+            this.$message.success("验证码发送成功");
+          } else if (res.data.code === 500) {
+            this.$msg.warning(res.data.message)
+          }
+        }).catch((err) => {
+          this.checkCodeErrorMessage = err.message;
+          this.$msg.error("验证码发送失败，请稍后重试！")
+          this.checkCodeErrorMessage = null;
+        })
+      }
     }
+  },
+  created() {
   }
 }
 </script>
 
+
 <style>
-  .register{
-    width: 80%;
-    margin: auto;
-    height: 100%
-  }
+.register-form .header {
+  position: relative;
+  text-align: left;
+  border: none;
+  padding: 0;
+}
 
-  .register .demo-registerForm{
-    height: 50%;
-    padding-top: 2%;
-  }
-  .register .el-form-button{
-    display: block;
-    margin: auto;
-    width: 60%;
-  }
-  .register .el-form-item{
-    margin-bottom: 20px;
-  }
+.register-form .header .title {
+  margin: 0;
+}
 
-  .register .register-a{
-    cursor: pointer;
-    position: absolute;
-    right: 35px;
-    top: 72%;
-    font-size: 13px;
-    color: rgb(147, 165, 255);
-  }
-  .register .el-dialog{
-    position: absolute;
-    top: 31%;
-    left: 5%;
-    height: 40%;
-    border-radius: 25px;
-    margin: 0 auto;
-  }
-  .register .el-dialog__body{
-    padding: 10px 20px 0;
-  }
-  .register .el-dialog__footer{
-    padding: 0 20px 20px;
-  }
+.register-form .header .pull-right {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 14px;
+}
+
+.register-form .header .pull-right .link {
+  text-decoration: none;
+  cursor: pointer;
+  color: #005980;
+}
+
+.register-form .form {
+  text-align: left;
+}
+
+.register-form .form .check-code {
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+}
+
+
+.register-form .form .submit {
+  width: 100%;
+}
+
+.register-form .el-form-item {
+  margin-bottom: 19px;
+}
 </style>

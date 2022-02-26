@@ -1,177 +1,194 @@
-<!--登录页面组件-->
 <template>
-  <div style="perspective: 1000px;">
-    <div class="login-wrap">
-      <div id="login-vessel" parallaxstrength="4">
-        <div class="login-box">
-          <el-image src="https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/logo.png" class="nice-logo" alt="logo"></el-image>
-          <router-view></router-view>
+  <div class="login-page">
+    <div class="login-header">
+      <i class="el-icon-phone-outline"/>
+      <span>客户服务热线: 400 065 5799</span>
+    </div>
+    <div class="login-box">
+      <div class="left-half">
+        <div class="logo">
+          <el-image style="width: 300px; height: 70px"
+                    src="https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/logo.png" fit="fill"></el-image>
+        </div>
+        <ul class="geek-slide">
+          <li>
+            <i class="iconfont iconzuhejiekou"></i>
+            <span class="title">自由</span>
+            <span class="description">想买就买，多种商品任你选择</span>
+          </li>
+          <li>
+            <i class="iconfont iconyiduiyigoutong"></i>
+            <span class="title">方便</span>
+            <span class="description">足不出户，送货上门</span>
+          </li>
+          <li>
+            <i class="iconfont icongaoxiao"></i>
+            <span class="title">高效</span>
+            <span class="description">24小时客服在线，为您提供最优质服务</span>
+          </li>
+        </ul>
+      </div>
+      <div class="right-half">
+        <div class="form-box">
+          <router-view/>
+        </div>
+        <div style="width: 90%;margin: 0 auto;text-align: center">
+          <el-divider>其他方式登录</el-divider>
+          <div class="my-icon">
+            <i class="iconfont iconqq qq"></i>
+            <i class="iconfont iconweixin weixin"></i>
+            <i class="iconfont icondingding01 dingding"></i>
+          </div>
         </div>
       </div>
     </div>
-    <div class="fly bg-fly-circle1"></div>
-    <div class="fly bg-fly-circle2"></div>
-    <div class="fly bg-fly-circle3"></div>
-    <div class="fly bg-fly-circle4"></div>
   </div>
 </template>
 
 <script>
 export default {
-    name: "Login",
-    data:function(){
-      return{
-        msg:"123",
-        ele: undefined,
-      }
-    },
-    methods:{
-      beforeCreate () {
-        document.querySelector('body').setAttribute('style', 'overflow:hidden;');
-      },
-      //销毁前清除
-      beforeDestroy () {
-        document.querySelector('body').removeAttribute('style')
-      },
-      mouseEffect(){
-        let that = this;
-        let i = 0;
-        document.onmousemove = mouseMove;
+  name: "Login",
+  data() {
+    return {}
+  },
+  methods: {},
+  created() {
 
-        function mousePosition(ev){
-          if(ev.pageX || ev.pageY){
-            return {x:(ev.pageX-document.body.clientWidth/2), y:(ev.pageY-document.body.clientHeight/2)};
-          }
-          return {
-            x:ev.clientX + document.body.scrollLeft - document.body.clientLeft,
-            y:ev.clientY + document.body.scrollTop - document.body.clientTop
-          };
-        }
-
-        function mouseMove(ev){
-          if(i++ > 6){
-            i=0;
-            ev = ev || window.event;
-            let mousePos = mousePosition(ev);
-            let x = (mousePos.y/50).toFixed(2)*-1;
-            let y = (mousePos.x/80).toFixed(2);
-            that.ele.style.transform = "rotateX(" + x + "deg) rotateY(" + y + "deg)";
-          }
-        }
-      }
-    },
-    mounted() {
-      this.beforeCreate();
-      this.ele=document.getElementById("login-vessel");
-      this.mouseEffect();
-    },
-    destroyed:function(){
-      this.beforeDestroy();
-    }
   }
+}
 </script>
 
-<style>
-  .login-wrap{
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    background: #5dd5c8 url(https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/bgimg.png) bottom no-repeat;
-  }
-  #login-vessel{
-    transition-property: transform;
-    transition-duration: 500ms;
-    transform-origin: center center;
-    transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
-    transform: rotateX(0deg) rotateY(0deg) translate3d(0px, 0px, 20px);
-    user-select:none;
-  }
+<style scoped>
+.login-page {
+  width: 100%;
+  height: 100vh;
+  background: #5dd5c8 url(https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/bgimg.png) center bottom no-repeat;
+}
 
-  .login-wrap .login-box {
-    overflow: hidden;
-    height: 486px;
-    position: relative;
-    width: 350px;
-    max-width: 350px;
-    margin: 4em auto;
-    border-radius: 8px;
-    box-shadow: 1px 2px 15px rgba(0,0,0,.3);
-    background: #fff url(https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/logbg.jpg) no-repeat bottom;
-    text-align: center;
-    -webkit-backface-visibility: hidden;
-    transition-property: transform;
-    transition-duration: .3s;
-    z-index: 80;
-  }
+.login-page .login-header {
+  margin: 0;
+  position: absolute;
+  top: 50px;
+  right: 75px;
+  width: 250px;
+  color: #FFFFFF;
+  opacity: .8;
+}
 
-  .nice-logo{
-    width: 200px;
-    margin: 62px 0 0;
-  }
+.login-page .login-header span {
+  font-size: 16px;
+}
 
-  .fly {
-    pointer-events: none;
-    position: fixed;
-    z-index: 100;
-  }
+.login-page .login-box {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  position: absolute;
+  width: 800px;
+  height: 524px;
+  padding: 0;
+  background: #fff;
+  box-shadow: 0 6px 13px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
-  .bg-fly-circle1 {
-    left: 40px;
-    top: 100px;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background: linear-gradient(90deg,rgba(100,84,239,.07) 0,rgba(48,33,236,.04));
-    -webkit-animation: move 2.5s linear infinite;
-    animation: move 2.5s linear infinite;
-  }
+.login-page .login-box .left-half {
+  height: 100%;
+}
 
-  .bg-fly-circle2 {
-    left: 3%;
-    top: 60%;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background: linear-gradient(90deg,rgba(100,84,239,.08) 0,rgba(48,33,236,.04));
-    -webkit-animation: move 3s linear infinite;
-    animation: move 3s linear infinite;
-  }
+.login-page .login-box .left-half .logo {
+  position: absolute;
+  top: 60px;
+  left: 40px;
+}
 
-  .bg-fly-circle3 {
-    right: 2%;
-    top: 140px;
-    width: 145px;
-    height: 145px;
-    border-radius: 50%;
-    background: linear-gradient(90deg,rgba(100,84,239,.1) 0,rgba(48,33,236,.04));
-    -webkit-animation: move 2.5s linear infinite;
-    animation: move 2.5s linear infinite;
-  }
+.login-page .left-half .logo p {
+  margin: 3px 0 0;
+  line-height: 20px;
+  font-size: 14px;
+  text-align: left;
+}
 
-  .bg-fly-circle4 {
-    right: 5%;
-    top: 60%;
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    background: linear-gradient(90deg,rgba(100,84,239,.02) 0,rgba(48,33,236,.04));
-    -webkit-animation: move 3.5s linear infinite;
-    animation: move 3.5s linear infinite;
-  }
+.login-page .left-half .geek-slide {
+  position: absolute;
+  top: 160px;
+  left: 60px;
+  list-style: none;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+}
 
-  @keyframes move {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(25px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
+.login-page .left-half .geek-slide li {
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.login-page .left-half .geek-slide li i {
+  position: absolute;
+  top: 16px;
+  font-size: 24px;
+  color: #8c8c8c;
+}
+
+.login-page .left-half .geek-slide .title {
+  display: block;
+  margin-left: 50px;
+  line-height: 22px;
+  color: #8d92a1;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.login-page .left-half .geek-slide .description {
+  display: block;
+  margin-left: 50px;
+  margin-top: 2px;
+  line-height: 18px;
+  color: #b0b4c1;
+  font-size: 13px;
+}
+
+.login-page .login-box .right-half {
+  padding: 60px 40px 0 110px;
+}
+
+/*右侧登录盒子*/
+.login-page .login-box .right-half .form-box {
+  width: 90%;
+  height: 310px;
+  margin: 0 auto;
+}
+
+/*第三方登录图标*/
+.login-page .my-icon {
+  user-select: none;
+}
+
+.login-page .my-icon i {
+  user-select: none;
+  cursor: pointer;
+  font-size: 32px;
+  margin-left: 48px;
+}
+
+.login-page .el-divider--horizontal {
+  margin: 40px 0 20px;
+}
+
+.login-page .qq {
+  color: #00b0fb;
+  margin-left: 0 !important;
+}
+
+.login-page .weixin {
+  color: #46d800;
+}
+
+.login-page .dingding {
+  color: #3795f9;
+}
 </style>

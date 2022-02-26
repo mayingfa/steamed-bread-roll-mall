@@ -34,9 +34,9 @@ export default new Router({
           component: () => import("../components/operate/Register_Form")
         },
         {
-          path:'/resetPwdForm',
+          path:'/forgotPassword',
           name:'找回密码',
-          component: () => import("../components/operate/ResetPwd_Form")
+          component: () => import("../components/operate/Forgot_Password")
         }
       ]
     },

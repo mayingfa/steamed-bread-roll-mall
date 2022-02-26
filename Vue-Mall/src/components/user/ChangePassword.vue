@@ -191,7 +191,7 @@ export default {
     },
     updatePwd(){
       let loading = this.$loading({lock: true, text: "数据提交中",background:"rgba(255,255,255,0.1)"});
-      this.$http.post("/allow/resetpwd?accountNumber="+this.form_0.account+"&password="+this.form_1.pass).then((res)=>{
+      this.$http.post("/allow/resetpwd?account="+this.form_0.account+"&password="+this.form_1.pass).then((res)=>{
         loading.close();
         if(res.data.code === 200){
           this.next()

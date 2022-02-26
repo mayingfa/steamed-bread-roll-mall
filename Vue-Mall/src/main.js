@@ -22,6 +22,17 @@ Vue.use(animated)
 require('es6-promise').polyfill()
 Es6Promise.polyfill()
 
+//使用预防按钮多次重复点击指令
+import preventReClick from './util/preventRepeatClick'
+Vue.use(preventReClick);
+
+//使用按钮60s倒计时
+import countDown from './util/countDown'
+Vue.prototype.$countDown = countDown;
+
+//引入自定义工具类
+import tools from "./util/tools";
+Vue.prototype.$tools = tools;
 
 Vue.prototype["$msg"] = DonMessage
 Vue.prototype["$axios"]=axios
