@@ -2,45 +2,45 @@ package com.qiu.controller;
 
 import com.qiu.util.general.CommonResult;
 import com.qiu.util.oss.AliyunOssUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+/**
+ * @author Captain
+ */
+@Slf4j
 @CrossOrigin
-@Controller
+@RestController
 public class OssController {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    private final AliyunOssUtil ossUtil;
-
-    public OssController(AliyunOssUtil ossUtil) {
-        this.ossUtil = ossUtil;
-    }
+    @Autowired
+    private AliyunOssUtil ossUtil;
 
     @RequestMapping("/uploadImage")
-    @ResponseBody
-    public CommonResult upload(@RequestParam("name") String folderName, @RequestParam("file") MultipartFile file) throws IOException {
+    public CommonResult upload(@RequestParam("name") String folderName,
+                               @RequestParam("file") MultipartFile file) throws IOException {
         if (file != null) {
             String fileName = file.getOriginalFilename();
             if (StringUtils.isNotBlank(fileName)) {
                 File newFile = new File(fileName);
                 try (FileOutputStream os = new FileOutputStream(newFile)) {
                     os.write(file.getBytes());
-                    // 把file里的内容复制到奥newFile中
                     file.transferTo(newFile);
-                    // 图片回显地址: http://yiyige.oss-cn-hangzhou.aliyuncs.com/images/a.jpg
                     String path = ossUtil.upload(folderName, newFile);
-                    logger.info("path:{}", path);
+                    log.info("文件上传成功，路径：{}", path);
                     return new CommonResult(200, "上传成功", path);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    log.error("文件上传失败", e);
                     return CommonResult.error("上传失败");
                 } finally {
                     if (newFile.exists()) {

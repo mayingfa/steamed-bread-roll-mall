@@ -19,7 +19,7 @@ bindToGlobal({
   orderRole:'订单管理员',
   userRole:'人事管理员',
   ordinaryRole:'顾客',
-  http:'http://mall.qiudb.top'
+  http:'http://127.0.0.1:9999'
 }, 'VAR');
 
 // 使用端口号：  9999 3306 3307 3308 6379 994

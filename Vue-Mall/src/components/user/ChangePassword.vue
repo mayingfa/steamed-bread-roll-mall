@@ -145,7 +145,7 @@ export default {
     },
     sendCode(){
       let loading = this.$loading({lock: true, text: "验证码发送中",background:"rgba(255,255,255,0.1)"});
-      this.$http.post("/allow/sendHtmlCode?sendTo="+this.form_0.account).then((res)=>{
+      this.$http.post("/allow/sendHtmlCode?email="+this.form_0.account).then((res)=>{
         loading.close()
         if(res.data.code===200){
           this.send();
@@ -195,7 +195,7 @@ export default {
         loading.close();
         if(res.data.code === 200){
           this.next()
-          this.$http.post("/allow/sendHtmlResetPwd?sendTo="+this.form_0.account+"&pwd="+this.form_1.pass);
+          this.$http.post("/allow/sendHtmlResetPwd?email="+this.form_0.account+"&password="+this.form_1.pass);
         }else{
           this.$msg.warning(res.data.message);
         }

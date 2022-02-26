@@ -259,7 +259,7 @@
       dealData(){
         let startTime = this.dateTime[0];
         let endTime = this.dateTime[1];
-        this.$http.post('/view/orderChartDATE?startTime='+startTime+'&endTime='+endTime).then((res)=>{
+        this.$http.post('/view/order-chart-date?startTime='+startTime+'&endTime='+endTime).then((res)=>{
           if(res.data.code===200){
             this.lineEmpty=false;
             this.ringEmpty=false;

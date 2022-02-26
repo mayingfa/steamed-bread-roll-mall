@@ -158,7 +158,7 @@ export default {
         this.dialogVisible = false
         this.$refs.child.resetForm("codeForm")
         let loading = this.$loading({lock: true, text: "验证码发送中",background:"rgba(255,255,255,0.1)"});
-        this.$http.post("/allow/sendHtmlCode?sendTo="+this.loadForm.mailbox).then((res)=>{
+        this.$http.post("/allow/sendHtmlCode?email="+this.loadForm.mailbox).then((res)=>{
           loading.close();
           if(res.data.code===200){
             this.send();
@@ -184,7 +184,7 @@ export default {
           this.$http.post("/allow/resetpwd?accountNumber="+this.loadForm.mailbox+"&password="+this.loadForm.password).then((res)=>{
             if(res.data.code===200){//验证码存在，返回code 200
               this.$msg.success({message:res.data.message, showClose: true, duration:1500});
-              this.$http.post("/allow/sendHtmlResetPwd?sendTo="+this.loadForm.mailbox+"&pwd="+this.loadForm.password);
+              this.$http.post("/allow/sendHtmlResetPwd?email="+this.loadForm.mailbox+"&password="+this.loadForm.password);
               this.$router.push('/loginForm');
             }else{  //验证码已过期，返回code 500
               this.$msg.warning({message:res.data.message, showClose: true, duration:1500});

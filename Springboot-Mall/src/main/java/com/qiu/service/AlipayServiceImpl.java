@@ -1,4 +1,5 @@
 package com.qiu.service;
+
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
@@ -19,11 +20,11 @@ public class AlipayServiceImpl implements AlipayService {
     //private static final String TRADE_SUCCESS = "TRADE_SUCCESS";
 
     @Override
-    public String create(String orderId,String orderName,String payPrice) {
-        AlipayClient client = new DefaultAlipayClient(AlipayConfig.URL, AlipayConfig.APPID, AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT, AlipayConfig.CHARSET, AlipayConfig.ALIPAY_PUBLIC_KEY,AlipayConfig.SIGNTYPE);
-        AlipayTradeWapPayRequest alipay_request=new AlipayTradeWapPayRequest();
+    public String create(String orderId, String orderName, String payPrice) {
+        AlipayClient client = new DefaultAlipayClient(AlipayConfig.URL, AlipayConfig.APPID, AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT, AlipayConfig.CHARSET, AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.SIGNTYPE);
+        AlipayTradeWapPayRequest alipay_request = new AlipayTradeWapPayRequest();
         // 封装请求支付信息
-        AlipayTradeWapPayModel model= new AlipayTradeWapPayModel();
+        AlipayTradeWapPayModel model = new AlipayTradeWapPayModel();
         //订单编号，不可重复
         model.setOutTradeNo(orderId);
         //订单名称
@@ -34,9 +35,9 @@ public class AlipayServiceImpl implements AlipayService {
         model.setProductCode(PRODUCTCODE);
         alipay_request.setBizModel(model);
         //支付成功后跳转的地址
-        alipay_request.setReturnUrl(AlipayConfig.return_url);
+        alipay_request.setReturnUrl(AlipayConfig.RETURN_URL);
         //异步通知地址
-        alipay_request.setNotifyUrl(AlipayConfig.notify_url);
+        alipay_request.setNotifyUrl(AlipayConfig.NOTIFY_URL);
         // form表单生产
         String result = "";
         try {
@@ -48,12 +49,14 @@ public class AlipayServiceImpl implements AlipayService {
         return result;
     }
 
- 
+
     @Override
     public void refund(String orderId, String payPrice) throws AlipayApiException {
-        AlipayClient client = new DefaultAlipayClient(AlipayConfig.URL, AlipayConfig.APPID, AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT, AlipayConfig.CHARSET, AlipayConfig.ZHIFUBAO_PUBLIC_KEY,AlipayConfig.SIGNTYPE);
+        AlipayClient client = new DefaultAlipayClient(AlipayConfig.URL, AlipayConfig.APPID,
+                AlipayConfig.RSA_PRIVATE_KEY, AlipayConfig.FORMAT, AlipayConfig.CHARSET,
+                AlipayConfig.ALIPAY_PUBLIC_KEY, AlipayConfig.SIGNTYPE);
         AlipayTradeRefundRequest alipay_request = new AlipayTradeRefundRequest();
-        AlipayTradeRefundModel model=new AlipayTradeRefundModel();
+        AlipayTradeRefundModel model = new AlipayTradeRefundModel();
         //退款的订单Id，也可以设置流水号
         model.setOutTradeNo(orderId);
         //退款金额

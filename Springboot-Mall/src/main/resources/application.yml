@@ -24,3 +24,7 @@ admin:
   email: 15233088662@163.com
   userName: 超级管理员
   password: 123456
+
+jasypt:
+  encryptor:
+    password: breadroll-mall

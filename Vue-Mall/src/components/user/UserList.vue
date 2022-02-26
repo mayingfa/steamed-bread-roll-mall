@@ -222,7 +222,7 @@
             this.$http.post('/user/author?userId='+this.userInfo[this.handleIndex].userId+'&roleId='+this.allotRoles).then((rep)=>{
               loading.close();
               if(rep.data.code===200){
-                this.$http.post('/allow/sendHtmlRole?sendTo='+this.userInfo[this.handleIndex].accountNumber+
+                this.$http.post('/allow/sendHtmlRole?email='+this.userInfo[this.handleIndex].accountNumber+
                   '&userName='+this.userInfo[this.handleIndex].userName+'&roleInfo='+roleInfo);
                 this.userDialogVisible = false;
                 this.$notify({title: '成功', message: '\t角色授权成功', type: 'success'});

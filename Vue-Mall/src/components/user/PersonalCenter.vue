@@ -521,7 +521,7 @@ export default {
     //向邮箱发送验证码，验证身份
     sendEmailCode(){
       this.getCode();
-      this.$http.post('/allow/sendHtmlCode?sendTo='+this.$store.state.user['accountNumber']).then((res)=> {
+      this.$http.post('/allow/sendHtmlCode?email='+this.$store.state.user['accountNumber']).then((res)=> {
         if (res.data.code === 200) {
           this.$msg.success({message:res.data.message, showClose: true, duration:1500});
           this.isEditPhone=false;

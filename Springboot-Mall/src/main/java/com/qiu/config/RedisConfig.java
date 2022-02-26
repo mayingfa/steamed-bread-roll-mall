@@ -1,9 +1,12 @@
 package com.qiu.config;
+
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
-
+/**
+ * @author Captain
+ */
 @Data
 @Configuration
 public class RedisConfig {

@@ -7,5 +7,13 @@
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://112.126.92.148:3306/qiu</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="localhost" uuid="06dd1aff-ad64-4569-bdd7-b2e338a57592">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/breadroll-mall?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

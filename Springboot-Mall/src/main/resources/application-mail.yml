@@ -4,7 +4,6 @@ spring:
     username: ENC(bDoly3etf13m443PORHr9Xs2rcfgmw6UlfU6Di9E810Uh8Tq8Vey5NROPTzkoF0OCcqkuilshPnZ8265CdKvqA==) # Email address for sending emails
     password: ENC(Aid4dayAgpvTHTlBJxTcyw7BKLKPR1vdMX/k4LNCkJ+e1Lu1tPQu2YTdYoBas5ePY9UeCnpeOjibEiOBGh46rQ==) # Client authorization code
     properties.mail.smtp.port: 994 # 465 or 994
-    from: ENC(x+UXlthoObfZ/bgjrlmu69iMCTjEcEQhtbiqZz68yX91y35POWPwhGO8G28oy7wdCJf8rOwXZ1qo5fjMZ+3q9Q==) # The address from which the email is sent
     nickname: 花卷买卖
     properties.mail.smtp.starttls.enable: true
     properties.mail.smtp.starttls.required: true

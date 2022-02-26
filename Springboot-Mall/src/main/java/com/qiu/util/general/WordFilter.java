@@ -1,30 +1,32 @@
 package com.qiu.util.general;
+
 import com.qiu.entity.Cache;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+
 /**
+ * @author Captain
  * 敏感词汇过滤替换为*
- * @author Dt
  */
 @Slf4j
 public class WordFilter {
-    private final static String WORDS = "WORDS";
-    private final static String REPLACE_CHAR = "*";
-    private static HashMap sensitiveWordMap;
-    /**     * 最小匹配规则     */
-    private static int minMatchTYpe = 1;
-    /**     * 最大匹配规则     */
-    private static int maxMatchType = 2;
+    private static final String WORDS = "WORDS";
+    private static final String REPLACE_CHAR = "*";
+    private static final int MIN_MATCHT_YPE = 1;
+    private static Map<String, Object> sensitiveWordMap;
+
     /**
      * 敏感词汇过滤替换为*     *
+     *
      * @param text 待检测文字
      * @return 替换后文字
      */
@@ -32,7 +34,7 @@ public class WordFilter {
         if (StringUtils.isBlank(text)) {
             return text;
         }
-        //缓存获取敏感词汇原记录
+        // 缓存获取敏感词汇原记录
         List<String> words = Cache.get(WORDS);
         if (CollectionUtils.isEmpty(words)) {
             //读取敏感词汇文件，存入缓存
@@ -42,8 +44,8 @@ public class WordFilter {
         if (CollectionUtils.isEmpty(words)) {
             return text;
         }
-        //屏蔽敏感词汇
-        return WordFilter.replaceSensitiveWord(words, text, WordFilter.minMatchTYpe);
+        // 屏蔽敏感词汇
+        return WordFilter.replaceSensitiveWord(words, text, WordFilter.MIN_MATCHT_YPE);
     }
 
     /**
@@ -51,47 +53,23 @@ public class WordFilter {
      */
     private static List<String> readWordsFile() {
         List<String> list = new ArrayList<>();
-        InputStream inputStream = null;
-        InputStreamReader inputStreamReader = null;
-        BufferedReader bufferedReader = null;
-        try {
-            Resource resource = new DefaultResourceLoader().getResource("classpath:words.txt");
-            inputStream = resource.getInputStream();
-            inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
-            bufferedReader = new BufferedReader(inputStreamReader);
-            String txt = "";
+        Resource resource = new DefaultResourceLoader().getResource("classpath:words.txt");
+        try (
+                InputStream inputStream = resource.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader)
+        ) {
+            String txt;
             while (StringUtils.isNotBlank(txt = bufferedReader.readLine())) {
-                list.addAll(
-                        Arrays.asList(
-                                StringUtils.split(
-                                        StringUtils.deleteWhitespace(StringUtils.replace(txt, "，", ",")),
-                                        ","
-                                )
-                        )
-                );
+                String word = StringUtils.deleteWhitespace(StringUtils.replace(txt, "，", ","));
+                list.addAll(Arrays.asList(StringUtils.split(word, ",")));
             }
-            bufferedReader.close();
-            inputStreamReader.close();
-            inputStream.close();
         } catch (Exception e) {
             log.error("读取敏感词汇文件出错", e);
-        } finally {
-            try {
-                if (bufferedReader != null) {
-                    bufferedReader.close();
-                }
-                if (inputStreamReader != null) {
-                    inputStreamReader.close();
-                }
-                if (inputStream != null) {
-                    inputStream.close();
-                }
-            } catch (Exception e) {
-                log.error("读取敏感词汇文件出错", e);
-            }
         }
         return list;
     }
+
     /**
      * 替换敏感字字符
      *
@@ -132,7 +110,7 @@ public class WordFilter {
                 if (obj != null) { //存在
                     now2 = (Map) obj;
                 } else { //不存在
-                    now = new HashMap<String, Object>();
+                    now = new HashMap<>();
                     now.put("isEnd", "0");
                     now2.put(key_word, now);
                     now2 = now;
@@ -146,7 +124,8 @@ public class WordFilter {
 
     /**
      * 获取内容中的敏感词
-     *说明：该方法来源于互联网
+     * 说明：该方法来源于互联网
+     *
      * @param text      内容
      * @param matchType 匹配规则 1=不最佳匹配，2=最佳匹配
      * @return
@@ -181,7 +160,8 @@ public class WordFilter {
         }
         return words;
     }
-    public WordFilter() {
-        super();
+
+    private WordFilter() {
+
     }
 }

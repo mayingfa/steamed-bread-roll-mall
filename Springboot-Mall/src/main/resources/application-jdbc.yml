@@ -2,9 +2,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://172.17.0.3:3306/breadroll-mall?useSSL=false&useUnicode=true&characterEncoding=utf8
-    username: ENC(2r92PRMpIHrp1Q4tjagXyDEf3dfaTBddD4o4oSEu1VgkvbZPoYWj4k1X5dDTjhOM)
-    password: ENC(l/1wKUH90ZKHOQuRUlytP5E27yMWtOuzN07zLWQAIBJN0akhuQgnzE+JmL0rX57f)
+    url: jdbc:mysql://localhost:3306/breadroll-mall?useSSL=false&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: 123456
 
 mybatis:
   mapper-locations: classpath:com/qiu/mapper/*.xml

@@ -170,7 +170,7 @@ export default {
       if(this.$refs.child.submitForm("codeForm")){
         this.dialogVisible = false
         this.$refs.child.resetForm("codeForm")
-        this.$http.post("/allow/sendHtmlCode?sendTo="+this.loadForm.mailbox).then((res)=>{
+        this.$http.post("/allow/sendHtmlCode?email="+this.loadForm.mailbox).then((res)=>{
           if(res.data.code===200){
             this.send();
             this.sendCodeIsUsed=false;
@@ -199,7 +199,7 @@ export default {
                   loading.close();
                   if(res.data.code===200){  //注册成功
                     this.$msg.success({message:res.data.message, duration:1500});
-                    this.$http.post("/allow/sendHtmlRegister?sendTo="+this.loadForm.mailbox+"&pwd="+this.loadForm.password+"&name="+this.loadForm.username);
+                    this.$http.post("/allow/sendHtmlRegister?email="+this.loadForm.mailbox+"&name="+this.loadForm.username+"&password="+this.loadForm.password);
                     this.$router.push('/loginForm')
                   }else{  //注册失败
                     this.$msg.error({message:res.data.message, showClose: true, duration:1500});

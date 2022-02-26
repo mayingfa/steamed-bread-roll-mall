@@ -24,7 +24,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @author Qiu
+ * @author Captain
  * @email qiudb.top@aliyun.com
  * @date 2020/10/26 15:11
  * @description Shiro框架配置类
@@ -38,13 +38,10 @@ public class ShiroConfig {
         factoryBean.setSecurityManager(securityManager);
         factoryBean.setLoginUrl("/notLogin");
         factoryBean.setUnauthorizedUrl("/notRole");
-        // 存放自定义的filter
         Map<String, Filter> filtersMap = new LinkedHashMap<>();
-        // 配置自定义 or角色 认证
         filtersMap.put("roles", new RoleOrFilter());
         factoryBean.setFilters(filtersMap);
-
-        Map<String, String> filterChainMap  = new LinkedHashMap<>();
+        Map<String, String> filterChainMap = new LinkedHashMap<>();
         filterChainMap.put("/login", "anon");
         filterChainMap.put("/index", "anon");
         filterChainMap.put("/allow/**", "anon");
@@ -54,8 +51,8 @@ public class ShiroConfig {
         filterChainMap.put("/role/**", "anon");
         filterChainMap.put("/userRole/**", "anon");
         filterChainMap.put("/productType/**", "anon");
-        filterChainMap.put("/product/**","anon");
-        filterChainMap.put("/static/**","anon");
+        filterChainMap.put("/product/**", "anon");
+        filterChainMap.put("/static/**", "anon");
         factoryBean.setFilterChainDefinitionMap(filterChainMap);
         return factoryBean;
     }
@@ -69,11 +66,12 @@ public class ShiroConfig {
     }
 
     /**
-     *  身份认证realm; (这个需要自己写，账号密码校验；权限等)
+     * 身份认证realm; (这个需要自己写，账号密码校验；权限等)
+     *
      * @return 返回userRealm
      */
     @Bean
-    public UserRealm userRealm(){
+    public UserRealm userRealm() {
         UserRealm userRealm = new UserRealm();
         userRealm.setCachingEnabled(true);
         //启用身份验证缓存，即缓存AuthenticationInfo信息，默认false
@@ -112,11 +110,12 @@ public class ShiroConfig {
 
     /**
      * 配置核心安全事务管理器
+     *
      * @return securityManager
      */
-    @Bean(name="securityManager")
+    @Bean(name = "securityManager")
     public SecurityManager securityManager() {
-        DefaultWebSecurityManager securityManager =  new DefaultWebSecurityManager();
+        DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         //设置自定义realm.
         securityManager.setRealm(userRealm());
         //配置记住我
@@ -171,10 +170,10 @@ public class ShiroConfig {
         defaultWebSessionManager.setSessionIdCookie(cookie);
         defaultWebSessionManager.setSessionDAO(redisSessionDAO());
         //1小时无操作自动过期
-        defaultWebSessionManager.setGlobalSessionTimeout((long)3600 * 1000);
+        defaultWebSessionManager.setGlobalSessionTimeout((long) 3600 * 1000);
         defaultWebSessionManager.setSessionIdUrlRewritingEnabled(false);
         return defaultWebSessionManager;
-    }//60ms =1s  1min = 3600
+    }
 
 
     /**
@@ -194,5 +193,4 @@ public class ShiroConfig {
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
     }
-
 }
