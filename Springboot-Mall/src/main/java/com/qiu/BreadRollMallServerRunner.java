@@ -1,14 +1,12 @@
 package com.qiu;
 
-import com.qiu.config.UserRealm;
+import cn.dev33.satoken.secure.SaSecureUtil;
 import com.qiu.entity.SuperAdmin;
 import com.qiu.entity.User;
 import com.qiu.entity.UserRole;
 import com.qiu.service.UserRoleService;
 import com.qiu.service.UserService;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.crypto.hash.SimpleHash;
-import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +36,6 @@ public class BreadRollMallServerRunner implements ApplicationRunner {
     UserRoleService userRoleService;
 
     @Autowired
-    UserRealm userRealm;
-
-    @Autowired
     private ApplicationContext context;
 
     @Autowired
@@ -65,9 +60,8 @@ public class BreadRollMallServerRunner implements ApplicationRunner {
             if(StringUtils.isBlank(superAdmin.getPassword())){
                 superAdmin.setPassword(DEFAULT_PASSWORD);
             }
-            SimpleHash md5 = new SimpleHash("MD5", superAdmin.getPassword(),
-                    ByteSource.Util.bytes(user.getAccountNumber()), 2);
-            user.setPassword(md5.toHex());
+            String encodePassword = SaSecureUtil.md5BySalt(superAdmin.getPassword(), superAdmin.getEmail());
+            user.setPassword(encodePassword);
             user.setUserState(true);
             userService.insertData(user);
             userRoleService.deleteById(user.getUserId());

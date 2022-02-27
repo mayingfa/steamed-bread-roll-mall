@@ -1,6 +1,7 @@
 package com.qiu.service.impl;
 
 import com.qiu.dao.UserDao;
+import com.qiu.entity.Role;
 import com.qiu.entity.User;
 import com.qiu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User selectByKey(String key) {
         return userDao.selectByKey(key);
+    }
+
+    @Override
+    public List<Role> getRoleList(Integer userId) {
+        return userDao.getRoleList(userId);
     }
 
     @Override

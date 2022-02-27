@@ -1,31 +1,24 @@
 package com.qiu.controller;
 
-import com.qiu.config.UserRealm;
+import cn.dev33.satoken.secure.SaSecureUtil;
+import cn.dev33.satoken.stp.StpUtil;
 import com.qiu.entity.Role;
 import com.qiu.entity.User;
 import com.qiu.service.RoleService;
 import com.qiu.service.UserService;
 import com.qiu.util.general.CommonResult;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.LockedAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.crypto.hash.SimpleHash;
-import org.apache.shiro.mgt.RealmSecurityManager;
-import org.apache.shiro.subject.Subject;
-import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author Captain
@@ -48,109 +41,54 @@ public class OperateController {
     /**
      * 登录操作
      *
-     * @param username   用户登录的账号
-     * @param password   用户登录的密码
-     * @param rememberMe shiro框架的 记住我 功能
+     * @param username 用户登录的账号
+     * @param password 用户登录的密码
      */
     @RequestMapping(value = "/login", produces = {"application/json;charset=UTF-8"})
-    public CommonResult doLogin(String username, String password, boolean rememberMe) {
-        try {
-            if (username == null) {
-                throw new AuthenticationException();
-            }
-            if (password == null) {
-                throw new IncorrectCredentialsException();
-            }
-            Subject subject = SecurityUtils.getSubject();
-            UsernamePasswordToken token = new UsernamePasswordToken(username, password, rememberMe);
-            if (subject.isAuthenticated()) {
-                return CommonResult.error("已登录");
-            }
-            subject.login(token);
-            Map<String, Object> info = new HashMap<>(4);
-            String authorization = (String) subject.getSession().getId();
-            User user;
-            if (username.contains(EMAIL_FLAG)) {
-                //包含@符号，代表用户通过邮箱账号登录
-                user = userService.selectByKey(username);
-            } else {
-                //不包含@符号，代表用户通过手机号登录
-                user = userService.selectByPhone(username);
-            }
-            info.put("user", user);      //存放用户信息
-            //更新最后登录时间
-            user.setLoginTime(new Date());
-            userService.updateById(user);
-            //存放sessionId, 即 token
-            info.put("sessionId", authorization);
-            List<Role> roles = roleService.selectAll();
-            List<String> rs = new ArrayList<>();    // rs 存放的是role的名称
-            List<String> rsInfo = new ArrayList<>();    //rsInfo 存放role的描述
-            for (Role role : roles) {
-                rs.add(role.getRoleName());
-                rsInfo.add(role.getRoleName());
-            }
-            boolean[] booleans = subject.hasRoles(rs);
-            for (int i = booleans.length - 1; i >= 0; i--) {
-                if (!booleans[i]) {
-                    rs.remove(i);
-                    rsInfo.remove(i);
-                }
-            }
-            info.put("role", rs);
-            info.put("roleInfo", rsInfo);
-            return CommonResult.success("登录成功", info);
-        } catch (LockedAccountException e) {
-            return CommonResult.error("您的帐号存在异常行为，已被封停（请联系工作人员）");
-        } catch (IncorrectCredentialsException e) {
-            return CommonResult.error("密码错误,请重新输入");
-        } catch (AuthenticationException e) {
-            return CommonResult.error("该用户不存在");
+    public CommonResult doLogin(String username, String password) {
+        User user;
+        if (username.contains(EMAIL_FLAG)) {
+            //包含@符号，代表用户通过邮箱账号登录
+            user = userService.selectByKey(username);
+        } else {
+            //不包含@符号，代表用户通过手机号登录
+            user = userService.selectByPhone(username);
         }
+        if (user == null) {
+            return CommonResult.error("账号不存在");
+        }
+        String encodePassword = SaSecureUtil.md5BySalt(password, user.getAccountNumber());
+        if (!encodePassword.equals(user.getPassword())) {
+            return CommonResult.error("用户名或密码错误");
+        }
+        // 账号被锁定
+        if (!user.getUserState()) {
+            StpUtil.disable(user.getUserId(), -1);
+        }
+        StpUtil.login(user.getUserId());
+        //更新最后登录时间
+        user.setLoginTime(new Date());
+        userService.updateById(user);
+        //存放用户信息
+        Map<String, Object> info = new HashMap<>(4);
+        info.put("user", user);
+        //存放sessionId, 即 token
+        info.put("sessionId", StpUtil.getTokenInfo().getTokenValue());
+        List<Role> roles = userService.getRoleList(user.getUserId());
+        Set<String> roseNames = roles.stream().map(Role::getRoleName).collect(Collectors.toSet());
+        Set<String> roseDescribes = roles.stream().map(Role::getRoleDescribe).collect(Collectors.toSet());
+        info.put("role", roseNames);
+        info.put("roleInfo", roseDescribes);
+        return CommonResult.success("登录成功", info);
     }
 
     /**
-     * 退出登录操作
-     *
-     * @param key     用户登录的账号
-     * @param session 前端存储的session（token）
+     * 注销登录
      */
     @RequestMapping(value = "/logout")
-    public CommonResult logout(String key, String session) {
-        if (key != null) {
-            try {
-                User user = userService.selectByKey(key);
-                Subject subject = SecurityUtils.getSubject();
-                //清除用户缓存
-                RealmSecurityManager securityManager = (RealmSecurityManager) SecurityUtils.getSecurityManager();
-                UserRealm userRealm = (UserRealm) securityManager.getRealms().iterator().next();
-                //清空redis中的缓存信息
-                userRealm.clearRedis(user, session);
-                userRealm.clearCache(SecurityUtils.getSubject().getPrincipals());
-                //退出登录
-                subject.logout();
-                return CommonResult.success("退出成功");
-            } catch (Exception e) {
-                log.error(e.getMessage());
-            }
-        }
-        return CommonResult.error("退出失败，未找到用户帐号");
-    }
-
-    /**
-     * 未登录时，将被转发到此请求
-     */
-    @RequestMapping("/notLogin")
-    public CommonResult toLogin() {
-        return new CommonResult(401, "请登录！");
-    }
-
-    /**
-     * 暂无权限时，将被转发到此请求
-     */
-    @RequestMapping("/notRole")
-    public CommonResult notRole() {
-        return new CommonResult(403, "暂无权限！");
+    public CommonResult logout() {
+        StpUtil.logout();
+        return CommonResult.success("注销成功");
     }
 
     /**
@@ -190,11 +128,11 @@ public class OperateController {
     @RequestMapping(value = "/allow/resetpwd")
     public CommonResult resetPwd(String account, String password) {
         if (account != null && password != null) {
-            SimpleHash md5 = new SimpleHash("MD5", password, ByteSource.Util.bytes(account), 2);
+            String encodePassword = SaSecureUtil.md5BySalt(password, account);
             Integer id = userService.selectIdByKey(account);
             User user = new User();
             user.setUserId(id);
-            user.setPassword(md5.toHex());
+            user.setPassword(encodePassword);
             if (userService.updateById(user)) {
                 return CommonResult.success("重置密码成功", user);
             }
@@ -212,8 +150,8 @@ public class OperateController {
     @RequestMapping(value = "/allow/add")
     public CommonResult add(User user) {
         if (user.getPassword() != null && user.getUserName() != null) {
-            SimpleHash md5 = new SimpleHash("MD5", user.getPassword(), ByteSource.Util.bytes(user.getAccountNumber()), 2);
-            user.setPassword(md5.toHex());
+            String encodePassword = SaSecureUtil.md5BySalt(user.getPassword(), user.getUserName());
+            user.setPassword(encodePassword);
             user.setUserState(true);
             if (userService.insertData(user)) {
                 log.info("用户添加成功，用户信息：{}", user);

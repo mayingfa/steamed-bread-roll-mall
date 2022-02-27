@@ -231,7 +231,9 @@
       reqInfo(){
         this.$http.post('/role/findAll').then((rep)=>{
           if(rep.data.code===200){
-            this.roleInfoResource = this.roleInfo = rep.data.data;
+            this.roleInfoResource = this.roleInfo = rep.data.data.filter((item)=> {
+                 return item.roleName !== VAR.ordinaryRole;
+            });
           }
         }).catch((err)=>{this.$msg.error(err)})
       }

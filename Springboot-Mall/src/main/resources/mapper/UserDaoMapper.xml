@@ -58,6 +58,17 @@
         where telephone = #{telephone}
     </select>
 
+    <!-- 获取用户对应角色 -->
+    <select id="getRoleList" resultType="role">
+        SELECT
+            role.*
+        FROM user_role
+                 LEFT JOIN role ON role.role_id = user_role.role_id
+        WHERE
+            user_role.user_id = #{userId}
+          AND role.role_state = 1;
+    </select>
+
     <!--通过Key查Id-->
     <select id="selectIdByKey" resultType="java.lang.Integer" parameterType="String">
         select user_id

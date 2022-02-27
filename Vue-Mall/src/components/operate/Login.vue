@@ -32,14 +32,6 @@
         <div class="form-box">
           <router-view/>
         </div>
-        <div style="width: 90%;margin: 0 auto;text-align: center">
-          <el-divider>其他方式登录</el-divider>
-          <div class="my-icon">
-            <i class="iconfont iconqq qq"></i>
-            <i class="iconfont iconweixin weixin"></i>
-            <i class="iconfont icondingding01 dingding"></i>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -84,7 +76,7 @@ export default {
   display: grid;
   grid-template-columns: 250px 1fr;
   position: absolute;
-  width: 800px;
+  width: 750px;
   height: 524px;
   padding: 0;
   background: #fff;
@@ -153,7 +145,7 @@ export default {
 }
 
 .login-page .login-box .right-half {
-  padding: 60px 40px 0 110px;
+  padding: 60px 40px 0 100px;
 }
 
 /*右侧登录盒子*/
@@ -161,34 +153,5 @@ export default {
   width: 90%;
   height: 310px;
   margin: 0 auto;
-}
-
-/*第三方登录图标*/
-.login-page .my-icon {
-  user-select: none;
-}
-
-.login-page .my-icon i {
-  user-select: none;
-  cursor: pointer;
-  font-size: 32px;
-  margin-left: 48px;
-}
-
-.login-page .el-divider--horizontal {
-  margin: 40px 0 20px;
-}
-
-.login-page .qq {
-  color: #00b0fb;
-  margin-left: 0 !important;
-}
-
-.login-page .weixin {
-  color: #46d800;
-}
-
-.login-page .dingding {
-  color: #3795f9;
 }
 </style>

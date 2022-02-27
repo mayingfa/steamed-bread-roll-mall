@@ -1,5 +1,6 @@
 package com.qiu.service;
 
+import com.qiu.entity.Role;
 import com.qiu.entity.User;
 
 import java.util.List;
@@ -26,6 +27,14 @@ public interface UserService {
      * @return 用户信息
      */
     User selectByKey(String key);
+
+    /**
+     * 获取用户对应角色
+     *
+     * @param userId 用ID
+     * @return 角色列表
+     */
+    List<Role> getRoleList(Integer userId);
 
     /**
      * 通过手机号查询用户

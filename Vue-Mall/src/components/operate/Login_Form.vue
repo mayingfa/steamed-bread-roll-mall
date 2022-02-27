@@ -13,17 +13,11 @@
           <el-input v-model="loginForm.userAccount" autocomplete="on" placeholder="请输入帐号"
                     @keyup.enter.native="submitForm('loginForm')" prefix-icon="el-icon-user"></el-input>
         </el-form-item>
-        <el-form-item prop="passWord">
+        <el-form-item prop="passWord" style="margin-bottom: 10px;">
           <el-input type="password" show-password v-model="loginForm.passWord" autocomplete="off" placeholder="请输入密码"
                     @keyup.enter.native="submitForm('loginForm')" prefix-icon="el-icon-lock"></el-input>
         </el-form-item>
-        <el-form-item prop="loginMode" style="margin-bottom: 5px;">
-          <el-radio-group v-model="loginForm.loginMode">
-            <el-radio-button label="我是顾客"></el-radio-button>
-            <el-radio-button label="我是管理员"></el-radio-button>
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item style="margin-bottom: 10px;">
+        <el-form-item style="margin-bottom: 5px;">
           <el-checkbox v-model="rememberMe">记住我</el-checkbox>
           <router-link to="/forgotPassword" class="retrieve-password">找回密码</router-link>
         </el-form-item>
@@ -32,10 +26,20 @@
         </el-form-item>
       </el-form>
     </div>
+    <div style="width: 90%;margin: 0 auto;text-align: center">
+      <el-divider>其他方式登录</el-divider>
+      <div class="my-icon">
+        <i class="iconfont iconqq qq"></i>
+        <i class="iconfont iconweixin weixin"></i>
+        <i class="iconfont icondingding01 dingding"></i>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import store from "../../store";
+
 export default {
   name: "Login-Form",
   data() {
@@ -50,7 +54,6 @@ export default {
       loginForm: {
         userAccount: '',
         passWord: '',
-        loginMode:'我是顾客',
       },
       //表单的验证规则
       rules: {
@@ -72,19 +75,16 @@ export default {
           this.$http.post("/login?username=" + this.loginForm.userAccount + "&password=" + this.loginForm.passWord).then((res) => {
             loading.close();
             if (res.data.code === 200) {
-              let token = res.data.data.sessionId;
               let role = res.data.data.role;
-              let user = res.data.data.user;
-              let roleInfo = res.data.data.roleInfo;
-              let isVip;
-              this.$http.post('/vip/existsVip?accountNumber=' + user.accountNumber).then((rep) => {
+              this.$store.commit('setToken', res.data.data.sessionId);
+              this.$store.commit('setRole', res.data.data.role);
+              this.$store.commit('setUser', res.data.data.user);
+              this.$store.commit('setRoleInfo', res.data.data.roleInfo);
+              this.$http.post('/vip/existsVip?accountNumber=' + this.loginForm.userAccount).then((rep) => {
                 if (rep.data.code === 200) {
-                  isVip = rep.data.data
-                  user['isVip'] = isVip;
-                  this.$store.commit('setToken', token)
-                  this.$store.commit('setRole', role)
-                  this.$store.commit('setUser', user)
-                  this.$store.commit('setRoleInfo', roleInfo)
+                  let user = this.$store.state.user;
+                  user['isVip'] = rep.data.data;
+                  this.$store.commit('setUser', user);
                   localStorage.setItem("store", JSON.stringify(this.$store.state))
                   let hours = new Date().getHours();
                   let str;
@@ -109,15 +109,17 @@ export default {
                   } else {
                     this.$router.push('/HomePage')
                   }
+                } else {
+                  this.$msg.error({message: res.data.message, showClose: true, duration: 1500});
                 }
               }).catch((err) => {
+                console.error(err)
                 this.$msg.error(err)
               })
             } else {
               this.$msg.error({message: res.data.message, showClose: true, duration: 1500});
             }
           }).catch((err) => {
-            console.log(err);
             loading.close();
             this.$msg.error({message: '登录失败，' + err, showClose: true, duration: 1500});
           })
@@ -159,7 +161,6 @@ export default {
 }
 
 .login-form .form {
-  margin-top: 15px;
   text-align: left;
 }
 
@@ -184,10 +185,34 @@ export default {
 .login-form .form .submit {
   width: 100%;
 }
-</style>
 
-<style>
-.login-form .el-radio-group .el-radio-button__inner{
-  width: 180px;
+
+/*第三方登录图标*/
+.login-form .my-icon {
+  user-select: none;
+}
+
+.login-form .my-icon i {
+  user-select: none;
+  cursor: pointer;
+  font-size: 32px;
+  margin-left: 48px;
+}
+
+.login-form .el-divider--horizontal {
+  margin: 40px 0 20px;
+}
+
+.login-form .qq {
+  color: #00b0fb;
+  margin-left: 0 !important;
+}
+
+.login-form .weixin {
+  color: #46d800;
+}
+
+.login-form .dingding {
+  color: #3795f9;
 }
 </style>

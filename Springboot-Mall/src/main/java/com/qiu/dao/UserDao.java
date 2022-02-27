@@ -1,7 +1,11 @@
 package com.qiu.dao;
 
+import com.qiu.entity.Role;
 import com.qiu.entity.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * @author Captain
@@ -34,4 +38,11 @@ public interface UserDao extends BaseDao<User> {
      * @return 用户信息
      */
     User selectByPhone(String telephone);
+
+    /**
+     * 获取用户对应角色
+     * @param userId 用户唯一标识
+     * @return 角色列表
+     */
+    List<Role> getRoleList(@Param("userId") Integer userId);
 }
