@@ -1,5 +1,6 @@
 package com.qiu.service;
 
+import com.qiu.constant.UserStatusEnum;
 import com.qiu.entity.Role;
 import com.qiu.entity.User;
 
@@ -113,4 +114,11 @@ public interface UserService {
      * @return 是否删除成功
      */
     Boolean deleteById(Integer id);
+
+    /**
+     * 获取用户信息根据用户身份
+     * @param status 用户身份
+     * @return 用户列表
+     */
+    List<User> queryAllByStatus(UserStatusEnum status);
 }

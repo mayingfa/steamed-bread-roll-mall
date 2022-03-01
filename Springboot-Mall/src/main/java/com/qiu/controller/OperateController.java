@@ -2,6 +2,7 @@ package com.qiu.controller;
 
 import cn.dev33.satoken.secure.SaSecureUtil;
 import cn.dev33.satoken.stp.StpUtil;
+import com.qiu.constant.UserStatusEnum;
 import com.qiu.entity.Role;
 import com.qiu.entity.User;
 import com.qiu.service.RoleService;
@@ -150,9 +151,10 @@ public class OperateController {
     @RequestMapping(value = "/allow/add")
     public CommonResult add(User user) {
         if (user.getPassword() != null && user.getUserName() != null) {
-            String encodePassword = SaSecureUtil.md5BySalt(user.getPassword(), user.getUserName());
+            String encodePassword = SaSecureUtil.md5BySalt(user.getPassword(), user.getAccountNumber());
             user.setPassword(encodePassword);
             user.setUserState(true);
+            user.setStatus(UserStatusEnum.CUSTOMER);
             if (userService.insertData(user)) {
                 log.info("用户添加成功，用户信息：{}", user);
                 return CommonResult.success("注册成功", user);
@@ -170,6 +172,9 @@ public class OperateController {
      */
     @RequestMapping(value = "/allow/update")
     public CommonResult update(User user) {
+        if (user.getUserState() != null && user.getUserState()) {
+            StpUtil.untieDisable(user.getUserId());
+        }
         if (userService.updateById(user)) {
             return CommonResult.success("信息保存成功", user);
         }

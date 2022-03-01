@@ -100,14 +100,14 @@ export default {
                     str = '晚上好!'
                   }
                   let message = '欢迎登录花卷商城';
-                  if (role.indexOf(this.$VAR.ordinaryRole) === -1) {
-                    message += '后台系统'
+                  if (user.status === 'ADMIN') {
+                    message += '后台系统';
                   }
                   this.$notify({title: str, message: message, type: 'success', offset: 50});
-                  if (role.indexOf(this.$VAR.ordinaryRole) !== -1) {  // 不是-1  为普通用户，进入前端商城
-                    this.$router.push('/MallHome')
+                  if (user.status === 'ADMIN') {  // 管理员身份，进入前端页面
+                    this.$router.push('/HomePage');
                   } else {
-                    this.$router.push('/HomePage')
+                    this.$router.push('/MallHome');
                   }
                 } else {
                   this.$msg.error({message: res.data.message, showClose: true, duration: 1500});

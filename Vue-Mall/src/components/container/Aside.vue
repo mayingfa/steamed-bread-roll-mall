@@ -25,7 +25,7 @@
           <el-menu-item-group>
             <router-link to="/ProductList" class="router-link">
               <el-menu-item id="ProductList" index="2-1" class="el-menu-item-bg">
-                <i class="el-icon-location"/>
+                <i class="el-icon-milk-tea"/>
                 <span>商品列表</span>
               </el-menu-item>
             </router-link>
@@ -49,13 +49,13 @@
             </router-link>
             <router-link to="/ProductSpecs" class="router-link" >
               <el-menu-item id="ProductSpecs" index="2-5" class="el-menu-item-bg">
-                <i class="el-icon-discount"/>
+                <i class="el-icon-cloudy"/>
                 <span>商品规格</span>
               </el-menu-item>
             </router-link>
             <router-link to="/Purchase" class="router-link" >
               <el-menu-item id="Purchase" index="2-6" class="el-menu-item-bg">
-                <i class="el-icon-bangzhu"/>
+                <i class="el-icon-truck"/>
                 <span>商品采购</span>
               </el-menu-item>
             </router-link>
@@ -118,10 +118,16 @@
             <span>权限</span>
           </template>
           <el-menu-item-group>
+            <router-link to="/AdminList" class="router-link" >
+              <el-menu-item id="AdminList" index="5-1" class="el-menu-item-bg">
+                <i class="el-icon-eleme"/>
+                <span>管理员列表</span>
+              </el-menu-item>
+            </router-link>
             <router-link to="/UserList" class="router-link" >
               <el-menu-item id="UserList" index="5-1" class="el-menu-item-bg">
                 <i class="el-icon-user"/>
-                <span>用户列表</span>
+                <span>顾客列表</span>
               </el-menu-item>
             </router-link>
             <router-link to="/RoleList" class="router-link" >
@@ -169,6 +175,9 @@
             break;
           case "/OrderList":
             document.getElementById("OrderList").style.color = 'rgb(64, 158, 255)';
+            break;
+          case "/AdminList":
+            document.getElementById("AdminList").style.color = 'rgb(64, 158, 255)';
             break;
           case "/UserList":
             document.getElementById("UserList").style.color = 'rgb(64, 158, 255)';

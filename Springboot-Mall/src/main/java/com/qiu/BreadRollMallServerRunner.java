@@ -1,6 +1,7 @@
 package com.qiu;
 
 import cn.dev33.satoken.secure.SaSecureUtil;
+import com.qiu.constant.UserStatusEnum;
 import com.qiu.entity.SuperAdmin;
 import com.qiu.entity.User;
 import com.qiu.entity.UserRole;
@@ -63,6 +64,7 @@ public class BreadRollMallServerRunner implements ApplicationRunner {
             String encodePassword = SaSecureUtil.md5BySalt(superAdmin.getPassword(), superAdmin.getEmail());
             user.setPassword(encodePassword);
             user.setUserState(true);
+            user.setStatus(UserStatusEnum.ADMIN);
             userService.insertData(user);
             userRoleService.deleteById(user.getUserId());
             UserRole userRole = new UserRole();

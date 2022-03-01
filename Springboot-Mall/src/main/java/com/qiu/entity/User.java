@@ -1,5 +1,6 @@
 package com.qiu.entity;
 
+import com.qiu.constant.UserStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -84,4 +85,9 @@ public class User implements Serializable {
      * 背景图片链接
      */
     private String backgroundUrl;
+
+    /**
+     * 用户身份，管理员还是顾客
+     */
+    private UserStatusEnum status;
 }

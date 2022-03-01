@@ -416,7 +416,7 @@ import MallFooter from "../mall/MallFooter";
         },
         reqInfo(){
           let loading = this.$loading({lock: true, text: "数据加载中",background:"rgba(255,255,255,0.1)"});
-          this.$http.post('/shoppingCart/findAll?accountNumber='+this.$store.state.user['accountNumber']).then((rep)=>{
+          this.$http.post('/shoppingCart/findAll?account='+this.$store.state.user['accountNumber']).then((rep)=>{
             loading.close();
             let isVip = this.$store.state.user['isVip'];
             if(rep.data.code===200){

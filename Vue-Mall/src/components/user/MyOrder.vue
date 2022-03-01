@@ -378,8 +378,8 @@
         <el-button style="padding: 12px 30px;margin: 0 30px;" @click="cancelChange('changeFrom')">取 消</el-button>
       </div>
     </el-dialog>
-    <el-dialog title="小客服" :visible.sync="serviceVisible" width="30%" style="padding: 0 20px 0">
-      <el-image src="https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/QQ%E5%9B%BE%E7%89%8720201202080302.jpg"></el-image>
+    <el-dialog title="花卷客服" :visible.sync="serviceVisible" width="30%" style="padding: 0 20px 0">
+      <el-image src="https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/Wechat-QR-Code.png"></el-image>
       <p style="font-size: 18px;margin: 0">扫码联系客服（微信）</p>
     </el-dialog>
     <el-dialog title="商品评价" class="review" :visible.sync="reviewFormVisible" top="20vh" width="500px">

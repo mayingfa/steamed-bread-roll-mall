@@ -197,7 +197,18 @@ export default new Router({
               { name: '营销', url: '/SlideShow'},
               { name: '商品轮播图' }]
           }
-        },{ //用户列表
+        }, { //管理员列表
+          path: '/AdminList',
+          name: '管理员列表',
+          component: () => import("../components/user/AdminList"),
+          meta: {
+            requiresAuth: true,
+            userRole: true,
+            headerName: [
+              {name: '权限', url: '/AdminList'},
+              {name: '用户列表'}]
+          }
+        },{ //顾客列表
           path: '/UserList',
           name: '用户列表',
           component: () => import("../components/user/UserList"),

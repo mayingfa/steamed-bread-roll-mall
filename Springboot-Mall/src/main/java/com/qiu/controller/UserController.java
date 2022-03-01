@@ -1,5 +1,6 @@
 package com.qiu.controller;
 
+import com.qiu.constant.UserStatusEnum;
 import com.qiu.entity.User;
 import com.qiu.entity.UserRole;
 import com.qiu.entity.Vip;
@@ -66,11 +67,23 @@ public class UserController {
     }
 
     /**
-     * 查询所有用户
+     * 查询所有顾客
      */
-    @RequestMapping(value = "/user/findAll")
-    public CommonResult findAll() {
-        List<User> users = userService.selectAll();
+    @RequestMapping(value = "/user/findAll/customer")
+    public CommonResult findAllCustomer() {
+        List<User> users = userService.queryAllByStatus(UserStatusEnum.CUSTOMER);
+        if (users != null) {
+            return CommonResult.success("查询成功", users);
+        }
+        return CommonResult.error("查询失败");
+    }
+
+    /**
+     * 查询所有管理员
+     */
+    @RequestMapping(value = "/user/findAll/admin")
+    public CommonResult findAllAdmin() {
+        List<User> users = userService.queryAllByStatus(UserStatusEnum.ADMIN);
         if (users != null) {
             return CommonResult.success("查询成功", users);
         }
@@ -153,6 +166,10 @@ public class UserController {
                     userRoleService.insertData(userRole);
                 }
             }
+            User user = new User();
+            user.setUserId(userId);
+            user.setStatus(UserStatusEnum.ADMIN);
+            userService.updateById(user);
             return CommonResult.success("授权成功");
         } else {
             return CommonResult.error("角色授权数据不完整！");

@@ -1,5 +1,6 @@
 package com.qiu.dao;
 
+import com.qiu.constant.UserStatusEnum;
 import com.qiu.entity.Role;
 import com.qiu.entity.User;
 import org.apache.ibatis.annotations.Param;
@@ -45,4 +46,11 @@ public interface UserDao extends BaseDao<User> {
      * @return 角色列表
      */
     List<Role> getRoleList(@Param("userId") Integer userId);
+
+    /**
+     * 获取用户信息根据用户身份
+     * @param status 用户身份
+     * @return 用户列表
+     */
+    List<User> queryAllByStatus(@Param("status") UserStatusEnum status);
 }

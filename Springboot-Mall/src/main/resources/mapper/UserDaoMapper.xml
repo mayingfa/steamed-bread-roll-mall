@@ -34,7 +34,8 @@
                summary,
                user_address,
                avatar_url,
-               background_url
+               background_url,
+               status
         from user
         where account_number = #{accountNumber}
     </select>
@@ -53,7 +54,8 @@
                summary,
                user_address,
                avatar_url,
-               background_url
+               background_url,
+               status
         from user
         where telephone = #{telephone}
     </select>
@@ -67,6 +69,11 @@
         WHERE
             user_role.user_id = #{userId}
           AND role.role_state = 1;
+    </select>
+
+    <!--获取用户信息根据用户身份-->
+    <select id="queryAllByStatus" resultType="User">
+        select * from user where status = #{status};
     </select>
 
     <!--通过Key查Id-->
@@ -117,7 +124,8 @@
                summary,
                user_address,
                avatar_url,
-               background_url
+               background_url,
+               status
         from user;
     </select>
 
@@ -125,7 +133,7 @@
     <insert id="insertData" parameterType="User" useGeneratedKeys="true" keyProperty="userId">
         insert into user
         values (#{userId}, #{accountNumber}, #{userName}, #{password}, #{userSex}, #{telephone}, #{creatTime},
-                #{loginTime}, #{userState}, #{summary}, #{userAddress}, #{avatarUrl}, #{backgroundUrl});
+                #{loginTime}, #{userState}, #{summary}, #{userAddress}, #{avatarUrl}, #{backgroundUrl},#{status});
     </insert>
 
     <!--通过ID更新-->
@@ -167,6 +175,9 @@
             </if>
             <if test="backgroundUrl != null">
                 background_url = #{backgroundUrl},
+            </if>
+            <if test="status != null">
+                status = #{status},
             </if>
         </set>
         where user_id = #{userId};

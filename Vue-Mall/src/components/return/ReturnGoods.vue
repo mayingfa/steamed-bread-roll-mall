@@ -196,7 +196,7 @@
                   loading.close();
                   if(rep.data.code===200){
                     this.reqInfo()
-                    this.$notify({title: '成功', message: '商品退款成功，退款金额：'+returnPrice+'￥', type: 'success'});
+                    this.$notify({title: '成功', message: '商品退款成功，退款金额：￥'+returnPrice, type: 'success'});
                   }
                 }).catch((err)=>{loading.close();this.$msg.error(err)})
               }
@@ -226,7 +226,7 @@
                   callback: () => {
                     this.$http.get('/alipay/refund?orderNo='+orderNo+"&payPrice="+returnPrice).then((rep)=>{
                       if(rep.data.code===200){
-                        this.$notify({title: '成功', message: '商品退款成功，退款金额：'+returnPrice+'￥', type: 'success'});
+                        this.$notify({title: '成功', message: '商品退款成功，退款金额：￥'+returnPrice, type: 'success'});
                       }
                     }).catch((err)=>{loading.close();this.$msg.error(err)})
                   }

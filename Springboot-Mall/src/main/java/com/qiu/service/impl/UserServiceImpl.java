@@ -1,5 +1,6 @@
 package com.qiu.service.impl;
 
+import com.qiu.constant.UserStatusEnum;
 import com.qiu.dao.UserDao;
 import com.qiu.entity.Role;
 import com.qiu.entity.User;
@@ -88,5 +89,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean deleteById(Integer id) {
         return userDao.deleteById(id);
+    }
+
+    @Override
+    public List<User> queryAllByStatus(UserStatusEnum status) {
+        return userDao.queryAllByStatus(status);
     }
 }

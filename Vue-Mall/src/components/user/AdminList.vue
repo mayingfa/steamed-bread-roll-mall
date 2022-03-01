@@ -178,7 +178,7 @@ export default {
 
     },
     reqInfo() {
-      this.$http.post('/user/findAll/customer').then((rep) => {
+      this.$http.post('/user/findAll/admin').then((rep) => {
         if (rep.data.code === 200) {
           this.userInfo = this.userInfoResource = rep.data.data;
         }
