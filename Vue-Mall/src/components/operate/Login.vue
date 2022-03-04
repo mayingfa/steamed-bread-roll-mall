@@ -8,7 +8,7 @@
       <div class="left-half">
         <div class="logo">
           <el-image style="width: 300px; height: 70px"
-                    src="https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/logo.png" fit="fill"></el-image>
+                    src="https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/bread-roll-logo.png" fit="fill"></el-image>
         </div>
         <ul class="geek-slide">
           <li>

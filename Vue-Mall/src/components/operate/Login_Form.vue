@@ -76,6 +76,7 @@ export default {
             loading.close();
             if (res.data.code === 200) {
               let role = res.data.data.role;
+              localStorage.setItem("satoken",res.data.data.sessionId);
               this.$store.commit('setToken', res.data.data.sessionId);
               this.$store.commit('setRole', res.data.data.role);
               this.$store.commit('setUser', res.data.data.user);

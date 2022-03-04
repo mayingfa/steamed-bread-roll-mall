@@ -35,12 +35,15 @@ import tools from "./util/tools";
 Vue.prototype.$tools = tools;
 
 Vue.prototype["$msg"] = DonMessage
-Vue.prototype["$axios"]=axios
-
-Vue.prototype["$http"]=axios.create({
+const http = axios.create({
+  timeout: 30000, // 请求超时时间
   baseURL: VAR.http,
-  timeout: 30000
 })
+if(localStorage.getItem("satoken")){
+  http.defaults.headers['satoken'] = localStorage.getItem("satoken");
+}
+Vue.prototype["$axios"]=axios
+Vue.prototype["$http"]=http;
 Vue.prototype["$qs"]=qs;
 Vue.use(VCharts)
 Vue.use(ElementUI);

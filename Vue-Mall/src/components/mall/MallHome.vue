@@ -9,7 +9,7 @@
       <el-menu :default-active="activeIndex" class="el-menu-demo" :collapse-transition="false" active-text-color="#409EFF" mode="horizontal" @select="handleSelect">
         <el-menu-item index="1" style="width: 12%;margin-left:10%;position: relative">
           <router-link to="/MallHome" style="text-decoration: none;position: absolute;right: 0">
-            <el-image class="animate__animated animate__fadeIn" style="width: 220px;height: 60px;" src="https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/logo.png"></el-image>
+            <el-image class="animate__animated animate__fadeIn" style="width: 220px;height: 60px;" src="https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/bread-roll-logo.png"></el-image>
           </router-link>
         </el-menu-item>
         <el-menu-item index="2" style="width: 50%">
@@ -145,7 +145,7 @@
           "https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/lb5.jpg"
         ],
         bannerInfo:null,
-        logoUrl:"https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/logo.png",
+        logoUrl:"https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/bread-roll-logo.png",
         activeIndex:'',  //当前激活菜单的 index
         queryProductInfo: '',
         select: "1",

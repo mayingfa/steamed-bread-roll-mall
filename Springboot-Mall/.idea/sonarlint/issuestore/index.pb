@@ -2,8 +2,6 @@
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-A
-docker/Dockerfile,8\f\8ffde13df31f212345642ccfa4755f3bd99e7e61
 a
 1src/main/java/com/qiu/util/oss/AliyunOssUtil.java,3\1\31d2575be9e5aeaa68a04590356f8cc664269376
 d
@@ -178,7 +176,21 @@ U
 -src/main/java/com/qiu/service/VipService.java,6\6\6689670318d00f07a062b7fb9227d1b15b83e7dd
 f
 6src/main/java/com/qiu/service/impl/VipServiceImpl.java,2\2\22ee68c03c11b12bec0b8136025a94dd84a8827d
-S
-#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
-E
-log/BreadRollMall.log,b\c\bce868c462074525c7f33c7fb83769d9f62fe4e1
+m
+=src/main/java/com/qiu/handler/ExceptionControllerHandler.java,d\f\dff2c2fbc855cf91cc743fcd3903d65a707804cc
+f
+6src/main/java/com/qiu/controller/BannerController.java,9\5\95b5ea74a368b98ea741236828e039d11ab02860
+d
+4src/main/java/com/qiu/injector/StpInterfaceImpl.java,2\9\296c4fcb71de0e4637222d2b36cd1ce397324581
+[
++src/main/java/com/qiu/config/WebConfig.java,7\b\7be070d823aab2c936fb69e97557581983e50c8d
+d
+4src/main/java/com/qiu/config/SpringWebMvcConfig.java,f\4\f4f55cafc56a567d5819e4b27209ae881e6a892a
+]
+-src/main/java/com/qiu/config/RedisConfig.java,8\a\8aebefc4e6312fe2ce1479ca39ac4c71b6a4a5c0
+b
+2src/main/java/com/qiu/config/OssConfiguration.java,c\a\caa32a32cefd23e650aa6966c6b48d6454b6a863
+g
+7src/main/java/com/qiu/controller/ProductController.java,0\f\0f407076f3fcfb230d0a66f81f0b3901321f8b5c
+e
+5src/main/java/com/qiu/controller/SpecsController.java,6\e\6e2c11010ff5eeda1742c395f69468c0fe92b42d

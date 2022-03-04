@@ -5,7 +5,7 @@
       <el-menu :default-active="activeIndex" class="el-menu-demo" :collapse-transition="false" active-text-color="#409EFF" mode="horizontal" @select="handleSelect">
         <el-menu-item index="1" style="width: 22%">
           <router-link to="/MallHome" style="text-decoration: none">
-            <el-image style="width: 220px;height: 60px;" src="https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/logo.png"></el-image>
+            <el-image style="width: 220px;height: 60px;" src="https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/bread-roll-logo.png"></el-image>
           </router-link>
         </el-menu-item>
         <el-menu-item index="2" style="width: 50%">

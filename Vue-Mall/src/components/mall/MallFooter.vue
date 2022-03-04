@@ -13,7 +13,7 @@
       </div>
       <div class="footer-copyright">
         <div class="clearfix" style="width: 32%;min-width: 456px;margin: 0 auto;padding: 10px 0">
-          <el-image src="https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/logo.png"></el-image>
+          <el-image src="https://spring-oss.oss-cn-beijing.aliyuncs.com/images/img/bread-roll-logo.png"></el-image>
           <div class="copyright">花卷买卖公司版权所有 ©2020-{{new Date().getFullYear()}}</div>
         </div>
       </div>
