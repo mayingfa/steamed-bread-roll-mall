@@ -11,7 +11,7 @@
  Target Server Version : 50719
  File Encoding         : 65001
 
- Date: 01/03/2022 15:33:09
+ Date: 04/03/2022 21:58:59
 */
 
 SET NAMES utf8mb4;
@@ -53,7 +53,7 @@ CREATE TABLE `logistics`  (
   `receiver_add` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '收货人联系地址',
   `parcel_name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '物流公司',
   PRIMARY KEY (`logistic_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 28 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '物流表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 34 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '物流表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of logistics
@@ -80,6 +80,10 @@ INSERT INTO `logistics` VALUES (23, '2222616509327', '花卷', '400-626-1123', '
 INSERT INTO `logistics` VALUES (25, '223110263492', '测试', '15233088662', '天津市 市辖区 河东区 (11)', '花卷', '400-626-1123', '河北师范大学', '花卷物流');
 INSERT INTO `logistics` VALUES (26, '223110157600', '花卷', '400-626-1123', '河北师范大学', '测试', '15233088662', '天津市 市辖区 河东区 (11)', '花卷物流');
 INSERT INTO `logistics` VALUES (27, '223110455311', '花卷', '400-626-1123', '河北师范大学', '测试人员', '15233088662', '天津市 市辖区 河东区 (11)', '花卷物流');
+INSERT INTO `logistics` VALUES (29, '223420428827', '花卷', '400-626-1123', '河北师范大学', '测试人员', '15233088662', '北京市 市辖区 东城区 (test)', '花卷物流');
+INSERT INTO `logistics` VALUES (30, '223110451817', '花卷', '400-626-1123', '河北师范大学', '测试人员', '15233088662', '天津市 市辖区 河东区 (11)', '花卷物流');
+INSERT INTO `logistics` VALUES (31, '223421202909', '测试人员', '15233088662', '北京市 市辖区 东城区 (test)', '花卷', '400-626-1123', '河北师范大学', '花卷物流');
+INSERT INTO `logistics` VALUES (33, '223421276224', '测试人员', '15233088662', '北京市 市辖区 东城区 (test)', '花卷', '400-626-1123', '河北师范大学', '花卷物流');
 
 -- ----------------------------
 -- Table structure for order
@@ -105,7 +109,7 @@ CREATE TABLE `order`  (
   UNIQUE INDEX `UNIQUE`(`order_no`) USING BTREE,
   INDEX `product_no`(`product_no`) USING BTREE,
   INDEX `order_ibfk_2`(`user_account`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 73 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 76 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '订单表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of order
@@ -118,8 +122,11 @@ INSERT INTO `order` VALUES (67, '2222616509327', '2022-02-26 16:48:52', '2020123
 INSERT INTO `order` VALUES (68, 'Vip2231101108', '2022-03-01 10:01:09', 'Vip0001', NULL, '15233088662@163.com', '测试', '15233088662', 88, 1, '支付宝', '网页商城', '开通成功', '天津市 市辖区 河东区 (11)', 0);
 INSERT INTO `order` VALUES (69, '223110263492', '2022-03-01 10:03:28', '20211516383756', 'S', '15233088662@163.com', '测试', '15233088662', 626, 1, '支付宝', '网页商城', '已退货', '天津市 市辖区 河东区 (11)', 1);
 INSERT INTO `order` VALUES (70, '223110157600', '2022-03-01 10:06:16', '20211517010257', 'M', '15233088662@163.com', '测试', '15233088662', 616, 4, '支付宝', '网页商城', '已拒绝', '天津市 市辖区 河东区 (11)', 0);
-INSERT INTO `order` VALUES (71, '223110451817', '2022-03-01 10:15:45', '20211516344655', 'L', '15233088662@163.com', '测试人员', '15233088662', 626, 1, '支付宝', '网页商城', '待发货', '天津市 市辖区 河东区 (11)', 0);
-INSERT INTO `order` VALUES (72, '223110455311', '2022-03-01 10:16:47', '202012310940061', '6GB+128GB', '15233088662@163.com', '测试人员', '15233088662', 6747, 3, '支付宝', '网页商城', '已发货', '天津市 市辖区 河东区 (11)', 0);
+INSERT INTO `order` VALUES (71, '223110451817', '2022-03-01 10:15:45', '20211516344655', 'L', '15233088662@163.com', '测试人员', '15233088662', 626, 1, '支付宝', '网页商城', '已发货', '天津市 市辖区 河东区 (11)', 0);
+INSERT INTO `order` VALUES (72, '223110455311', '2022-03-01 10:16:47', '202012310940061', '6GB+128GB', '15233088662@163.com', '测试人员', '15233088662', 6747, 3, '支付宝', '网页商城', '已评价', '天津市 市辖区 河东区 (11)', 0);
+INSERT INTO `order` VALUES (73, '223420428827', '2022-03-04 20:57:43', '202012302222140', '6GB+128GB', '15233088662@163.com', '测试人员', '15233088662', 3299, 1, '支付宝', '网页商城', '已收货', '北京市 市辖区 东城区 (test)', 0);
+INSERT INTO `order` VALUES (74, '223421202909', '2022-03-04 21:07:21', '2020123114525945', 'M', '15233088662@163.com', '测试人员', '15233088662', 659, 1, '支付宝', '网页商城', '已退货', '北京市 市辖区 东城区 (test)', 1);
+INSERT INTO `order` VALUES (75, '223421276224', '2022-03-04 21:09:28', '20211517042458', 'M', '15233088662@163.com', '测试人员', '15233088662', 136, 1, '支付宝', '网页商城', '已退货', '北京市 市辖区 东城区 (test)', 1);
 
 -- ----------------------------
 -- Table structure for product
@@ -150,7 +157,7 @@ CREATE TABLE `product`  (
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES (1, '202012302222140', '米家互联网洗烘一体机Pro 20kg', '生活家电', '国标双A+级洗烘能力 / 22种洗烘模式 / 除菌率达99.9%+ / 支持小爱同学语音遥控 / 支持OTA在线智能升级 / 智能空气洗 / 智能投放洗涤剂', '小米', 2899, 3299, 11, 10, 0, 1, 1, '2022-03-01 10:16:16', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/c833369200f2465db37b64f64f604514-ec20453216dcd42f982cffe5fdbc3115.webp');
+INSERT INTO `product` VALUES (1, '202012302222140', '米家互联网洗烘一体机Pro 20kg', '生活家电', '国标双A+级洗烘能力 / 22种洗烘模式 / 除菌率达99.9%+ / 支持小爱同学语音遥控 / 支持OTA在线智能升级 / 智能空气洗 / 智能投放洗涤剂', '小米', 2899, 3299, 10, 10, 0, 1, 1, '2022-03-01 10:16:16', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/c833369200f2465db37b64f64f604514-ec20453216dcd42f982cffe5fdbc3115.webp');
 INSERT INTO `product` VALUES (2, '202012310940061', 'Redmi K30 至尊纪念版', '手机', '120Hz弹出全面屏 / 天玑1000+旗舰处理器 / 索尼6400万四摄 / 立体声双扬声器 / 4500mAh+33W闪充 / 双模5G / 多功能NFC / 线性震动马达 / 红外遥控', '小米', 1899, 2499, 6, 5, 0, 0, 1, '2021-01-01 09:31:54', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/2b740f7f5aa44429ae9304a0b3b8c9e3-3b19bf0e7e599c1bbbce510fb0dbc8bc.webp');
 INSERT INTO `product` VALUES (6, '202012310948192', 'Redmi 10X Pro 5G', '手机', '双5G待机/天玑820处理器/4800万流光相机+800万超广角/6.57\"三星AMOLED屏幕/屏幕指纹/4520mAh长续航/红外遥控', '小米', 2099, 2499, 8, 8, 0, 0, 1, '2020-12-31 09:48:58', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/41f622beaf314f689f5109aff0112a66-pms_1590373498.27778397.jpg');
 INSERT INTO `product` VALUES (7, '202012311032223', '天梭力洛克系列钢带80机芯机械男表', '腕表', '为纪念天梭诞生150周年而推出的系列，因此取名天梭诞生地瑞士小镇力洛克。\n该系列部分表款的后盖有独特的设计，令人一探腕表跳动的韵律。\n上市以来成为了天梭系列中的畅销系列。', '天梭', 4650, 4800, 10, 5, 0, 0, 1, '2020-12-31 10:35:34', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/fbf1f88e9ae94661a40994789f5da800-t0064071105300_1_1_1.png');
@@ -195,7 +202,7 @@ INSERT INTO `product` VALUES (46, '2020123114125441', 'iPhone 12 Pro', '手机',
 INSERT INTO `product` VALUES (47, '2020123114172342', 'iPhone SE', '手机', 'iPhone SE 拥有强大的芯片和惹人喜爱的尺寸，而价格更是让人动心。你期待的它，来了。', '苹果', 3699, 3799, 10, 5, 0, 0, 1, '2020-12-31 14:19:17', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/b96846d1d2164c9d804eaf6551270620-iphone-se-white-select-2020.png');
 INSERT INTO `product` VALUES (48, '2020123114430143', '茵曼秋季新款棉针织上衣女', '服装', '茵曼秋季新款清新纯色优雅V领绣花简约百搭弹性棉针织上衣女', '茵曼', 452, 489, 30, 15, 0, 0, 1, '2020-12-31 14:46:16', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/349413ae39e7479b85d9465c689bbb29-160422964083238598.jpg');
 INSERT INTO `product` VALUES (49, '2020123114461744', '2019秋季新款学生圆领卫衣', '服装', '苏宁款卫衣女宽松韩版2019秋季新款时尚学生圆领字母印花纯棉慵懒风加绒', '茵曼', 270, 299, 28, 10, 0, 0, 1, '2020-12-31 14:48:18', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/b460089cd1bb4d7f8fb0bd68ac39b391-160422956116154612.jpg');
-INSERT INTO `product` VALUES (50, '2020123114525945', 'Lagogo宽松连衣裙女', '服装', 'Lagogo拉谷谷长袖高腰条纹中裙宽松连衣裙女', '茵曼', 639, 659, 30, 10, 0, 0, 1, '2020-12-31 14:53:47', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/7c156050769a4e36b71a70a7cbd01a66-160138138140657460.png');
+INSERT INTO `product` VALUES (50, '2020123114525945', 'Lagogo宽松连衣裙女', '服装', 'Lagogo拉谷谷长袖高腰条纹中裙宽松连衣裙女', '茵曼', 639, 659, 29, 10, 0, 0, 1, '2020-12-31 14:53:47', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/7c156050769a4e36b71a70a7cbd01a66-160138138140657460.png');
 INSERT INTO `product` VALUES (51, '2020123114535846', '菱格套头毛衣秋冬季新款女', '服装', '妖精的口袋waitmore菱格套头毛衣秋冬季新款女宽松外穿针织衫', '茵曼', 60, 75, 25, 10, 0, 0, 1, '2020-12-31 14:54:52', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/454eee8faa934da8a2d8a288143c057b-160138145934440586.png');
 INSERT INTO `product` VALUES (52, '2020123116310447', 'Redmi 智能电视 MAX 98', '生活家电', '客厅里的巨幕影院 大视野带来超震撼的沉浸感/4K HDR超高清画质 逼真画面栩栩如生/杜比+DTS双解码 清澈立体的声音环绕整个客厅/MEMC运动补偿 无拖尾无重影/4G+64G大存储', '小米', 18999, 19999, 29, 20, 0, 0, 1, '2020-12-31 16:31:55', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/32ac248179554081be1f18693ab51748-pms_1584958755.36428250.jpg');
 INSERT INTO `product` VALUES (53, '2020123120311148', '小米电视大师 82英寸至尊纪念版', '生活家电', '8K超高清/量子点技术/声动之翼/支持5G网络/全通道8K', '小米', 47999, 49999, 10, 5, 0, 0, 1, '2020-12-31 20:32:06', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/ad3b1bfe33ed4239b91b3c3e3407260b-597dc0f15e44d85928711966d540ed71.jpg');
@@ -208,7 +215,7 @@ INSERT INTO `product` VALUES (59, '20211516332754', '2020年尖领净色上装�
 INSERT INTO `product` VALUES (60, '20211516344655', '冬装新款甜美浪漫蝴蝶结系连衣裙', '服装', '茵曼2020冬装新款甜美浪漫蝴蝶结系带修身橡筋泡泡袖连衣裙两件套', '茵曼', 600, 639, 19, 10, 0, 0, 1, '2021-01-05 16:36:55', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/a80dbc6f490843eaa1e4aa301f2c3c80-Zn4EiMhTNR2EHS_JxzbMyg.jpg');
 INSERT INTO `product` VALUES (61, '20211516383756', '方形口袋长袖短外套上衣', '服装', '茵曼2020冬装新款温暖文艺格子拼接绒毛领方形口袋长袖短外套上衣', '茵曼', 599, 639, 17, 10, 0, 0, 1, '2021-01-05 16:40:26', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/8d5eb4c94ced46c3b9eaa46272573725-RuhTZO5ho3S7hAk74kc2oQ.jpg');
 INSERT INTO `product` VALUES (62, '20211517010257', '海澜之家水洗牛津纺长袖休闲衬衫2020春季挺括有型长衬男', '服装', '海澜之家水洗牛津纺长袖休闲衬衫2020春季挺括有型长衬男\n牛津纺面料 水洗工艺 扣领尖领 有型穿着', '海澜之家', 128, 158, 26, 15, 0, 0, 1, '2021-01-05 17:02:50', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/5dba4a48d30d479696574fe76e9d2e99-FIl9rLaE1Of1YrMr_XUMRw.png');
-INSERT INTO `product` VALUES (63, '20211517042458', '拉谷谷多色休闲连帽卫衣女上衣ICEE417G38', '服装', '简约多色百搭连帽卫衣\n每个季节对卫衣都情有独钟\n时尚达人必备的时髦单品\n具有超强时尚感和视觉上瘦身的效果。', '茵曼', 119, 139, 29, 20, 0, 0, 1, '2021-01-05 17:10:25', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/15dbe2cfaf0c4ee1ae0cbfb3f8171370-Q3jd-iexNlA8YnUFM51d9A.jpg');
+INSERT INTO `product` VALUES (63, '20211517042458', '拉谷谷多色休闲连帽卫衣女上衣ICEE417G38', '服装', '简约多色百搭连帽卫衣\n每个季节对卫衣都情有独钟\n时尚达人必备的时髦单品\n具有超强时尚感和视觉上瘦身的效果。', '茵曼', 119, 139, 28, 20, 0, 0, 1, '2021-01-05 17:10:25', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/15dbe2cfaf0c4ee1ae0cbfb3f8171370-Q3jd-iexNlA8YnUFM51d9A.jpg');
 INSERT INTO `product` VALUES (64, '20223110185959', '测试', '手机', '11', '七匹狼', 200, 400, 50, 50, 0, 1, 1, '2022-03-01 10:19:46', 'https://spring-oss.oss-cn-beijing.aliyuncs.com/images/productImage/25780f46047b4ccb8ed8ddaaff4f0f10-avatar.gif');
 
 -- ----------------------------
@@ -256,7 +263,7 @@ CREATE TABLE `product_review`  (
   INDEX `account_number`(`account_number`) USING BTREE,
   INDEX `product_no`(`product_no`) USING BTREE,
   INDEX `order_no`(`order_no`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品评价' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品评价' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of product_review
@@ -279,6 +286,7 @@ INSERT INTO `product_review` VALUES (15, '1147066163@qq.com', '2020123116310447'
 INSERT INTO `product_review` VALUES (16, 'qiudb.top@aliyun.com', '20211517042458', 'M', '2162123561642', '2021-06-21 23:19:01', 5, '很好');
 INSERT INTO `product_review` VALUES (17, 'qiudb.top@aliyun.com', '2020123114125441', '6GB+256GB', '2222616509327', '2022-02-26 16:50:13', 5, '很好用');
 INSERT INTO `product_review` VALUES (18, '15233088662@163.com', '20211516383756', 'S', '223110263492', '2022-03-01 10:04:26', 4, '衣服还行');
+INSERT INTO `product_review` VALUES (19, '15233088662@163.com', '202012310940061', '6GB+128GB', '223110455311', '2022-03-04 21:07:06', 3, '123');
 
 -- ----------------------------
 -- Table structure for product_specs
@@ -475,7 +483,7 @@ CREATE TABLE `return_goods`  (
   INDEX `return_goods_ibfk_1`(`order_no`) USING BTREE,
   INDEX `return_goods_ibfk_2`(`user_number`) USING BTREE,
   INDEX `return_goods_ibfk_4`(`return_reason`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品退货表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品退货表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of return_goods
@@ -494,6 +502,8 @@ INSERT INTO `return_goods` VALUES (19, '2021-01-05 17:53:37', '211517517058', 'q
 INSERT INTO `return_goods` VALUES (20, '2021-01-05 18:07:00', '211518368179', 'qiudb.top@aliyun.com', 'M', 136, '1325554003@qq.com', '马英发', '2021-01-05 18:07:11', '质量问题', '退款完成');
 INSERT INTO `return_goods` VALUES (21, '2022-03-01 10:04:47', '223110263492', '15233088662@163.com', '测试', 626, '1325554003@qq.com', '超级管理员', '2022-03-01 10:05:12', '七天无理由退换', '退货完成');
 INSERT INTO `return_goods` VALUES (22, '2022-03-01 10:06:57', '223110157600', '15233088662@163.com', '测试', 616, '1325554003@qq.com', '超级管理员', '2022-03-01 10:07:05', '质量问题', '已拒绝');
+INSERT INTO `return_goods` VALUES (23, '2022-03-04 21:08:24', '223421202909', '15233088662@163.com', '测试人员', 659, '1325554003@qq.com', '超级管理员', '2022-03-04 21:08:52', '七天无理由退换', '退货完成');
+INSERT INTO `return_goods` VALUES (24, '2022-03-04 21:10:19', '223421276224', '15233088662@163.com', '测试人员', 136, '1325554003@qq.com', '超级管理员', '2022-03-04 21:10:34', '七天无理由退换', '退货完成');
 
 -- ----------------------------
 -- Table structure for return_reason
@@ -555,7 +565,7 @@ CREATE TABLE `shopping_cart`  (
   INDEX `product_id`(`product_id`) USING BTREE,
   CONSTRAINT `shopping_cart_ibfk_1` FOREIGN KEY (`account_number`) REFERENCES `user` (`account_number`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `shopping_cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of shopping_cart
@@ -642,13 +652,13 @@ CREATE TABLE `user`  (
   `status` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户身份',
   PRIMARY KEY (`user_id`) USING BTREE,
   UNIQUE INDEX `UNIQUE`(`account_number`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户表' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (11, '1325554003@qq.com', '超级管理员', '839768ab327f67dac8dda87127a2c6d3', NULL, NULL, '2022-03-01 09:54:48', '2022-03-01 09:55:09', 1, NULL, NULL, NULL, NULL, 'ADMIN');
-INSERT INTO `user` VALUES (13, '15233088662@163.com', '测试人员', 'd19dd6131be492930a4b1ed8835a00f9', '男', '15233088662', '2022-03-01 09:57:35', '2022-03-01 10:30:38', 1, '123', '天津市 市辖区 河东区 (11)', NULL, NULL, 'ADMIN');
+INSERT INTO `user` VALUES (11, '1325554003@qq.com', '超级管理员', '839768ab327f67dac8dda87127a2c6d3', NULL, '15233088661', '2022-03-01 09:54:48', '2022-03-04 20:45:32', 1, NULL, NULL, NULL, NULL, 'ADMIN');
+INSERT INTO `user` VALUES (14, '15233088662@163.com', '测试人员', 'd19dd6131be492930a4b1ed8835a00f9', '男', '15233088662', '2022-03-04 20:52:32', '2022-03-04 21:06:41', 1, '测试', '北京市 市辖区 东城区 (test)', NULL, NULL, 'CUSTOMER');
 
 -- ----------------------------
 -- Table structure for user_role
@@ -672,6 +682,7 @@ INSERT INTO `user_role` VALUES (10, 1);
 INSERT INTO `user_role` VALUES (11, 1);
 INSERT INTO `user_role` VALUES (12, 5);
 INSERT INTO `user_role` VALUES (13, 3);
+INSERT INTO `user_role` VALUES (14, 5);
 
 -- ----------------------------
 -- Table structure for vip
